@@ -39,8 +39,6 @@
     "ember-cli-deploy-gzip": "0.2.4",
     "ember-cli-deploy-s3": "0.4.0",
     "ember-cli-font-awesome-sass": "1.0.4",
-    "ember-cli-htmlbars": "^1.0.10",
-    "ember-cli-htmlbars-inline-precompile": "^0.3.3",
     "ember-cli-inject-live-reload": "^1.4.1",
     "ember-cli-jshint": "^1.0.4",
     "ember-cli-qunit": "^3.0.1",
@@ -67,7 +65,9 @@
     "ember-addon"
   ],
   "dependencies": {
-    "ember-cli-babel": "^5.1.7"
+    "ember-cli-babel": "^5.1.7",
+    "ember-cli-htmlbars": "^1.0.10",
+    "ember-cli-htmlbars-inline-precompile": "^0.3.3"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"

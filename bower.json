@@ -4,6 +4,9 @@
     "ember": "~2.9.0",
     "ember-cli-shims": "0.1.3",
     "bootstrap-sass": "^3.3.7",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "date.js": "*",
+    "moment": "momentjs#^2.17.1",
+    "moment-timezone": "^0.5.11"
   }
 }
