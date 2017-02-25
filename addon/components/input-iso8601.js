@@ -18,9 +18,9 @@ export default Ember.TextField.extend({
     this.send('parse');
   },
   /**
-   * Optional.  Initialize the date text box.
+   * REQUIRED.  Initialize the date text box and bind it to your model, component, or controller.
    */
-  date: undefined,
+  iso8601: '',
   valueFormat: 'LL',
   _setValue: Ember.on('init', Ember.observer('iso8601', function () {
     let value = null;

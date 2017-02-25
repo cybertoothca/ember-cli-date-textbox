@@ -1,8 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  dateAsParam: moment().startOf('day').toISOString(),
-  queryParams: ['dateAsParam'],
+  dateAsParam: moment().toISOString(),
+  queryParams: ['dateAsParam', 'wasEmptyUntilNow'],
   naftaSigned: new Date(1987, 9, 3),
-  now: new Date()
+  now: new Date(),
+  wasEmptyUntilNow: ''
 });
