@@ -1,3 +1,4 @@
+/* global moment */
 import Ember from 'ember';
 
 /**
@@ -6,8 +7,8 @@ import Ember from 'ember';
  */
 export default Ember.TextField.extend({
   actions: {
-    parse() {
-      const parsedDate = Date.parse(this.get('value'));
+    parse(value) {
+      const parsedDate = Date.parse(value);
       if (parsedDate === null) {
         this.$().closest('.form-group').addClass('has-error');
       } else {
@@ -17,12 +18,18 @@ export default Ember.TextField.extend({
     }
   },
   change() {
-    this.send('parse');
+    this.send('parse', this.get('value'));
   },
+  classNames: ['input-date'],
   /**
    * REQUIRED.  Initialize the date text box and bind it to your model, component, or controller.
    */
   date: undefined,
+  /**
+   * Don't assign anything to `value`.  Instead pass a proper date into the component's `date` attribute.
+   * @private
+   */
+  value: '',
   valueFormat: 'LL',
   _setValue: Ember.on('init', Ember.observer('date', function () {
     let value = null;
