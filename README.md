@@ -1,9 +1,8 @@
-# ember-cli-date-textbox [![GitHub version](http://badge.fury.io/gh/cybertoothca%2Fember-cli-date-textbox.svg)](http://badge.fury.io/gh/cybertoothca%2Fember-cli-date-textbox) ![](http://embadge.io/v1/badge.svg?start=1.13.0)
+# ember-cli-date-textbox [![GitHub version](http://badge.fury.io/gh/cybertoothca%2Fember-cli-date-textbox.svg)](http://badge.fury.io/gh/cybertoothca%2Fember-cli-date-textbox) ![](https://embadge.io/v1/badge.svg?start=1.13.0)
 
 [![npm version](http://badge.fury.io/js/ember-cli-date-textbox.svg)](http://badge.fury.io/js/ember-cli-date-textbox) [![CircleCI](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox.svg?style=shield)](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox) [![Code Climate](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox/badges/gpa.svg)](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox) ![Dependencies](http://david-dm.org/cybertoothca/ember-cli-date-textbox.svg) [![ember-observer-badge](http://emberobserver.com/badges/ember-cli-date-textbox.svg)](http://emberobserver.com/addons/ember-cli-date-textbox) [![License](http://img.shields.io/npm/l/ember-cli-date-textbox.svg)](LICENSE.md)
 
-This addon provides textbox components that can be used to choose dates by parsing language, e.g. today, 
-+1 month, jun 1, etc.
+A textbox that will guess the date you want and assign it to your model or query-params.
 
 ## Demo
 
@@ -14,14 +13,36 @@ The demonstration web application can be found here:
 
 This addon supplies the following _components_:
 
-* `input-date` - 
+* `input-date` - a basic HTML textbox that will take your input and try to parse it to a date.  If the parse succeeds,
+the date will be formatted according to your preference.  Ideal for binding to your model's date fields (e.g. 
+`DS.attr('date')`) or to your component or controller's properties.
+* `input-iso8601` - another basic HTML textbox that will once again take your input, parse it to a date, and then
+store the [ISO8601](https://en.wikipedia.org/wiki/ISO_8601) representation of the date.  This is a 
+great way for binding your date to Ember's query parameters.
 
-_Further information about these items can be found in the Usage section below._
+_Further information about these items can be found in the Usage section below and in the 
+[demo (dummy) application](http://ember-cli-date-textbox.cybertooth.io/)._
+
+### Some Bootstrap Love...
+
+If the supplied value can't be parsed to a date, we add the `has-error` style class to the `.form-group` that the
+`{{input-date}}` belongs to.  This visualizes that the date was rejected.
+
+Note, that the `{{input-iso8601}}` component does not add the `has-error` class to its `.form-group`.  It's 
+complicated, don't fret.
 
 ## Requirements
 
 * Ember >= 1.13.0
 * Ember CLI
+
+### Bower Dependencies
+
+The following Bower dependencies are automatically installed into your Ember product:
+ 
+* `date.js` - https://github.com/datejs/Datejs
+* `moment` - https://github.com/moment/moment
+* `moment-timezone` - https://github.com/moment/moment-timezone
 
 ## Installation
 
@@ -35,6 +56,8 @@ When working through the Ember upgrade process, I recommend
 invoking the `ember install ember-cli-date-textbox` command once
 you are done to get the latest version of the addon.
 
+This will likely update the bower dependencies listed above.
+
 ## Usage
 
 As mentioned above there are several examples on the demonstration site:
@@ -44,16 +67,82 @@ As mentioned above there are several examples on the demonstration site:
 
 #### `{{input-date}}`
 
+This component makes a textbox.  It takes in user input in the form of a date that is swiftly parsed and formatted.
+The parsed date object is assigned to the component's `date` property. 
+
 ##### Arguments
 
-* 
+* `date` - **REQUIRED**.  Rather than binding to the `value` property, this textbox input will be binding to
+the `date` attribute.
+* `value` - **DO NOT USE**.  I mention the `value` property because you shouldn't bind anything to it.  Users
+type in the textbox, the date they settle on will be formatted in the textbox which is assigned to the `value`
+property.  In addition...if you supply a valid `date` attribute to this textbox, it will be formatted for you.  Don't
+go being all clever trying to do things that are already taken care of for you.
+* `valueFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your dates is the localized
+`LL`.  You can change this however you want.  See the demo.
+* `startOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
+of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
+* `endOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
+second of the day.
+* `zone` - **COMING SOON** OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted in the specified
+timezone.
+* _All the standard input attributes that apply to text boxes._
+
+#### Examples
+
+    {{input-date date=myModel.createdOn valueFormat="llll"}}
+    
+    {{input-date date=someComponentProperty}}
+    
+    <div class="form-group">
+      <label for="js-updated-on" class="control-label">Updated</label>
+      {{input-date classNames="form-control" elementId="js-updated-on" date=anotherModel.updatedOn}}
+      <p class="help-block">Use with bootstrap!</p>
+    </div>
+
+([Check out the demo...](http://ember-cli-date-textbox.cybertooth.io/))
+
+#### `{{input-iso8601}}`
+
+What's iso8601?  Go read: https://en.wikipedia.org/wiki/ISO_8601
+
+Just like `{{input-date}}`, `{{input-iso8601}}` also makes a simple textbox.  It takes in user input 
+in the form of a date that is swiftly parsed and formatted. 
+
+##### Arguments
+
+* `iso8601` - **REQUIRED & MUST BE A STRING**.  Like the `{{input-date}}` component we do not use the textbox's
+`value` property and instead bind to the `iso8601` attribute.  This `iso8601` attribute expects a String and it
+should be in ISO format (e.g. `yyyy-MM-ddTHH:mm:ssZ`).
+* `value` - **DO NOT USE**.  I mention the `value` property because you shouldn't bind anything to it.  Users
+type in the textbox, the date they settle on will be formatted in the textbox which is assigned to the `value`
+property.  In addition...if you supply a valid `date` attribute to this textbox, it will be formatted for you.  Don't
+go being all clever trying to do things that are already taken care of for you.
+* `valueFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your dates is the localized
+`LL`.  You can change this however you want.  See the demo.
+* `startOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
+of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
+* `endOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
+second of the day.
+* `zone` - **COMING SOON** OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted in the specified
+timezone.
+* _All the standard input attributes that apply to text boxes._
+
+#### Examples
+
+    {{input-iso8601 iso8601=myControllerProperty valueFormat="llll"}}
+    
+    <div class="form-group">
+      <label for="js-from" class="control-label">Date From</label>
+      {{input-iso8601 classNames="form-control" elementId="js-from" iso8601=anotherControllerProperty}}
+      <p class="help-block">Use with bootstrap!</p>
+    </div>
 
 ([Check out the demo...](http://ember-cli-date-textbox.cybertooth.io/))
 
 ### Troubleshooting And Tips
 
-1. Ember-2.3.0+ is required because this addon uses the _hash_ helper.
-1. Bootstrap3 CSS and the tooltip Javascript plugin must be installed.
+_None...at least that I can think of._
 
 ---
 

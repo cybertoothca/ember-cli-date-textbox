@@ -1,7 +1,179 @@
 <div class="container">
   <h1>ember-cli-date-textbox</h1>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto atque doloremque illo necessitatibus omnis
-    quibusdam unde. Aliquid, consectetur consequuntur cumque ea eaque eligendi iusto nam nisi odit officia placeat
-    quibusdam!</p>
+  <div class="form">
+    <fieldset>
+      <legend>Try It...</legend>
+      <div class="form-group">
+        <label class="control-label">Type A Date</label>
+        {{input-date classNames="form-control" valueFormat="LLLL"
+                     placeholder="Try typing a date and then press enter."}}
+        <p class="help-block">
+          Try things like, 'today', 'next week', '+1 month', 'week 36', 'jun 15', 'Sep 9 1977' and press enter.
+        </p>
+        <div class="help-block">
+          <pre>\{{input-date classNames="form-control" valueFormat="LLLL"}}</pre>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="form">
+    <fieldset>
+      <legend>Initializing With A Date</legend>
+      <div class="form-group">
+        <label class="control-label">The Day NAFTA Was Signed</label>
+        {{input-date classNames="form-control" date=naftaSigned
+                     placeholder="You cleared the date.  Now we don't know when NAFTA was signed."}}
+      </div>
+      <div class="help-block">
+        <pre>\{{input-date classNames="form-control" date=naftaSigned}}</pre>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="form">
+    <fieldset>
+      <legend>
+        Localized Formatting
+        (<a href="http://momentjs.com/docs/#/displaying/format/" target="_blank">see Moment.js docs</a>)
+      </legend>
+      <div class="form-group">
+        <div class="input-group">
+          {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
+                       valueFormat="LT"}}
+          <span class="input-group-addon">Time (<code>LT</code>)</span>
+        </div>
+        <div class="help-block">
+          <pre>\{{input-date className="form-control" date=now valueFormat="LT"}}</pre>
+        </div>
+      </div>
+      <hr/>
+
+      <div class="form-group">
+        <div class="input-group">
+          {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
+                       valueFormat="LTS"}}
+          <span class="input-group-addon">Time with seconds (<code>LTS</code>)</span>
+        </div>
+        <div class="help-block">
+          <pre>\{{input-date className="form-control" date=now valueFormat="LTS"}}</pre>
+        </div>
+      </div>
+      <hr/>
+
+      <div class="form-group">
+        <div class="input-group">
+          {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
+                       valueFormat="L"}}
+          <span class="input-group-addon">Month numeral, day of month, year (<code>L</code>)</span>
+        </div>
+        <div class="help-block">
+          <pre>\{{input-date className="form-control" date=now valueFormat="L"}}</pre>
+        </div>
+      </div>
+      <hr/>
+
+      <div class="form-group">
+        <div class="input-group">
+          {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
+                       valueFormat="l"}}
+          <span class="input-group-addon">Month numeral, day of month, year (<code>l</code>)</span>
+        </div>
+        <div class="help-block">
+          <pre>\{{input-date className="form-control" date=now valueFormat="l"}}</pre>
+        </div>
+      </div>
+      <hr/>
+
+      <div class="form-group">
+        <div class="input-group">
+          {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
+                       valueFormat="LL"}}
+          <span class="input-group-addon">Month name, day of month, year (<code>LL</code>)</span>
+        </div>
+        <div class="help-block">
+          <pre>\{{input-date className="form-control" date=now valueFormat="LL"}}</pre>
+        </div>
+      </div>
+      <hr/>
+
+      <div class="form-group">
+        <div class="input-group">
+          {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
+                       valueFormat="ll"}}
+          <span class="input-group-addon">Month name, day of month, year (<code>ll</code>)</span>
+        </div>
+        <div class="help-block">
+          <pre>\{{input-date className="form-control" date=now valueFormat="ll"}}</pre>
+        </div>
+      </div>
+      <hr/>
+
+      <div class="form-group">
+        <div class="input-group">
+          {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
+                       valueFormat="LLL"}}
+          <span class="input-group-addon">Month name, day of month, year, time (<code>LLL</code>)</span>
+        </div>
+        <div class="help-block">
+          <pre>\{{input-date className="form-control" date=now valueFormat="LLL"}}</pre>
+        </div>
+      </div>
+      <hr/>
+
+      <div class="form-group">
+        <div class="input-group">
+          {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
+                       valueFormat="lll"}}
+          <span class="input-group-addon">Month name, day of month, year, time (<code>lll</code>)</span>
+        </div>
+        <div class="help-block">
+          <pre>\{{input-date className="form-control" date=now valueFormat="lll"}}</pre>
+        </div>
+      </div>
+      <hr/>
+
+      <div class="form-group">
+        <div class="input-group">
+          {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
+                       valueFormat="LLLL"}}
+          <span class="input-group-addon">Month name, day of month, day of week, year, time (<code>LLLL</code>)</span>
+        </div>
+        <div class="help-block">
+          <pre>\{{input-date className="form-control" date=now valueFormat="LLLL"}}</pre>
+        </div>
+      </div>
+      <hr/>
+
+      <div class="form-group">
+        <div class="input-group">
+          {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
+                       valueFormat="llll"}}
+          <span class="input-group-addon">Month name, day of month, day of week, year, time (<code>llll</code>)</span>
+        </div>
+        <div class="help-block">
+          <pre>\{{input-date className="form-control" date=now valueFormat="llll"}}</pre>
+        </div>
+      </div>
+      <hr/>
+    </fieldset>
+  </div>
+
+  <div class="form">
+    <fieldset>
+      <legend>Assigned To Query Param</legend>
+      <div class="form-group">
+        <label class="control-label">Change The Date And Check The Address Bar</label>
+        {{input-iso8601 classNames="form-control"
+                        placeholder="Try another date. It appears as `dateAsParam` in the page url." iso8601=dateAsParam
+                        valueFormat="LLL Z"}}
+      </div>
+      <div class="form-group">
+        <label class="control-label">Choose Any Date And See It In The URL</label>
+        {{input-iso8601 classNames="form-control" placeholder="Choose a date, any date." iso8601=wasEmptyUntilNow
+                        valueFormat="LLL Z"}}
+      </div>
+    </fieldset>
+  </div>
 </div>
