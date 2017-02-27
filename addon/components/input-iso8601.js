@@ -4,7 +4,7 @@ import Ember from 'ember';
 export default Ember.TextField.extend({
   actions: {
     parse(value) {
-      const parsedDate = Date.parse(value);
+      const parsedDate = Date.parsePlus(value);
       const iso8601 = Ember.isPresent(parsedDate) ? parsedDate.toISOString() : '';
       Ember.trySet(this, 'iso8601', iso8601);
 

@@ -6,7 +6,7 @@ module.exports = {
   },
   afterInstall: function (/*options*/) {
     return this.addBowerPackagesToProject([
-      {name: 'date.js'},
+      {name: 'git://github.com/cybertoothca/Datejs.git'},
       {name: 'moment'},
       {name: 'moment-timezone'}
     ]);

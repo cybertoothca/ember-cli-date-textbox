@@ -8,7 +8,7 @@ import Ember from 'ember';
 export default Ember.TextField.extend({
   actions: {
     parse(value) {
-      const parsedDate = Date.parse(value);
+      const parsedDate = Date.parsePlus(value);
       if (parsedDate === null) {
         this.$().closest('.form-group').addClass('has-error');
       } else {
