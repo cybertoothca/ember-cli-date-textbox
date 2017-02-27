@@ -26,10 +26,7 @@ _Further information about these items can be found in the Usage section below a
 ### Some Bootstrap Love...
 
 If the supplied value can't be parsed to a date, we add the `has-error` style class to the `.form-group` that the
-`{{input-date}}` belongs to.  This visualizes that the date was rejected.
-
-Note, that the `{{input-iso8601}}` component does not add the `has-error` class to its `.form-group`.  It's 
-complicated, don't fret.
+`{{input-date}}` and/or `{{input-iso8601}}` belongs to.  This visualizes that the date parse was rejected.
 
 ## Requirements
 
@@ -40,7 +37,8 @@ complicated, don't fret.
 
 The following Bower dependencies are automatically installed into your Ember product:
  
-* `date.js` - https://github.com/datejs/Datejs
+* `datejs-parse-plus` - https://github.com/cybertoothca/Datejs - A fork of the original Datejs 
+(https://github.com/datejs/Datejs) library that is careful to not override the `Date`'s `parse(...)` function.
 * `moment` - https://github.com/moment/moment
 * `moment-timezone` - https://github.com/moment/moment-timezone
 
