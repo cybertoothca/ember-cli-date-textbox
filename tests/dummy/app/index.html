@@ -9,9 +9,11 @@
 
   {{content-for "head"}}
 
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Raleway:700" rel="stylesheet">
+  <!-- TODO: hacked the google fonts here because of SASS @import issues in PhantomJs -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700">
   <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
   <link rel="stylesheet" href="{{rootURL}}assets/dummy.css">
+  <link rel="shortcut icon" href="http://emberjs.com/images/favicon.png">
 
   {{content-for "head-footer"}}
 </head>

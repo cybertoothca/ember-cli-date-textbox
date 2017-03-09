@@ -63,7 +63,7 @@ As mentioned above there are several examples on the demonstration site:
 
 ### Components
 
-#### `{{input-date}}`
+#### &#123;&#123;input-date&#125;&#125;
 
 This component makes a textbox.  It takes in user input in the form of a date that is swiftly parsed and formatted.
 The parsed date object is assigned to the component's `date` property. 
@@ -100,7 +100,7 @@ timezone.
 
 ([Check out the demo...](http://ember-cli-date-textbox.cybertooth.io/))
 
-#### `{{input-iso8601}}`
+#### &#123;&#123;input-iso8601&#125;&#125;
 
 What's iso8601?  Go read: https://en.wikipedia.org/wiki/ISO_8601
 

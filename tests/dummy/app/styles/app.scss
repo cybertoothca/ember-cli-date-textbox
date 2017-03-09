@@ -1,27 +1,16 @@
+@import "../../../../bower_components/bootswatch/spacelab/variables";
 //noinspection CssUnknownTarget
 @import 'ember-cli-bootstrap3-variables.scss';
 
-// TODO: can't @import fonts because PhantomJS get's angry
-$font-family-sans-serif: 'Source Sans Pro', $font-family-sans-serif;
-$font-family-base: $font-family-sans-serif;
-$headings-font-family: Raleway, $font-family-base;
-$navbar-default-bg: lighten($brand-primary, 25%);
-$navbar-default-link-hover-bg: lighten($brand-primary, 22%);
-$navbar-default-link-active-bg: lighten($brand-primary, 20%);
-
+// HACK: this is being set to '' because phantomjs pukes on @import directives that go to google fonts
+$web-font-path: '' !default;
 //noinspection CssUnknownTarget
 @import 'ember-cli-bootstrap3-sass';
-//noinspection CssUnknownTarget
-@import 'ember-cli-bootstrap3-theme';
-
+@import "../../../../bower_components/bootswatch/spacelab/bootswatch";
 //noinspection CssUnknownTarget
 @import "ember-cli-font-awesome-sass";
 
 body {
-  padding-top: 70px;
+  padding-top: 50px;
   margin-bottom: 50%;
-}
-
-h3 {
-  margin-top: 3rem;
 }

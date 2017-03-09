@@ -1,7 +1,8 @@
 /* global moment */
 import Ember from 'ember';
+import InputText from 'ember-cli-text-support-mixins/components/input-text';
 
-export default Ember.TextField.extend({
+export default InputText.extend({
   actions: {
     parse(value) {
       const parsedDate = Date.parsePlus(value);
@@ -13,12 +14,19 @@ export default Ember.TextField.extend({
       } else {
         this.$().closest('.form-group').addClass('has-error');
       }
+
+      return true;
     }
   },
   change() {
     this.send('parse', this.get('value'));
   },
   classNames: ['input-iso8601'],
+  'ctrlEnterSubmitsForm?': true,
+  'enterWillSubmitForm?': false,
+  insertNewline(/*event*/) {
+    this.send('parse', this.get('value'));
+  },
   /**
    * REQUIRED.  Initialize the date text box and bind it to your model, component, or controller.
    */
