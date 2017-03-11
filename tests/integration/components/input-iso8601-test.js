@@ -26,14 +26,14 @@ test('when initializing with a date the text value formats to LL', function (ass
 
 test('when initializing with a date the text value formats to whatever format is supplied', function (assert) {
   this.set('iso8601', new Date(2001, 8, 11).toISOString());
-  this.render(hbs`{{input-iso8601 iso8601=iso8601 valueFormat="ll"}}`);
+  this.render(hbs`{{input-iso8601 iso8601=iso8601 displayFormat="ll"}}`);
   assert.equal(this.$('input').val().trim(), 'Sep 11, 2001');
 });
 
 skip('when clearing the value the date is set to null', function (assert) {
   let sep11 = new Date(2001, 8, 11);
   this.set('date', sep11);
-  this.render(hbs`{{input-date date=date valueFormat="ll"}}`);
+  this.render(hbs`{{input-date date=date displayFormat="ll"}}`);
   assert.equal(this.$('input').val().trim(), 'Sep 11, 2001');
   this.$('input')
     .val('')

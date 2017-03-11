@@ -33,7 +33,16 @@ If the supplied value can't be parsed to a date, we add the `has-error` style cl
 * Ember >= 1.13.0
 * Ember CLI
 
-### Bower Dependencies
+### Dependencies
+
+#### Ember Addon
+
+The following Ember addons will automatically be added into your Ember product:
+
+* `ember-cli-text-support-mixins` - https://github.com/cybertoothca/ember-cli-text-support-mixins - `Ember.TextSupport` 
+enhancements including a {{input-text}} and {{text-area}} component.
+
+#### Bower
 
 The following Bower dependencies are automatically installed into your Ember product:
  
@@ -76,7 +85,7 @@ the `date` attribute.
 type in the textbox, the date they settle on will be formatted in the textbox which is assigned to the `value`
 property.  In addition...if you supply a valid `date` attribute to this textbox, it will be formatted for you.  Don't
 go being all clever trying to do things that are already taken care of for you.
-* `valueFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your dates is the localized
+* `displayFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your dates is the localized
 `LL`.  You can change this however you want.  See the demo.
 * `startOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
 of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
@@ -84,11 +93,13 @@ of the day.  If set to `true`, this will take precedence over the `endOfDay` pro
 second of the day.
 * `zone` - **COMING SOON** OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted in the specified
 timezone.
+* _All the attributes from `ember-cli-text-support-mixins`' &#123;&#123;input-text&#125;&#125;._
+See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 * _All the standard input attributes that apply to text boxes._
 
 #### Examples
 
-    {{input-date date=myModel.createdOn valueFormat="llll"}}
+    {{input-date date=myModel.createdOn displayFormat="llll"}}
     
     {{input-date date=someComponentProperty}}
     
@@ -116,7 +127,7 @@ should be in ISO format (e.g. `yyyy-MM-ddTHH:mm:ssZ`).
 type in the textbox, the date they settle on will be formatted in the textbox which is assigned to the `value`
 property.  In addition...if you supply a valid `date` attribute to this textbox, it will be formatted for you.  Don't
 go being all clever trying to do things that are already taken care of for you.
-* `valueFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your dates is the localized
+* `displayFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your dates is the localized
 `LL`.  You can change this however you want.  See the demo.
 * `startOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
 of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
@@ -124,11 +135,13 @@ of the day.  If set to `true`, this will take precedence over the `endOfDay` pro
 second of the day.
 * `zone` - **COMING SOON** OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted in the specified
 timezone.
+* _All the attributes from `ember-cli-text-support-mixins`' &#123;&#123;input-text&#125;&#125;._
+See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 * _All the standard input attributes that apply to text boxes._
 
 #### Examples
 
-    {{input-iso8601 iso8601=myControllerProperty valueFormat="llll"}}
+    {{input-iso8601 iso8601=myControllerProperty displayFormat="llll"}}
     
     <div class="form-group">
       <label for="js-from" class="control-label">Date From</label>

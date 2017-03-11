@@ -5,23 +5,37 @@
 </section>
 
 <section class="container">
-  <h2><code>&#123;&#123;input-date&#125;&#125;</code></h2>
-  <p>Description goes here.</p>
+  <h2><code>\{{input-date}}</code></h2>
+  <p>
+    The <code>\{{input-date}}</code> works well if it is bound to one of your model's
+    <code>DS.attr('date')</code> attribute. A user begins by typing a date and then
+    presses enter. The text box's parser will attempt to create a date from the input.
+    Use <strong>English</strong> phrases or abbreviated dates like:
+  </p>
+  <ul>
+    <li><em>today</em></li>
+    <li><em>now</em></li>
+    <li><em>yesterday</em></li>
+    <li><em>mar 1</em></li>
+    <li><em>last week</em></li>
+    <li><em>sep 9 1977</em></li>
+  </ul>
+  <p>...and the list goes on and on. Enjoy.</p>
 </section>
 
 <section class="container">
   <div class="form">
     <fieldset>
-      <legend>Try It...</legend>
+      <legend>Give it a try...</legend>
       <div class="form-group">
         <label class="control-label">Type A Date</label>
-        {{input-date classNames="form-control" valueFormat="LLLL"
+        {{input-date classNames="form-control" displayFormat="LLLL"
                      placeholder="Try typing a date and then press enter."}}
         <p class="help-block">
           Try things like, 'today', 'next week', '+1 month', 'week 36', 'jun 15', 'Sep 9 1977' and press enter.
         </p>
         <div class="help-block">
-          <pre>\{{input-date classNames="form-control" valueFormat="LLLL"}}</pre>
+          <pre>\{{input-date classNames="form-control" displayFormat="LLLL"}}</pre>
         </div>
       </div>
     </fieldset>
@@ -30,16 +44,16 @@
   <div class="form">
     <fieldset>
       <legend>Initializing With A Date</legend>
-      <p>
-        This example is binding the parsed date from the textbox to a controller property named
-        <code>naftaSigned</code>. Notice how the date is initialized in the controller and was
-        formatted accordingly in the textbox value.
-      </p>
       <div class="form-group">
         <label class="control-label">The Day NAFTA Was Signed</label>
         {{input-date classNames="form-control" date=naftaSigned
                      placeholder="You cleared the date.  Now we don't know when NAFTA was signed."}}
       </div>
+      <p class="help-block">
+        This example is binding the parsed date from the textbox to a controller property named
+        <code>naftaSigned</code>. Notice how the date is initialized in the controller and was
+        formatted accordingly in the textbox value.
+      </p>
       <div class="help-block">
         {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
@@ -60,20 +74,20 @@ export default Ember.Controller.extend({
         Localized Formatting
         (<a href="http://momentjs.com/docs/#/displaying/format/" target="_blank">see Moment.js docs</a>)
       </legend>
-      <p>
-        These example textboxes all bind to the controller's <code>now</code> property. Each textbox
-        is leveraging the <code>valueFormat</code> property demonstrating several localized formats.
-      </p>
       <div class="form-group">
         <div class="input-group">
           {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
-                       valueFormat="LT"}}
+                       displayFormat="LT"}}
           <span class="input-group-addon">Time (<code>LT</code>)</span>
         </div>
+        <p class="help-block">
+          These example textboxes all bind to the controller's <code>now</code> property. Each textbox
+          is leveraging the <code>displayFormat</code> property demonstrating several localized formats.
+        </p>
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now valueFormat="LT"}}
+\{{input-date className="form-control" date=now displayFormat="LT"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -87,13 +101,13 @@ export default Ember.Controller.extend({
       <div class="form-group">
         <div class="input-group">
           {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
-                       valueFormat="LTS"}}
+                       displayFormat="LTS"}}
           <span class="input-group-addon">Time with seconds (<code>LTS</code>)</span>
         </div>
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now valueFormat="LTS"}}
+\{{input-date className="form-control" date=now displayFormat="LTS"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -107,13 +121,13 @@ export default Ember.Controller.extend({
       <div class="form-group">
         <div class="input-group">
           {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
-                       valueFormat="L"}}
+                       displayFormat="L"}}
           <span class="input-group-addon">Month numeral, day of month, year (<code>L</code>)</span>
         </div>
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now valueFormat="L"}}
+\{{input-date className="form-control" date=now displayFormat="L"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -127,13 +141,13 @@ export default Ember.Controller.extend({
       <div class="form-group">
         <div class="input-group">
           {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
-                       valueFormat="l"}}
+                       displayFormat="l"}}
           <span class="input-group-addon">Month numeral, day of month, year (<code>l</code>)</span>
         </div>
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now valueFormat="l"}}
+\{{input-date className="form-control" date=now displayFormat="l"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -147,13 +161,13 @@ export default Ember.Controller.extend({
       <div class="form-group">
         <div class="input-group">
           {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
-                       valueFormat="LL"}}
+                       displayFormat="LL"}}
           <span class="input-group-addon">Month name, day of month, year (<code>LL</code>)</span>
         </div>
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now valueFormat="LL"}}
+\{{input-date className="form-control" date=now displayFormat="LL"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -167,13 +181,13 @@ export default Ember.Controller.extend({
       <div class="form-group">
         <div class="input-group">
           {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
-                       valueFormat="ll"}}
+                       displayFormat="ll"}}
           <span class="input-group-addon">Month name, day of month, year (<code>ll</code>)</span>
         </div>
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now valueFormat="ll"}}
+\{{input-date className="form-control" date=now displayFormat="ll"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -187,13 +201,13 @@ export default Ember.Controller.extend({
       <div class="form-group">
         <div class="input-group">
           {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
-                       valueFormat="LLL"}}
+                       displayFormat="LLL"}}
           <span class="input-group-addon">Month name, day of month, year, time (<code>LLL</code>)</span>
         </div>
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now valueFormat="LLL"}}
+\{{input-date className="form-control" date=now displayFormat="LLL"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -207,13 +221,13 @@ export default Ember.Controller.extend({
       <div class="form-group">
         <div class="input-group">
           {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
-                       valueFormat="lll"}}
+                       displayFormat="lll"}}
           <span class="input-group-addon">Month name, day of month, year, time (<code>lll</code>)</span>
         </div>
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now valueFormat="lll"}}
+\{{input-date className="form-control" date=now displayFormat="lll"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -227,14 +241,14 @@ export default Ember.Controller.extend({
       <div class="form-group">
         <div class="input-group">
           {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
-                       valueFormat="LLLL"}}
+                       displayFormat="LLLL"}}
           <span class="input-group-addon">Month name, day of month, day of week, year, time (<code>LLLL</code>)</span>
         </div>
         <div class="help-block">
           <pre></pre>
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now valueFormat="LLLL"}}
+\{{input-date className="form-control" date=now displayFormat="LLLL"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -248,13 +262,13 @@ export default Ember.Controller.extend({
       <div class="form-group">
         <div class="input-group">
           {{input-date classNames="form-control" placeholder="You cleared the date.  Try entering another." date=now
-                       valueFormat="llll"}}
+                       displayFormat="llll"}}
           <span class="input-group-addon">Month name, day of month, day of week, year, time (<code>llll</code>)</span>
         </div>
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now valueFormat="llll"}}
+\{{input-date className="form-control" date=now displayFormat="llll"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -269,17 +283,17 @@ export default Ember.Controller.extend({
 
   <form class="form" {{action (route-action "submitDate") on="submit"}}>
     <fieldset>
-      <legend><code>&#123;&#123;input-date&#125;&#125;</code> Submitting In A Form</legend>
+      <legend>Submitting In A Form</legend>
       <div class="form-group">
         <label class="control-label">Type A Date...</label>
-        {{input-date classNames="form-control" valueFormat="LLLL"
+        {{input-date classNames="form-control" displayFormat="LLLL"
                      placeholder="Choose a date and submit the form..."
                      date=submittedDate}}
         <p class="help-block">
           Press <kbd>ENTER</kbd> to parse the date, press <kbd>CTRL</kbd>+<kbd>ENTER</kbd> to submit the form.
         </p>
         <div class="help-block">
-          <pre>\{{input-date classNames="form-control" valueFormat="LLLL" date=submittedDate}}</pre>
+          <pre>\{{input-date classNames="form-control" displayFormat="LLLL" date=submittedDate}}</pre>
         </div>
       </div>
     </fieldset>
@@ -287,7 +301,7 @@ export default Ember.Controller.extend({
 </section>
 
 <section class="container">
-  <h2><code>&#123;&#123;input-iso8601&#125;&#125;</code></h2>
+  <h2><code>\{{input-iso8601}}</code></h2>
   <p>
     These examples are demonstrating binding the parsed iso8601 string value a controller property
     acting as a query param. <strong>Do not use <code>\{{input-date ...}}</code> for query params
@@ -304,7 +318,7 @@ export default Ember.Controller.extend({
         <label class="control-label">Change The Date And Check The Address Bar</label>
         {{input-iso8601 classNames="form-control"
                         placeholder="Try another date. It appears as `dateAsParam` in the page url." iso8601=dateAsParam
-                        valueFormat="LLL Z"}}
+                        displayFormat="LLL Z"}}
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
@@ -312,28 +326,35 @@ export default Ember.Controller.extend({
     classNames="form-control"
     placeholder="Try another date. It appears as `dateAsParam` in the page url."
     iso8601=dateAsParam
-    valueFormat="LLL Z"}}
+    displayFormat="LLL Z"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
-  dateAsParam: new Date().toISOString(),
-  queryParams: ['dateAsParam']
+  dateAsParam: new Date().toISOString()
+});
+
+// app/routes/example.js
+export default Ember.Route.extend({
+  queryParams: {
+    dateAsParam: { refreshModel: false }
+  }
 });</pre>
           {{!--@formatter:on--}}
         </div>
       </div>
       <div class="form-group">
         <label class="control-label">Choose Any Date And See It In The URL</label>
-        {{input-iso8601 classNames="form-control" placeholder="Choose a date, any date." iso8601=wasEmptyUntilNow
-                        valueFormat="LLL Z"}}
+        {{input-iso8601
+          classNames="form-control" placeholder="Choose a date..." iso8601=wasEmptyUntilNow
+          displayFormat="LLL Z"}}
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
 \{{input-iso8601
     classNames="form-control"
-    placeholder="Try another date. It appears as `dateAsParam` in the page url."
-    iso8601=dateAsParam
-    valueFormat="LLL Z"}}
+    placeholder="Choose a date..."
+    iso8601=wasEmptyUntilNow
+    displayFormat="LLL Z"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -347,17 +368,20 @@ export default Ember.Controller.extend({
   </div>
   <form class="form" {{action (route-action "submitIso8601") on="submit"}}>
     <fieldset>
-      <legend><code>&#123;&#123;input-iso8601&#125;&#125;</code> Submitting In A Form</legend>
+      <legend>Submitting In A Form</legend>
       <div class="form-group">
         <label class="control-label">Type A Date...</label>
-        {{input-iso8601 classNames="form-control" valueFormat="LLLL"
+        {{input-iso8601 classNames="form-control" displayFormat="LLLL"
                         placeholder="Choose a date and submit the form..."
                         iso8601=submittedIso8601}}
         <p class="help-block">
           Press <kbd>ENTER</kbd> to parse the date, press <kbd>CTRL</kbd>+<kbd>ENTER</kbd> to submit the form.
         </p>
         <div class="help-block">
-          <pre>\{{input-iso8601 classNames="form-control" valueFormat="LLLL" iso8601=submittedIso8601}}</pre>
+          <pre>// app/templates/example.hbs
+            \{{input-iso8601 classNames="form-control" displayFormat="LLLL"
+    placeholder="Choose a date and submit the form..."
+    iso8601=submittedIso8601}}</pre>
         </div>
       </div>
     </fieldset>

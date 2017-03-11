@@ -33,6 +33,11 @@ export default InputText.extend({
    * REQUIRED.  Initialize the date text box and bind it to your model, component, or controller.
    */
   date: undefined,
+  /**
+   * The format mask to apply to the date once it's been parsed.  The formatted date will
+   * appear in the textbox while the actual date value behind it is in the `date` property.
+   */
+  displayFormat: 'LL',
   'enterWillSubmitForm?': false,
   insertNewline(/*event*/) {
     this.send('parse', this.get('value'));
@@ -42,11 +47,17 @@ export default InputText.extend({
    * @private
    */
   value: '',
-  valueFormat: 'LL',
+  /**
+   * @deprecated please use #displayFormat instead.
+   */
+  valueFormat: Ember.computed.deprecatingAlias('displayFormat', {
+    id: 'input-date.deprecate-valueFormat',
+    until: '1.2.0'
+  }),
   _setValue: Ember.on('init', Ember.observer('date', function () {
     let value = null;
     if (Ember.isPresent(this.get('date')) && Ember.typeOf(this.get('date')) === 'date') {
-      value = moment(this.get('date')).format(this.get('valueFormat'));
+      value = moment(this.get('date')).format(this.get('displayFormat'));
     }
     Ember.trySet(this, 'value', value);
   }))

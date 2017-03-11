@@ -23,6 +23,12 @@ export default InputText.extend({
   },
   classNames: ['input-iso8601'],
   'ctrlEnterSubmitsForm?': true,
+  /**
+   * The format mask to apply to the date once it's been parsed.  The formatted date will
+   * appear in the textbox while the actual date's ISO8601 string value will be in the
+   * `iso8601` property.
+   */
+  displayFormat: 'LL',
   'enterWillSubmitForm?': false,
   insertNewline(/*event*/) {
     this.send('parse', this.get('value'));
@@ -37,13 +43,19 @@ export default InputText.extend({
    * @private
    */
   value: '',
-  valueFormat: 'LL',
+  /**
+   * @deprecated please use #displayFormat instead.
+   */
+  valueFormat: Ember.computed.deprecatingAlias('displayFormat', {
+    id: 'input-date.deprecate-valueFormat',
+    until: '1.2.0'
+  }),
   _setValue: Ember.on('init', Ember.observer('iso8601', function () {
     let value = null;
     if (Ember.isPresent(this.get('iso8601'))) {
       const parsedDate = new Date(this.get('iso8601'));
       if (Ember.isPresent(parsedDate) && isFinite(parsedDate)) {
-        value = moment(parsedDate).format(this.get('valueFormat'));
+        value = moment(parsedDate).format(this.get('displayFormat'));
       }
       Ember.trySet(this, 'value', value);
     }
