@@ -26,7 +26,7 @@ _Further information about these items can be found in the Usage section below a
 ### Some Bootstrap Love...
 
 If the supplied value can't be parsed to a date, we add the `has-error` style class to the `.form-group` that the
-`&#123;&#123;input-date&#125;&#125;` and/or `&#123;&#123;input-iso8601&#125;&#125;` belongs to.  This visualizes that the date parse was rejected.
+&#123;&#123;input-date&#125;&#125; and/or &#123;&#123;input-iso8601&#125;&#125; belongs to.  This visualizes that the date parse was rejected.
 
 ## Requirements
 
@@ -99,13 +99,13 @@ See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 
 #### Examples
 
-    &#123;&#123;input-date date=myModel.createdOn displayFormat="llll"&#125;&#125;
+    \{{input-date date=myModel.createdOn displayFormat="llll"}}
     
-    &#123;&#123;input-date date=someComponentProperty&#125;&#125;
+    \{{input-date date=someComponentProperty}}
     
     <div class="form-group">
       <label for="js-updated-on" class="control-label">Updated</label>
-      &#123;&#123;input-date classNames="form-control" elementId="js-updated-on" date=anotherModel.updatedOn&#125;&#125;
+      \{{input-date classNames="form-control" elementId="js-updated-on" date=anotherModel.updatedOn}}
       <p class="help-block">Use with bootstrap!</p>
     </div>
 
@@ -115,12 +115,12 @@ See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 
 What's iso8601?  Go read: https://en.wikipedia.org/wiki/ISO_8601
 
-Just like `&#123;&#123;input-date&#125;&#125;`, `&#123;&#123;input-iso8601&#125;&#125;` also makes a simple textbox.  It takes in user input 
+Just like &#123;&#123;input-date&#125;&#125;, &#123;&#123;input-iso8601&#125;&#125; also makes a simple textbox.  It takes in user input 
 in the form of a date that is swiftly parsed and formatted. 
 
 ##### Arguments
 
-* `iso8601` - **REQUIRED & MUST BE A STRING**.  Like the `&#123;&#123;input-date&#125;&#125;` component we do not use the textbox's
+* `iso8601` - **REQUIRED & MUST BE A STRING**.  Like the &#123;&#123;input-date&#125;&#125; component we do not use the textbox's
 `value` property and instead bind to the `iso8601` attribute.  This `iso8601` attribute expects a String and it
 should be in ISO format (e.g. `yyyy-MM-ddTHH:mm:ssZ`).
 * `value` - **DO NOT USE**.  I mention the `value` property because you shouldn't bind anything to it.  Users
@@ -141,11 +141,11 @@ See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 
 #### Examples
 
-    &#123;&#123;input-iso8601 iso8601=myControllerProperty displayFormat="llll"&#125;&#125;
+    \{{input-iso8601 iso8601=myControllerProperty displayFormat="llll"}}
     
     <div class="form-group">
       <label for="js-from" class="control-label">Date From</label>
-      &#123;&#123;input-iso8601 classNames="form-control" elementId="js-from" iso8601=anotherControllerProperty&#125;&#125;
+      \{{input-iso8601 classNames="form-control" elementId="js-from" iso8601=anotherControllerProperty}}
       <p class="help-block">Use with bootstrap!</p>
     </div>
 
