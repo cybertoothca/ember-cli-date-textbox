@@ -91,7 +91,7 @@ go being all clever trying to do things that are already taken care of for you.
 of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
 * `endOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
 second of the day.
-* `zone` - **COMING SOON** OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted in the specified
+* `timezone` - OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted in the specified
 timezone.
 * _All the attributes from `ember-cli-text-support-mixins`' &#123;&#123;input-text&#125;&#125;._
 See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
@@ -99,13 +99,13 @@ See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 
 #### Examples
 
-    \{{input-date date=myModel.createdOn displayFormat="llll"}}
+    {{input-date date=myModel.createdOn displayFormat="llll"}}
     
-    \{{input-date date=someComponentProperty}}
+    {{input-date date=someComponentProperty}}
     
     <div class="form-group">
       <label for="js-updated-on" class="control-label">Updated</label>
-      \{{input-date classNames="form-control" elementId="js-updated-on" date=anotherModel.updatedOn}}
+      {{input-date classNames="form-control" elementId="js-updated-on" date=anotherModel.updatedOn}}
       <p class="help-block">Use with bootstrap!</p>
     </div>
 
@@ -133,19 +133,19 @@ go being all clever trying to do things that are already taken care of for you.
 of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
 * `endOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
 second of the day.
-* `zone` - **COMING SOON** OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted in the specified
-timezone.
+* `timezone` - **COMING SOON** OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted 
+in the specified timezone.
 * _All the attributes from `ember-cli-text-support-mixins`' &#123;&#123;input-text&#125;&#125;._
 See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 * _All the standard input attributes that apply to text boxes._
 
 #### Examples
 
-    \{{input-iso8601 iso8601=myControllerProperty displayFormat="llll"}}
+    {{input-iso8601 iso8601=myControllerProperty displayFormat="llll"}}
     
     <div class="form-group">
       <label for="js-from" class="control-label">Date From</label>
-      \{{input-iso8601 classNames="form-control" elementId="js-from" iso8601=anotherControllerProperty}}
+      {{input-iso8601 classNames="form-control" elementId="js-from" iso8601=anotherControllerProperty}}
       <p class="help-block">Use with bootstrap!</p>
     </div>
 

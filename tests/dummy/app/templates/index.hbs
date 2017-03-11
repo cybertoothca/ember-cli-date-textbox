@@ -29,13 +29,14 @@
       <legend>Give it a try...</legend>
       <div class="form-group">
         <label class="control-label">Type A Date</label>
-        {{input-date classNames="form-control" displayFormat="LLLL"
+        {{input-date autofocus=true classNames="form-control" displayFormat="LLLL"
                      placeholder="Try typing a date and then press enter."}}
         <p class="help-block">
           Try things like, 'today', 'next week', '+1 month', 'week 36', 'jun 15', 'Sep 9 1977' and press enter.
         </p>
         <div class="help-block">
-          <pre>\{{input-date classNames="form-control" displayFormat="LLLL"}}</pre>
+          <pre>\{{input-date autofocus=true classNames="form-control"
+            displayFormat="LLLL" placeholder="..."}}</pre>
         </div>
       </div>
     </fieldset>
@@ -67,6 +68,35 @@ export default Ember.Controller.extend({
       </div>
     </fieldset>
   </div>
+
+  <div class="form">
+    <fieldset>
+      <legend>Specifying A Date In A Specific Timezone</legend>
+      <div class="form-group">
+        <label class="control-label">Type A Date</label>
+        <div class="input-group">
+          {{input-date classNames="form-control" date=dateWithTimezone displayFormat="llll z" timezone='Europe/Rome'
+                       placeholder="Try typing a date and then press enter." aria-describedby="date-addon"}}
+          <span class="input-group-addon" id="date-addon">{{dateWithTimezoneISOString}}</span>
+        </div>
+        <p class="help-block">
+          Timezones are a pain. Here's a simple example; pretend you have to set the check-out date
+          for a guest in Italy. Simply express the date and time and let the input do the work.
+        </p>
+        <p class="help-block">
+          This \{{input-date}} has its <code>timezone</code> set to 'Europe/Rome'. Try setting the
+          check out to a particular date and time of your choosing (e.g. <em>now</em>). It will be formatted in the
+          textbox
+          and for demo purposes I'll show the ISO8601 string value in the input-group-addon.
+        </p>
+        <div class="help-block">
+          <pre>\{{input-date classNames="form-control" displayFormat="llll z"
+            timezone='Europe/Rome' placeholder="..."}}</pre>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
 
   <div class="form">
     <fieldset>
