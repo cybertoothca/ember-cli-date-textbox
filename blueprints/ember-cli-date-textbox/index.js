@@ -5,14 +5,14 @@ module.exports = {
   normalizeEntityName: function () {
   },
   afterInstall: function (/*options*/) {
-    return this.addAddonsToProject([
-      {name: 'ember-cli-text-support-mixins'}
-    ]).then(() => {
-      return this.addBowerPackagesToProject([
-        {name: 'datejs-parse-plus'},
-        {name: 'moment'},
-        {name: 'moment-timezone'}
-      ]);
-    });
+    var self = this;
+    return self.addAddonsToProject([{name: 'ember-cli-text-support-mixins'}])
+      .then(function () => {
+        return self.addBowerPackagesToProject([
+          {name: 'datejs-parse-plus'},
+          {name: 'moment'},
+          {name: 'moment-timezone'}
+        ]);
+      });
   }
 };
