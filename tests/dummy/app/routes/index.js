@@ -13,6 +13,7 @@ export default Ember.Route.extend({
   },
   queryParams: {
     dateAsParam: {refreshModel: false},
+    iso8601WithTimezone: {refreshModel: false},
     submittedIso8601: {refreshModel: false},
     wasEmptyUntilNow: {refreshModel: false}
   }

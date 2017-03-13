@@ -133,7 +133,7 @@ go being all clever trying to do things that are already taken care of for you.
 of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
 * `endOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
 second of the day.
-* `timezone` - **COMING SOON** OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted 
+* `timezone` - OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted 
 in the specified timezone.
 * _All the attributes from `ember-cli-text-support-mixins`' &#123;&#123;input-text&#125;&#125;._
 See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments

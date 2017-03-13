@@ -57,6 +57,9 @@
     "loader.js": "^4.0.10"
   },
   "keywords": [
+    "datepickers",
+    "date picker",
+    "date chooser",
     "momentjs",
     "datejs",
     "datejs-parse-plus",

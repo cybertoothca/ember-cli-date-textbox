@@ -10,27 +10,37 @@ export default InputText.extend({
   actions: {
     parse(value) {
       if (Ember.isBlank(value)) {
+        // the text representation of the date has been cleared
+        // clear error style-class
         this.$().closest('.form-group').removeClass('has-error');
-        // the text representation of the date has been cleared; make sure the date behind the
-        // formatted value is set to null; this may trigger the `_setValue` observer if the `date`
-        // was not already null
-        Ember.trySet(this, 'date', null);
+        // set the `date` behind the now cleared value to null or if it is already null,
+        // trigger that the property changed anyway
+        if (this.get('date') === null) {
+          this.notifyPropertyChange('date');
+        } else {
+          Ember.trySet(this, 'date', null);
+        }
         return true;
       }
 
       // attempt to parse the not blank string value to a date; if it can't parse `null` is returned
       let parsedDate = Date.parsePlus(value);
       if (parsedDate === null) {
+        // add the error style-class
         this.$().closest('.form-group').addClass('has-error');
-        // force a notification that the `date` property changed, even if it stayed the same (could have
-        // been null multiple times)
-        this.notifyPropertyChange('date');
       } else {
+        // clear error style-class
         this.$().closest('.form-group').removeClass('has-error');
         // date successfully parsed; now put it into the timezone assigned to this input
         parsedDate = moment.tz(moment(parsedDate).toArray(), this.get('timezone')).toDate();
       }
-      Ember.trySet(this, 'date', parsedDate);
+      // set the `date` property
+      if ((this.get('date') - parsedDate) === 0) {
+        // the date has not changed; however we want to force the date changed observer to fire anyway
+        this.notifyPropertyChange('date');
+      } else {
+        Ember.trySet(this, 'date', parsedDate);
+      }
       return true;
     }
   },
@@ -71,6 +81,10 @@ export default InputText.extend({
     this.send('parse', this.get('value'));
   },
   /**
+   * By default guess the client's timezone.
+   */
+  timezone: moment.tz.guess(),
+  /**
    * Don't assign anything to `value`.  Instead pass a proper date into the component's `date` attribute.
    * @private
    */
@@ -82,10 +96,6 @@ export default InputText.extend({
     id: 'input-date.deprecate-valueFormat',
     until: '1.2.0'
   }),
-  /**
-   * By default guess the client's timezone.
-   */
-  timezone: moment.tz.guess(),
   /**
    * Every time the `date` property changes, attempt to format the `date` to the String value represented by
    * the `displayFormat` mask.  If the `date` is not present or is not of `date` type, the formatted value

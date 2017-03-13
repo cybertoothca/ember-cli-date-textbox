@@ -97,7 +97,6 @@ export default Ember.Controller.extend({
     </fieldset>
   </div>
 
-
   <div class="form">
     <fieldset>
       <legend>
@@ -396,6 +395,25 @@ export default Ember.Controller.extend({
       </div>
     </fieldset>
   </div>
+
+  <div class="form">
+    <fieldset>
+      <legend>Specific Timezone In Query Parameter</legend>
+      <div class="form-group">
+        <label class="control-label">Choose A Date And See It In The URL</label>
+        {{input-iso8601 classNames="form-control" iso8601=iso8601WithTimezone displayFormat="llll z"
+                        timezone='Pacific/Honolulu' placeholder="Try typing a date and then press enter."}}
+        <p class="help-block">
+        </p>
+        <div class="help-block">
+          <pre>\{{input-iso8601 classNames="form-control" iso8601=iso8601WithTimezone
+            displayFormat="llll z" timezone='Pacific/Honolulu'
+            placeholder="..."}}</pre>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
   <form class="form" {{action (route-action "submitIso8601") on="submit"}}>
     <fieldset>
       <legend>Submitting In A Form</legend>

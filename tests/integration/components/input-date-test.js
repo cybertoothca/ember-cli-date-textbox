@@ -1,7 +1,6 @@
 /* global moment */
-import { moduleForComponent, test, skip } from 'ember-qunit';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
-import wait from 'ember-test-helpers/wait';
 
 moduleForComponent('input-date', 'Integration | Component | input date', {
   integration: true
@@ -94,14 +93,13 @@ test('when parsing `sep 11 2001` to a date', function (assert) {
   assert.equal(this.get('date').toString(), new Date(2001, 8, 11).toString());
 });
 
-// Cannot get this test to work; might need to do it with an acceptance test
-skip('when typing `bla` the date is parsing fails silently', function (assert) {
-  this.render(hbs`{{input-date displayFormat="LL"}}`);
+test('when typing `bla` the date parsing fails silently', function (assert) {
+  this.set('date', new Date(2001, 8, 11));
+  this.render(hbs`{{input-date date=date displayFormat="ll"}}`);
+  assert.equal(this.$('input').val(), 'Sep 11, 2001');
   this.$('input')
     .val('bla')
     .trigger('change');
-  return wait().then(() => {
-    assert.equal(this.$('input').val(), '');
-    assert.equal(this.$().html(), '');
-  });
+  assert.equal(this.$('input').val(), '');
+  assert.equal(this.get('date'), null);
 });
