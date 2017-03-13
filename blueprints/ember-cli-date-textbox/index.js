@@ -7,7 +7,7 @@ module.exports = {
   afterInstall: function (/*options*/) {
     var self = this;
     return self.addAddonsToProject([{name: 'ember-cli-text-support-mixins'}])
-      .then(function () => {
+      .then(function () {
         return self.addBowerPackagesToProject([
           {name: 'datejs-parse-plus'},
           {name: 'moment'},
