@@ -2,6 +2,9 @@ ecmaFeatures:
   modules: true
   jsx: true
 
+parserOptions:
+  sourceType: "module"
+
 env:
   amd: true
   browser: true
