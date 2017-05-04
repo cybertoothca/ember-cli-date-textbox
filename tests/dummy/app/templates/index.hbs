@@ -29,13 +29,16 @@
       <legend>Give it a try...</legend>
       <div class="form-group">
         <label class="control-label">Type A Date</label>
-        {{input-date autofocus=true classNames="form-control" displayFormat="LLLL"
-                     placeholder="Try typing a date and then press enter."}}
+        <div class="input-group">
+          {{input-date autofocus=true date=demoDate classNames="form-control" displayFormat="LLLL"
+                       placeholder="Try typing a date and then press enter." aria-describedby="demo-date-addon"}}
+          <span class="input-group-addon" id="demo-date-addon">{{demoDateISOString}}</span>
+        </div>
         <p class="help-block">
           Try things like, 'today', 'next week', '+1 month', 'week 36', 'jun 15', 'Sep 9 1977' and press enter.
         </p>
         <div class="help-block">
-          <pre>\{{input-date autofocus=true classNames="form-control"
+          <pre>\{{input-date autofocus=true date=demoDate classNames="form-control"
             displayFormat="LLLL" placeholder="..."}}</pre>
         </div>
       </div>
