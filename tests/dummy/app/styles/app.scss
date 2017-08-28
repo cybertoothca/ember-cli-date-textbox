@@ -1,16 +1,13 @@
-@import "../../../../bower_components/bootswatch/spacelab/variables";
-//noinspection CssUnknownTarget
-@import 'ember-cli-bootstrap3-variables.scss';
+@import "../../../../node_modules/bootswatch/spacelab/variables";
 
-// HACK: this is being set to '' because phantomjs pukes on @import directives that go to google fonts
-$web-font-path: '' !default;
+$icon-font-path: '/assets/bootstrap/'; // TODO: this should be removed once I fix the bootstrap3-sass addon
 //noinspection CssUnknownTarget
 @import 'ember-cli-bootstrap3-sass';
-@import "../../../../bower_components/bootswatch/spacelab/bootswatch";
+@import "../../../../node_modules/bootswatch/spacelab/bootswatch";
 //noinspection CssUnknownTarget
 @import "ember-cli-font-awesome-sass";
 
 body {
-  padding-top: 50px;
-  margin-bottom: 50%;
+  padding-top: 50px; // for the fixed navbar
+  margin-bottom: 50%; // to allow scrolling beyond the end of the last example
 }

@@ -1,7 +1,7 @@
-/* jshint node: true */
+/* eslint-env node */
 
-module.exports = function (deployTarget) {
-  var ENV = {
+module.exports = function (/*deployTarget*/) {
+  let ENV = {
     build: {
       environment: 'production'
     },
@@ -12,6 +12,11 @@ module.exports = function (deployTarget) {
       region: 'us-west-2'
     }
   };
+
+  // if (deployTarget === 'production') {
+  //   ENV.build.environment = 'production';
+  //   // configure other plugins for production deploy target here
+  // }
 
   // Note: if you need to build some configuration asynchronously, you can return
   // a promise that resolves with the ENV object instead of returning the

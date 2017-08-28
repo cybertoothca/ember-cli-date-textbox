@@ -1,10 +1,4 @@
 <section class="container">
-  <div class="page-header">
-    <h1>Demo</h1>
-  </div>
-</section>
-
-<section class="container">
   <h2><code>\{{input-date}}</code></h2>
   <p>
     The <code>\{{input-date}}</code> works well if it is bound to one of your model's
@@ -60,14 +54,14 @@
       </p>
       <div class="help-block">
         {{!--@formatter:off--}}
-          <pre>// app/templates/example.hbs
-\{{input-date classNames="form-control" date=naftaSigned}}
+        <pre>// app/templates/example.hbs
+          \{{input-date classNames="form-control" date=naftaSigned}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
   naftaSigned: new Date(1987, 9, 3),
 });</pre>
-          {{!--@formatter:on--}}
+        {{!--@formatter:on--}}
       </div>
     </fieldset>
   </div>
@@ -119,7 +113,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now displayFormat="LT"}}
+            \{{input-date className="form-control" date=now displayFormat="LT"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -139,7 +133,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now displayFormat="LTS"}}
+            \{{input-date className="form-control" date=now displayFormat="LTS"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -159,7 +153,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now displayFormat="L"}}
+            \{{input-date className="form-control" date=now displayFormat="L"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -179,7 +173,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now displayFormat="l"}}
+            \{{input-date className="form-control" date=now displayFormat="l"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -199,7 +193,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now displayFormat="LL"}}
+            \{{input-date className="form-control" date=now displayFormat="LL"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -219,7 +213,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now displayFormat="ll"}}
+            \{{input-date className="form-control" date=now displayFormat="ll"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -239,7 +233,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now displayFormat="LLL"}}
+            \{{input-date className="form-control" date=now displayFormat="LLL"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -259,7 +253,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now displayFormat="lll"}}
+            \{{input-date className="form-control" date=now displayFormat="lll"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -279,7 +273,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now displayFormat="LLLL"}}
+            \{{input-date className="form-control" date=now displayFormat="LLLL"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -299,7 +293,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-date className="form-control" date=now displayFormat="llll"}}
+            \{{input-date className="form-control" date=now displayFormat="llll"}}
 
 // app/controllers/example.js
 export default Ember.Controller.extend({
@@ -328,7 +322,7 @@ export default Ember.Controller.extend({
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-default" type="submit">Submits The Form</button>
+        <button class="btn btn-default">Submits The Form</button>
       </div>
     </fieldset>
   </form>
@@ -356,7 +350,7 @@ export default Ember.Controller.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-iso8601
+            \{{input-iso8601
     classNames="form-control"
     placeholder="Try another date. It appears as `dateAsParam` in the page url."
     iso8601=dateAsParam
@@ -384,7 +378,7 @@ export default Ember.Route.extend({
         <div class="help-block">
           {{!--@formatter:off--}}
           <pre>// app/templates/example.hbs
-\{{input-iso8601
+            \{{input-iso8601
     classNames="form-control"
     placeholder="Choose a date..."
     iso8601=wasEmptyUntilNow
@@ -438,7 +432,7 @@ export default Ember.Controller.extend({
         </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-default" type="submit">Submits The Form</button>
+        <button class="btn btn-default">Submits The Form</button>
       </div>
     </fieldset>
   </form>

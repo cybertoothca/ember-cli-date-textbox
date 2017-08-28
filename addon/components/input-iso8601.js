@@ -52,9 +52,8 @@ export default InputText.extend({
   },
   /**
    * The textbox value changed; trigger a parse of the value.
-   * @param event
    */
-  change(event) { // jshint unused:false
+  change(/*event*/) {
     this._super(...arguments);
     this.send('parse', this.get('value'));
   },
@@ -69,9 +68,8 @@ export default InputText.extend({
   'enterWillSubmitForm?': false,
   /**
    * The user pressed enter in the text box; trigger a parse.
-   * @param event
    */
-  insertNewline(event) { // jshint unused:false
+  insertNewline(/*event*/) {
     this._super(...arguments);
     this.send('parse', this.get('value'));
   },

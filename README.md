@@ -1,8 +1,18 @@
 # ember-cli-date-textbox [![GitHub version](http://badge.fury.io/gh/cybertoothca%2Fember-cli-date-textbox.svg)](http://badge.fury.io/gh/cybertoothca%2Fember-cli-date-textbox) ![](https://embadge.io/v1/badge.svg?start=1.13.0)
 
-[![npm version](http://badge.fury.io/js/ember-cli-date-textbox.svg)](http://badge.fury.io/js/ember-cli-date-textbox) [![CircleCI](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox.svg?style=shield)](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox) [![Code Climate](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox/badges/gpa.svg)](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox) ![Dependencies](http://david-dm.org/cybertoothca/ember-cli-date-textbox.svg) [![ember-observer-badge](http://emberobserver.com/badges/ember-cli-date-textbox.svg)](http://emberobserver.com/addons/ember-cli-date-textbox) [![License](http://img.shields.io/npm/l/ember-cli-date-textbox.svg)](LICENSE.md)
+[![npm version](http://badge.fury.io/js/ember-cli-date-textbox.svg)](http://badge.fury.io/js/ember-cli-date-textbox) ![downloads](https://img.shields.io/npm/dy/ember-cli-date-textbox.svg) [![CircleCI](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox.svg?style=shield)](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox) [![Code Climate](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox/badges/gpa.svg)](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox) ![Dependencies](http://david-dm.org/cybertoothca/ember-cli-date-textbox.svg) [![ember-observer-badge](http://emberobserver.com/badges/ember-cli-date-textbox.svg)](http://emberobserver.com/addons/ember-cli-date-textbox) [![License](http://img.shields.io/npm/l/ember-cli-date-textbox.svg)](LICENSE.md)
 
 A textbox that will guess the date you want and assign it to your model or query-params.
+
+## Tested Against
+
+[![ember-lts-2.4](https://img.shields.io/badge/ember--try-ember--lts--2.4-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
+[![ember-lts-2.8](https://img.shields.io/badge/ember--try-ember--lts--2.8-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
+[![ember-lts-2.12](https://img.shields.io/badge/ember--try-ember--lts--2.12-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
+
+[![ember-release](https://img.shields.io/badge/ember--try-ember--release-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
+[![ember-beta](https://img.shields.io/badge/ember--try-ember--beta-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
+[![ember-canary](https://img.shields.io/badge/ember--try-ember--canary-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
 
 ## Demo
 
@@ -55,7 +65,9 @@ The following Bower dependencies are automatically installed into your Ember pro
 
 The following will install this addon:
 
-    $ ember install ember-cli-date-textbox
+```
+ember install ember-cli-date-textbox
+```
 
 ### Upgrading
 
@@ -99,15 +111,17 @@ See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 
 #### Examples
 
-    {{input-date date=myModel.createdOn displayFormat="llll"}}
-    
-    {{input-date date=someComponentProperty}}
-    
-    <div class="form-group">
-      <label for="js-updated-on" class="control-label">Updated</label>
-      {{input-date classNames="form-control" elementId="js-updated-on" date=anotherModel.updatedOn}}
-      <p class="help-block">Use with bootstrap!</p>
-    </div>
+```
+{{input-date date=myModel.createdOn displayFormat="llll"}}
+
+{{input-date date=someComponentProperty}}
+
+<div class="form-group">
+  <label for="js-updated-on" class="control-label">Updated</label>
+  {{input-date classNames="form-control" elementId="js-updated-on" date=anotherModel.updatedOn}}
+  <p class="help-block">Use with bootstrap!</p>
+</div>
+```
 
 ([Check out the demo...](http://ember-cli-date-textbox.cybertooth.io/))
 
@@ -141,13 +155,15 @@ See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 
 #### Examples
 
-    {{input-iso8601 iso8601=myControllerProperty displayFormat="llll"}}
-    
-    <div class="form-group">
-      <label for="js-from" class="control-label">Date From</label>
-      {{input-iso8601 classNames="form-control" elementId="js-from" iso8601=anotherControllerProperty}}
-      <p class="help-block">Use with bootstrap!</p>
-    </div>
+```
+{{input-iso8601 iso8601=myControllerProperty displayFormat="llll"}}
+
+<div class="form-group">
+  <label for="js-from" class="control-label">Date From</label>
+  {{input-iso8601 classNames="form-control" elementId="js-from" iso8601=anotherControllerProperty}}
+  <p class="help-block">Use with bootstrap!</p>
+</div>
+```
 
 ([Check out the demo...](http://ember-cli-date-textbox.cybertooth.io/))
 
@@ -161,9 +177,23 @@ _None...at least that I can think of._
 
 ## Setup
 
-* `git clone git@github.com:cybertoothca/ember-cli-date-textbox.git`
-* `npm install`
-* `bower install`
+### Checkout
+
+```
+git clone git@github.com:cybertoothca/ember-cli-textarea-autosize.git
+```
+
+### With NPM
+
+```
+npm install
+```
+
+### With Yarn
+
+```
+yarn
+```
 
 ## Running The Dummy Application
 
@@ -213,10 +243,21 @@ in your _other_ project's `package.json`.
 Make sure your `~/.aws/credentials` file has a profile named _cybertooth_ 
 with a valid key and secret,
 
-    [cybertooth]
-    aws_access_key_id = <KEY>
-    aws_secret_access_key = <SECRET>
+```
+[cybertooth]
+aws_access_key_id = <KEY>
+aws_secret_access_key = <SECRET>
+```
 
 Deploy by invoking the following command: `ember deploy production`
 
 Confirm your changes are showing up in our S3 container: http://ember-cli-date-textbox.cybertooth.io/
+
+# Releasing & Publishing To NPM
+
+```
+npm version x.y.z-sub.#
+git push
+git push --tags
+npm publish
+```
