@@ -1,6 +1,6 @@
-/* global moment */
 import Ember from 'ember';
 import InputText from 'ember-cli-text-support-mixins/components/input-text';
+import moment from 'moment';
 
 /**
  * Don't use for Ember query params until they start handling objects.

@@ -42,6 +42,23 @@ If the supplied value can't be parsed to a date, we add the `has-error` style cl
 
 * Ember >= 1.13.0
 * Ember CLI
+* `ember-moment` will be installed **and you should configure it to include the timezone API** (
+[see docs](https://github.com/stefanpenner/ember-moment#include-moment-timezone)).  For example, in your
+`config/environment.js` add the following to the appropriate environment scope:
+
+```js
+module.exports = function (/* environment, appConfig */) {
+  return {
+    moment: {
+      // Options:
+      // 'all' - all years, all timezones
+      // '2010-2020' - 2010-2020, all timezones
+      // 'none' - no data, just timezone API
+      includeTimezone: 'all'
+    }
+  }
+};
+``` 
 
 ### Dependencies
 
@@ -58,14 +75,12 @@ The following Bower dependencies are automatically installed into your Ember pro
  
 * `datejs-parse-plus` - https://github.com/cybertoothca/Datejs - A fork of the original Datejs 
 (https://github.com/datejs/Datejs) library that is careful to not override the `Date`'s `parse(...)` function.
-* `moment` - https://github.com/moment/moment
-* `moment-timezone` - https://github.com/moment/moment-timezone
 
 ## Installation
 
 The following will install this addon:
 
-```
+```bash
 ember install ember-cli-date-textbox
 ```
 
@@ -111,7 +126,7 @@ See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 
 #### Examples
 
-```
+```handlebars
 {{input-date date=myModel.createdOn displayFormat="llll"}}
 
 {{input-date date=someComponentProperty}}
@@ -155,7 +170,7 @@ See https://github.com/cybertoothca/ember-cli-text-support-mixins#arguments
 
 #### Examples
 
-```
+```handlebars
 {{input-iso8601 iso8601=myControllerProperty displayFormat="llll"}}
 
 <div class="form-group">
@@ -179,19 +194,19 @@ _None...at least that I can think of._
 
 ### Checkout
 
-```
+```bash
 git clone git@github.com:cybertoothca/ember-cli-textarea-autosize.git
 ```
 
 ### With NPM
 
-```
+```bash
 npm install
 ```
 
 ### With Yarn
 
-```
+```bash
 yarn
 ```
 
@@ -243,7 +258,7 @@ in your _other_ project's `package.json`.
 Make sure your `~/.aws/credentials` file has a profile named _cybertooth_ 
 with a valid key and secret,
 
-```
+```text
 [cybertooth]
 aws_access_key_id = <KEY>
 aws_secret_access_key = <SECRET>
@@ -255,9 +270,10 @@ Confirm your changes are showing up in our S3 container: http://ember-cli-date-t
 
 # Releasing & Publishing To NPM
 
-```
+```bash
 npm version x.y.z-sub.#
 git push
 git push --tags
 npm publish
+ember deploy production
 ```

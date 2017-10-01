@@ -1,6 +1,6 @@
-/* global moment */
 import Ember from 'ember';
 import InputText from 'ember-cli-text-support-mixins/components/input-text';
+import moment from 'moment';
 
 export default InputText.extend({
   actions: {
