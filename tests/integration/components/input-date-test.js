@@ -1,9 +1,82 @@
 /* global moment */
-import { moduleForComponent, test } from 'ember-qunit';
+import {moduleForComponent, test} from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import sinon from 'sinon';
+
+// create a test class variable that will hold your frozen clock
+let CLOCK = null;
 
 moduleForComponent('input-date', 'Integration | Component | input date', {
-  integration: true
+  integration: true,
+  afterEach: function () {
+    if (CLOCK) {
+      CLOCK.restore();
+    }
+  }
+});
+
+test('when `past?` set to false requesting `jan` will STILL be in the past', function (assert) {
+  // forcing TODAY's date to Sept 11, 2001
+  CLOCK = sinon.useFakeTimers(new Date(2001, 8, 11).getTime());
+
+  this.set('date', null);
+  this.render(hbs`{{input-date date=date displayFormat="llll z" past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('jan')
+    .trigger('change');
+  assert.equal(this.$('input').val().trim(), 'Mon, Jan 1, 2001 12:00 AM MST');
+  assert.equal(this.get('date').toISOString(), '2001-01-01T07:00:00.000Z');
+});
+
+test('when `past?` set to true requesting `jan` will be in the past', function (assert) {
+  // forcing TODAY's date to Sept 11, 2001
+  CLOCK = sinon.useFakeTimers(new Date(2001, 8, 11).getTime());
+
+  this.set('date', null);
+  this.render(hbs`{{input-date date=date displayFormat="llll z" past?=true timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('jan')
+    .trigger('change');
+  assert.equal(this.$('input').val().trim(), 'Mon, Jan 1, 2001 12:00 AM MST');
+  assert.equal(this.get('date').toISOString(), '2001-01-01T07:00:00.000Z');
+});
+
+test('when `future?` set to false requesting `jan` will be in the past', function (assert) {
+  // forcing TODAY's date to Sept 11, 2001
+  CLOCK = sinon.useFakeTimers(new Date(2001, 8, 11).getTime());
+
+  this.set('date', null);
+  this.render(hbs`{{input-date date=date displayFormat="llll z" future?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('jan')
+    .trigger('change');
+  assert.equal(this.$('input').val().trim(), 'Mon, Jan 1, 2001 12:00 AM MST');
+  assert.equal(this.get('date').toISOString(), '2001-01-01T07:00:00.000Z');
+});
+
+test('when `future?` set to true requesting `jan` will be in the future', function (assert) {
+  // forcing TODAY's date to Sept 11, 2001
+  CLOCK = sinon.useFakeTimers(new Date(2001, 8, 11).getTime());
+
+  this.set('date', null);
+  this.render(hbs`{{input-date date=date displayFormat="llll z" future?=true timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('jan')
+    .trigger('change');
+  assert.equal(this.$('input').val().trim(), 'Tue, Jan 1, 2002 12:00 AM MST');
+  assert.equal(this.get('date').toISOString(), '2002-01-01T07:00:00.000Z');
 });
 
 test('when the default timezone is used for Sept 11 2001 at noon', function (assert) {

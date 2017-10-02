@@ -46,7 +46,7 @@ If the supplied value can't be parsed to a date, we add the `has-error` style cl
 [see docs](https://github.com/stefanpenner/ember-moment#include-moment-timezone)).  For example, in your
 `config/environment.js` add the following to the appropriate environment scope:
 
-```js
+```javascript
 module.exports = function (/* environment, appConfig */) {
   return {
     moment: {
@@ -71,10 +71,7 @@ enhancements including a &#123;&#123;input-text&#125;&#125; and &#123;&#123;text
 
 #### Bower
 
-The following Bower dependencies are automatically installed into your Ember product:
- 
-* `datejs-parse-plus` - https://github.com/cybertoothca/Datejs - A fork of the original Datejs 
-(https://github.com/datejs/Datejs) library that is careful to not override the `Date`'s `parse(...)` function.
+This add-on no longer depends on Bower (as of ember-cli-date-textbox-1.1.0).
 
 ## Installation
 
@@ -112,12 +109,18 @@ the `date` attribute.
 type in the textbox, the date they settle on will be formatted in the textbox which is assigned to the `value`
 property.  In addition...if you supply a valid `date` attribute to this textbox, it will be formatted for you.  Don't
 go being all clever trying to do things that are already taken care of for you.
-* `displayFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your dates is the localized
-`LL`.  You can change this however you want.  See the demo.
-* `startOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
-of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
+* `displayFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your 
+dates is the localized `LL`.  You can change this however you want.  See the demo.
 * `endOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
 second of the day.
+* `future?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be 
+parsed as `next Sunday`.  Note that non-ambiguous dates are not guaranteed to be in the 
+future.  Default is `false`.
+* `past?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be parsed 
+as `last Sunday`. Note that non-ambiguous dates are not guaranteed to be in the past. Default 
+is `false`.
+* `startOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
+of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
 * `timezone` - OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted in the specified
 timezone.
 * _All the attributes from `ember-cli-text-support-mixins`' &#123;&#123;input-text&#125;&#125;._
@@ -158,10 +161,16 @@ property.  In addition...if you supply a valid `date` attribute to this textbox,
 go being all clever trying to do things that are already taken care of for you.
 * `displayFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your dates is the localized
 `LL`.  You can change this however you want.  See the demo.
-* `startOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
-of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
 * `endOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
 second of the day.
+* `future?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be 
+parsed as `next Sunday`.  Note that non-ambiguous dates are not guaranteed to be in the 
+future.  Default is `false`.
+* `past?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be parsed 
+as `last Sunday`. Note that non-ambiguous dates are not guaranteed to be in the past. Default 
+is `false`.
+* `startOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
+of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
 * `timezone` - OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted 
 in the specified timezone.
 * _All the attributes from `ember-cli-text-support-mixins`' &#123;&#123;input-text&#125;&#125;._

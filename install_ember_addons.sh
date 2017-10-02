@@ -8,5 +8,8 @@ ember install ember-cli-deploy-s3
 ember install ember-cli-font-awesome-sass
 ember install ember-cli-text-support-mixins
 ember install ember-route-action-helper
+ember install ember-sinon
 
+npm install --save ember-cli-node-assets
 npm install --save-dev bootswatch@3.3
+npm install --save-dev sugar-date

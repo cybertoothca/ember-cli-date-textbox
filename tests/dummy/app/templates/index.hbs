@@ -29,11 +29,29 @@
           <span class="input-group-addon" id="demo-date-addon">{{demoDateISOString}}</span>
         </div>
         <p class="help-block">
-          Try things like, 'today', 'next week', '+1 month', 'week 36', 'jun 15', 'Sep 9 1977' and press enter.
+          Try things like, 'now', 'today', 'next week', 'last year', 'the 15th',
+          'next Tuesday', '3pm Wednesday', 'in 30 minutes', 'in half a year',
+          'five years ago', 'yesterday at 4pm', 'half an hour ago', etc. and press enter.
         </p>
         <div class="help-block">
           <pre>\{{input-date autofocus=true date=demoDate classNames="form-control"
             displayFormat="LLLL" placeholder="..."}}</pre>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Ambiguous Date In The Future</label>
+        <div class="input-group">
+          {{input-date date=ambiguousFuture classNames="form-control" displayFormat="LLLL" future?=true
+                       placeholder="Try an ambiguous date like `jan` or `wed`" aria-describedby="demo-date-addon"}}
+          <span class="input-group-addon" id="demo-future-addon">{{ambiguousFutureISOString}}</span>
+        </div>
+        <p class="help-block">
+          Try ambiguous dates like, 'jan', 'wed', '2', etc. and press enter. They should try to parse into
+          the future.
+        </p>
+        <div class="help-block">
+          <pre>\{{input-date date=ambiguousFuture classNames="form-control"
+            displayFormat="LLLL" future?=true placeholder="..."}}</pre>
         </div>
       </div>
     </fieldset>

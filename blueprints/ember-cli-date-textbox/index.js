@@ -8,9 +8,7 @@ module.exports = {
     var self = this;
     return self.addAddonToProject('ember-cli-text-support-mixins')
       .then(function () {
-        return self.addBowerPackagesToProject([
-          {name: 'datejs-parse-plus'}
-        ]);
+        return self.addPackagesToProject([{name: 'sugar-date'}]);
       });
   }
 };

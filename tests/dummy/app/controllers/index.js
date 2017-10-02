@@ -1,6 +1,15 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  ambiguousFuture: null,
+  ambiguousFutureISOString: Ember.computed('ambiguousFuture', function () {
+    if (Ember.isPresent(this.get('ambiguousFuture'))) {
+      return this.get('ambiguousFuture').toISOString();
+    } else {
+      return 'Type A Date...';
+    }
+  }),
+
   dateAsParam: new Date().toISOString(),
   dateWithTimezone: null,
   dateWithTimezoneISOString: Ember.computed('dateWithTimezone', function () {

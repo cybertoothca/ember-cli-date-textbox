@@ -1,3 +1,4 @@
+/* global Sugar */
 import Ember from 'ember';
 import InputText from 'ember-cli-text-support-mixins/components/input-text';
 import moment from 'moment';
@@ -20,7 +21,8 @@ export default InputText.extend({
       }
 
       // attempt to parse the not blank string value to a date; if it can't parse `null` is returned
-      let parsedDate = Date.parsePlus(value);
+      const sugarDate = Sugar.Date.create(value, {future: this.get('future?'), past: this.get('past?')});
+      let parsedDate = Sugar.Date.isValid(sugarDate) ? moment(sugarDate).toDate() : null;
       let iso8601 = '';
       if (parsedDate === null) {
         // add the error style-class
@@ -67,6 +69,13 @@ export default InputText.extend({
   displayFormat: 'LL',
   'enterWillSubmitForm?': false,
   /**
+   * If `true`, ambiguous dates like `Sunday` will be parsed as `next Sunday`.  Note that
+   * non-ambiguous dates are not guaranteed to be in the future.  Default is `false`.
+   *
+   * @see https://sugarjs.com/docs/#/Date/create
+   */
+  'future?': false,
+  /**
    * The user pressed enter in the text box; trigger a parse.
    */
   insertNewline(/*event*/) {
@@ -77,6 +86,13 @@ export default InputText.extend({
    * REQUIRED.  Initialize the date text box and bind it to your model, component, or controller.
    */
   iso8601: '',
+  /**
+   * If `true`, ambiguous dates like `Sunday` will be parsed as `last Sunday`. Note that non-ambiguous
+   * dates are not guaranteed to be in the past. Default is `false`.
+   *
+   * @see https://sugarjs.com/docs/#/Date/create
+   */
+  'past?': false,
   /**
    * By default guess the client's timezone.
    */
