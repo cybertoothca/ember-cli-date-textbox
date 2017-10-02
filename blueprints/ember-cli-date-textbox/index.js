@@ -6,7 +6,10 @@ module.exports = {
   },
   afterInstall: function (/*options*/) {
     var self = this;
-    return self.addAddonToProject('ember-cli-text-support-mixins')
+    return self.addAddonsToProject([
+      {name: 'ember-cli-text-support-mixins'},
+      {name: 'ember-moment'}
+    ])
       .then(function () {
         return self.addPackagesToProject([{name: 'sugar-date'}]);
       });
