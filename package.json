@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-date-textbox",
-  "version": "1.1.0-rc.4",
+  "version": "1.1.0-rc.5",
   "description": "This addon provides textbox components that can be used to choose dates by parsing language, e.g. today, +1 month, jun 1, etc.",
   "keywords": [
     "datepickers",
