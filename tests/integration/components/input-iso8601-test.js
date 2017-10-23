@@ -42,12 +42,15 @@ test('when setting a parsed date to the very end of the day', function(assert) {
 });
 
 test('when firing the afterParseFail action on the text bla', function(assert) {
+  // forcing TODAY's date to Sept 11, 2001
+  CLOCK = sinon.useFakeTimers(new Date(2001, 8, 11).getTime());
+
   this.set('afterParseFail', function(inputDateComponent) {
     assert.equal(inputDateComponent.get('value'), '');
     assert.equal(inputDateComponent.get('iso8601'), '');
   });
 
-  this.set('iso8601', new Date(2001, 8, 11).toISOString());
+  this.set('iso8601', new Date().toISOString());
   this.render(hbs`{{input-iso8601 afterParseFail=afterParseFail iso8601=iso8601 displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
 
   assert.equal(this.$('input').val().trim(), 'Sep 11, 2001');
@@ -60,7 +63,7 @@ test('when firing the afterParseFail action on the text bla', function(assert) {
 test('when firing the afterParseSuccess action on a parse-able date', function(assert) {
   this.set('afterParseSuccess', function(inputDateComponent) {
     assert.equal(inputDateComponent.get('value'), 'Sep 11, 2001');
-    assert.equal(inputDateComponent.get('iso8601'), new Date(2001, 8, 11).toISOString());
+    assert.equal(inputDateComponent.get('iso8601'), '2001-09-11T06:00:00.000Z', 'Because this was parsed to Sep 11, 2001 in the America/Edmonton timezone');
   });
 
   this.set('iso8601', null);
@@ -74,12 +77,15 @@ test('when firing the afterParseSuccess action on a parse-able date', function(a
 });
 
 test('when firing the afterParseSuccess action upon clearing the text field', function(assert) {
+  // forcing TODAY's date to Sept 11, 2001
+  CLOCK = sinon.useFakeTimers(new Date(2001, 8, 11).getTime());
+
   this.set('afterParseSuccess', function(inputDateComponent) {
     assert.equal(inputDateComponent.get('value'), '');
     assert.equal(inputDateComponent.get('iso8601'), '');
   });
 
-  this.set('iso8601', new Date(2001, 8, 11).toISOString());
+  this.set('iso8601', new Date().toISOString());
   this.render(hbs`{{input-iso8601 afterParseSuccess=afterParseSuccess iso8601=iso8601 displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
 
   assert.equal(this.$('input').val().trim(), 'Sep 11, 2001');
