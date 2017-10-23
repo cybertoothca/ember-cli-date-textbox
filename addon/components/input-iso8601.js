@@ -33,7 +33,14 @@ export default InputText.extend({
         // clear error style-class
         this.$().closest('.form-group').removeClass('has-error');
         // date successfully parsed; now put it into the timezone assigned to this input
-        parsedDate = moment.tz(moment(parsedDate).toArray(), this.get('timezone'));
+        const parsedMoment = moment.tz(moment(parsedDate).toArray(), this.get('timezone'));
+        if (this.get('endOfDay?')) {
+          parsedMoment.endOf('day');
+        }
+        if (this.get('startOfDay?')) {
+          parsedMoment.startOf('day');
+        }
+        parsedDate = parsedMoment;
         iso8601 = parsedDate.toISOString();
       }
       // set the `iso8601` property
@@ -90,6 +97,11 @@ export default InputText.extend({
    * `iso8601` property.
    */
   displayFormat: 'LL',
+  /**
+   * When `true`, the parsed date will have its time component set to the last moment of the day.
+   * Defaults to `false`.
+   */
+  'endOfDay?': false,
   'enterWillSubmitForm?': false,
   /**
    * If `true`, ambiguous dates like `Sunday` will be parsed as `next Sunday`.  Note that
@@ -116,6 +128,13 @@ export default InputText.extend({
    * @see https://sugarjs.com/docs/#/Date/create
    */
   'past?': false,
+  /**
+   * When `true`, the parsed date will have its time component set to the first moment of the day.  The `startOfDay?`
+   * option takes precedence over the `endOfDay?` option; if both are set to `true` the start of day logic will
+   * take precedence.
+   * Defaults to `false`.
+   */
+  'startOfDay?': false,
   /**
    * By default guess the client's timezone.
    */

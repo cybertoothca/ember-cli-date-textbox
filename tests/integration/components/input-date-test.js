@@ -15,6 +15,32 @@ moduleForComponent('input-date', 'Integration | Component | input date', {
   }
 });
 
+test('when setting a parsed date to the very start of the day', function(assert) {
+  this.set('date', null);
+  this.render(hbs`{{input-date date=date displayFormat="llll z" endOfDay?=true startOfDay?=true past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('sep 11 2001')
+    .trigger('change');
+  assert.equal(this.$('input').val().trim(), 'Tue, Sep 11, 2001 12:00 AM MDT');
+  assert.equal(this.get('date').toISOString(), '2001-09-11T06:00:00.000Z');
+});
+
+test('when setting a parsed date to the very end of the day', function(assert) {
+  this.set('date', null);
+  this.render(hbs`{{input-date date=date displayFormat="llll z" endOfDay?=true past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('sep 11 2001')
+    .trigger('change');
+  assert.equal(this.$('input').val().trim(), 'Tue, Sep 11, 2001 11:59 PM MDT');
+  assert.equal(this.get('date').toISOString(), '2001-09-12T05:59:59.999Z');
+});
+
 test('when firing the afterParseFail action on the text bla', function(assert) {
   this.set('afterParseFail', function(inputDateComponent) {
     assert.equal(inputDateComponent.get('value'), '', 'The text value is cleared on failed parse.');

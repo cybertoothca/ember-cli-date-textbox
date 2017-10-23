@@ -15,6 +15,32 @@ moduleForComponent('input-iso8601', 'Integration | Component | input iso8601', {
   }
 });
 
+test('when setting a parsed date to the very start of the day', function(assert) {
+  this.set('iso8601', null);
+  this.render(hbs`{{input-iso8601 displayFormat="llll z" endOfDay?=true iso8601=iso8601 past?=false startOfDay?=true timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('sep 11 2001')
+    .trigger('change');
+  assert.equal(this.$('input').val().trim(), 'Tue, Sep 11, 2001 12:00 AM MDT');
+  assert.equal(this.get('iso8601'), '2001-09-11T06:00:00.000Z');
+});
+
+test('when setting a parsed date to the very end of the day', function(assert) {
+  this.set('iso8601', null);
+  this.render(hbs`{{input-iso8601 displayFormat="llll z" endOfDay?=true iso8601=iso8601 past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('sep 11 2001')
+    .trigger('change');
+  assert.equal(this.$('input').val().trim(), 'Tue, Sep 11, 2001 11:59 PM MDT');
+  assert.equal(this.get('iso8601'), '2001-09-12T05:59:59.999Z');
+});
+
 test('when firing the afterParseFail action on the text bla', function(assert) {
   this.set('afterParseFail', function(inputDateComponent) {
     assert.equal(inputDateComponent.get('value'), '');

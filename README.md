@@ -117,7 +117,7 @@ component as an argument.  This action will be triggered only when the date pars
 component as an argument.  This action will be triggered prior to every parsing action.
 * `displayFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your 
 dates is the localized `LL`.  You can change this however you want.  See the demo.
-* `endOfDay?` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
+* `endOfDay?` - OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
 second of the day.
 * `future?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be 
 parsed as `next Sunday`.  Note that non-ambiguous dates are not guaranteed to be in the 
@@ -125,7 +125,7 @@ future.  Default is `false`.
 * `past?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be parsed 
 as `last Sunday`. Note that non-ambiguous dates are not guaranteed to be in the past. Default 
 is `false`.
-* `startOfDay?` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
+* `startOfDay?` - OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
 of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
 * `timezone` - OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted in the specified
 timezone.
@@ -173,7 +173,7 @@ component as an argument.  This action will be triggered only when the date pars
 component as an argument.  This action will be triggered prior to every parsing action.
 * `displayFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your dates is the localized
 `LL`.  You can change this however you want.  See the demo.
-* `endOfDay?` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
+* `endOfDay?` - OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
 second of the day.
 * `future?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be 
 parsed as `next Sunday`.  Note that non-ambiguous dates are not guaranteed to be in the 
@@ -181,7 +181,7 @@ future.  Default is `false`.
 * `past?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be parsed 
 as `last Sunday`. Note that non-ambiguous dates are not guaranteed to be in the past. Default 
 is `false`.
-* `startOfDay?` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
+* `startOfDay?` - OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
 of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
 * `timezone` - OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted 
 in the specified timezone.
