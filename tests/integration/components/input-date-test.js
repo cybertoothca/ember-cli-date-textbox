@@ -1,6 +1,6 @@
-/* global moment */
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import moment from 'moment';
 import sinon from 'sinon';
 
 // create a test class variable that will hold your frozen clock
@@ -42,18 +42,15 @@ test('when setting a parsed date to the very end of the day', function(assert) {
 });
 
 test('when firing the afterParseFail action on the text bla', function(assert) {
-  // forcing TODAY's date to Sept 11, 2001
-  CLOCK = sinon.useFakeTimers(new Date(2001, 8, 11).getTime());
-
   this.set('afterParseFail', function(inputDateComponent) {
     assert.equal(inputDateComponent.get('value'), '', 'The text value is cleared on failed parse.');
     assert.equal(inputDateComponent.get('date'), null, 'The assigned date is null due to the parse failure.');
   });
 
-  this.set('date', new Date());
+  this.set('date', new Date(2001, 8, 11));
   this.render(hbs`{{input-date afterParseFail=afterParseFail date=date displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
 
-  assert.equal(this.$('input').val().trim(), 'Sep 11, 2001');
+  assert.equal(this.$('input').val().trim(), moment(this.get('date')).tz(moment.tz.guess()).format('ll'));
 
   this.$('input')
     .val('bla')
@@ -77,18 +74,15 @@ test('when firing the afterParseSuccess action on a text valid text value', func
 });
 
 test('when firing the afterParseSuccess action on a cleared text field', function(assert) {
-  // forcing TODAY's date to Sept 11, 2001
-  CLOCK = sinon.useFakeTimers(new Date(2001, 8, 11).getTime());
-
   this.set('afterParseSuccess', function(inputDateComponent) {
     assert.equal(inputDateComponent.get('value'), '', 'Value should be blank because that is what was keyed into the field');
     assert.equal(inputDateComponent.get('date'), null, 'The date should now be null because the field was cleared');
   });
 
-  this.set('date', new Date());
+  this.set('date', new Date(2001, 8, 11));
   this.render(hbs`{{input-date afterParseSuccess=afterParseSuccess date=date displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
 
-  assert.equal(this.$('input').val().trim(), 'Sep 11, 2001');
+  assert.equal(this.$('input').val().trim(), moment(this.get('date')).tz(moment.tz.guess()).format('ll'));
 
   this.$('input')
     .val('')
