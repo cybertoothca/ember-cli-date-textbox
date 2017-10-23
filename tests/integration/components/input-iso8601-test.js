@@ -50,7 +50,7 @@ test('when firing the afterParseFail action on the text bla', function(assert) {
   this.set('iso8601', new Date().toISOString(2001, 8, 11));
   this.render(hbs`{{input-iso8601 afterParseFail=afterParseFail iso8601=iso8601 displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
 
-  assert.equal(this.$('input').val().trim(), moment(this.get('iso8601')).tz(moment.tz.guess()).format('ll'));
+  assert.equal(this.$('input').val().trim(), moment(this.get('iso8601')).tz('America/Edmonton').format('ll'));
 
   this.$('input')
     .val('bla')
@@ -82,7 +82,7 @@ test('when firing the afterParseSuccess action upon clearing the text field', fu
   this.set('iso8601', new Date(2001, 8, 11).toISOString());
   this.render(hbs`{{input-iso8601 afterParseSuccess=afterParseSuccess iso8601=iso8601 displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
 
-  assert.equal(this.$('input').val().trim(), moment(this.get('iso8601')).tz(moment.tz.guess()).format('ll'));
+  assert.equal(this.$('input').val().trim(), moment(this.get('iso8601')).tz('America/Edmonton').format('ll'));
 
   this.$('input')
     .val('')

@@ -50,7 +50,7 @@ test('when firing the afterParseFail action on the text bla', function(assert) {
   this.set('date', new Date(2001, 8, 11));
   this.render(hbs`{{input-date afterParseFail=afterParseFail date=date displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
 
-  assert.equal(this.$('input').val().trim(), moment(this.get('date')).tz(moment.tz.guess()).format('ll'));
+  assert.equal(this.$('input').val().trim(), moment(this.get('date')).tz('America/Edmonton').format('ll'));
 
   this.$('input')
     .val('bla')
@@ -82,7 +82,7 @@ test('when firing the afterParseSuccess action on a cleared text field', functio
   this.set('date', new Date(2001, 8, 11));
   this.render(hbs`{{input-date afterParseSuccess=afterParseSuccess date=date displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
 
-  assert.equal(this.$('input').val().trim(), moment(this.get('date')).tz(moment.tz.guess()).format('ll'));
+  assert.equal(this.$('input').val().trim(), moment(this.get('date')).tz('America/Edmonton').format('ll'));
 
   this.$('input')
     .val('')
