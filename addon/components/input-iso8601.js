@@ -17,6 +17,8 @@ export default InputText.extend({
         } else {
           Ember.trySet(this, 'iso8601', '');
         }
+        // trigger the afterParseSuccess action since the value and date was cleared
+        this.sendAction('afterParseSuccess', this);
         return true;
       }
 
@@ -41,6 +43,12 @@ export default InputText.extend({
       } else {
         Ember.trySet(this, 'iso8601', iso8601);
       }
+      // determine which after-action to triggered based on the parsedDate value
+      if (parsedDate === null) {
+        this.sendAction('afterParseFail', this);
+      } else {
+        this.sendAction('afterParseSuccess', this);
+      }
       return true;
     }
   },
@@ -53,11 +61,26 @@ export default InputText.extend({
     component.send('parse', '');
   },
   /**
+   * Assign an action that will be triggered after failing to parse the date.  You will passed this
+   * component as an argument.
+   */
+  afterParseFail: undefined,
+  /**
+   * Assign an action that will be triggered after successfully parsing a date.  You will passed this
+   * component as an argument.
+   */
+  afterParseSuccess: undefined,
+  /**
+   * Assign an action that will be triggered before attempting to parse the date.  You will passed this
+   * component as an argument.
+   */
+  beforeParse: undefined,
+  /**
    * The textbox value changed; trigger a parse of the value.
    */
   change(/*event*/) {
     this._super(...arguments);
-    this.send('parse', this.get('value'));
+    this._parse();
   },
   classNames: ['input-iso8601'],
   'ctrlEnterSubmitsForm?': true,
@@ -80,7 +103,7 @@ export default InputText.extend({
    */
   insertNewline(/*event*/) {
     this._super(...arguments);
-    this.send('parse', this.get('value'));
+    this._parse();
   },
   /**
    * REQUIRED.  Initialize the date text box and bind it to your model, component, or controller.
@@ -110,6 +133,10 @@ export default InputText.extend({
     id: 'input-iso8601.deprecate-valueFormat',
     until: '1.2.0'
   }),
+  _parse() {
+    this.sendAction('beforeParse', this);
+    this.send('parse', this.get('value'));
+  },
   /**
    * Every time the `iso8601` property changes, attempt to format it to the String value matching
    * the `displayFormat` mask.  If `iso8601` is not present or is not of `date` type, the formatted value

@@ -1,5 +1,5 @@
 /* global moment */
-import {moduleForComponent, test} from 'ember-qunit';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
 
@@ -13,6 +13,69 @@ moduleForComponent('input-iso8601', 'Integration | Component | input iso8601', {
       CLOCK.restore();
     }
   }
+});
+
+test('when firing the afterParseFail action on the text bla', function(assert) {
+  this.set('afterParseFail', function(inputDateComponent) {
+    assert.equal(inputDateComponent.get('value'), '');
+    assert.equal(inputDateComponent.get('iso8601'), '');
+  });
+
+  this.set('iso8601', new Date(2001, 8, 11).toISOString());
+  this.render(hbs`{{input-iso8601 afterParseFail=afterParseFail iso8601=iso8601 displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), 'Sep 11, 2001');
+
+  this.$('input')
+    .val('bla')
+    .trigger('change');
+});
+
+test('when firing the afterParseSuccess action on a parse-able date', function(assert) {
+  this.set('afterParseSuccess', function(inputDateComponent) {
+    assert.equal(inputDateComponent.get('value'), 'Sep 11, 2001');
+    assert.equal(inputDateComponent.get('iso8601'), new Date(2001, 8, 11).toISOString());
+  });
+
+  this.set('iso8601', null);
+  this.render(hbs`{{input-iso8601 afterParseSuccess=afterParseSuccess iso8601=iso8601 displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('sep 11 2001')
+    .trigger('change');
+});
+
+test('when firing the afterParseSuccess action upon clearing the text field', function(assert) {
+  this.set('afterParseSuccess', function(inputDateComponent) {
+    assert.equal(inputDateComponent.get('value'), '');
+    assert.equal(inputDateComponent.get('iso8601'), '');
+  });
+
+  this.set('iso8601', new Date(2001, 8, 11).toISOString());
+  this.render(hbs`{{input-iso8601 afterParseSuccess=afterParseSuccess iso8601=iso8601 displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), 'Sep 11, 2001');
+
+  this.$('input')
+    .val('')
+    .trigger('change');
+});
+
+test('when firing the beforeParse action the component is passed as an argument', function(assert) {
+  this.set('beforeParse', function(inputDateComponent) {
+    assert.equal(inputDateComponent.get('value'), 'sep 11 2001');
+  });
+
+  this.set('iso8601', null);
+  this.render(hbs`{{input-iso8601 beforeParse=beforeParse iso8601=iso8601 displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('sep 11 2001')
+    .trigger('change');
 });
 
 test('when `past?` set to false requesting `jan` will STILL be in the past', function (assert) {

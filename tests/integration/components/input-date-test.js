@@ -1,5 +1,5 @@
 /* global moment */
-import {moduleForComponent, test} from 'ember-qunit';
+import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 import sinon from 'sinon';
 
@@ -13,6 +13,69 @@ moduleForComponent('input-date', 'Integration | Component | input date', {
       CLOCK.restore();
     }
   }
+});
+
+test('when firing the afterParseFail action on the text bla', function(assert) {
+  this.set('afterParseFail', function(inputDateComponent) {
+    assert.equal(inputDateComponent.get('value'), '', 'The text value is cleared on failed parse.');
+    assert.equal(inputDateComponent.get('date'), null, 'The assigned date is null due to the parse failure.');
+  });
+
+  this.set('date', new Date(2001, 8, 11));
+  this.render(hbs`{{input-date afterParseFail=afterParseFail date=date displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), 'Sep 11, 2001');
+
+  this.$('input')
+    .val('bla')
+    .trigger('change');
+});
+
+test('when firing the afterParseSuccess action on a text valid text value', function(assert) {
+  this.set('afterParseSuccess', function(inputDateComponent) {
+    assert.equal(inputDateComponent.get('value'), 'Sep 11, 2001', 'The parsed date should be formatted accordingly');
+    assert.notEqual(inputDateComponent.get('date'), null, 'The parsed date should assigned to the component.');
+  });
+
+  this.set('date', null);
+  this.render(hbs`{{input-date afterParseSuccess=afterParseSuccess date=date displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('sep 11 2001')
+    .trigger('change');
+});
+
+test('when firing the afterParseSuccess action on a cleared text field', function(assert) {
+  this.set('afterParseSuccess', function(inputDateComponent) {
+    assert.equal(inputDateComponent.get('value'), '', 'Value should be blank because that is what was keyed into the field');
+    assert.equal(inputDateComponent.get('date'), null, 'The date should now be null because the field was cleared');
+  });
+
+  this.set('date', new Date(2001, 8, 11));
+  this.render(hbs`{{input-date afterParseSuccess=afterParseSuccess date=date displayFormat="ll" past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), 'Sep 11, 2001');
+
+  this.$('input')
+    .val('')
+    .trigger('change');
+});
+
+test('when firing the beforeParse action the component is passed as an argument', function(assert) {
+  this.set('beforeParse', function(inputDateComponent) {
+    assert.equal(inputDateComponent.get('value'), 'sep 11 2001');
+  });
+
+  this.set('date', null);
+  this.render(hbs`{{input-date beforeParse=beforeParse date=date displayFormat="llll z" past?=false timezone="America/Edmonton"}}`);
+
+  assert.equal(this.$('input').val().trim(), '');
+
+  this.$('input')
+    .val('sep 11 2001')
+    .trigger('change');
 });
 
 test('when `past?` set to false requesting `jan` will STILL be in the past', function (assert) {
@@ -168,8 +231,11 @@ test('when parsing `sep 11 2001` to a date', function (assert) {
 
 test('when typing `bla` the date parsing fails silently', function (assert) {
   this.set('date', new Date(2001, 8, 11));
+
   this.render(hbs`{{input-date date=date displayFormat="ll"}}`);
+
   assert.equal(this.$('input').val(), 'Sep 11, 2001');
+
   this.$('input')
     .val('bla')
     .trigger('change');

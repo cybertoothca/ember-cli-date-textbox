@@ -11,7 +11,6 @@ export default InputText.extend({
   actions: {
     parse(value) {
       if (Ember.isBlank(value)) {
-        // the text representation of the date has been cleared
         // clear error style-class
         this.$().closest('.form-group').removeClass('has-error');
         // set the `date` behind the now cleared value to null or if it is already null,
@@ -21,6 +20,8 @@ export default InputText.extend({
         } else {
           Ember.trySet(this, 'date', null);
         }
+        // trigger the afterParseSuccess action since the value and date was cleared
+        this.sendAction('afterParseSuccess', this);
         return true;
       }
 
@@ -43,6 +44,12 @@ export default InputText.extend({
       } else {
         Ember.trySet(this, 'date', parsedDate);
       }
+      // determine which after-action to triggered based on the parsedDate value
+      if (parsedDate === null) {
+        this.sendAction('afterParseFail', this);
+      } else {
+        this.sendAction('afterParseSuccess', this);
+      }
       return true;
     }
   },
@@ -55,11 +62,26 @@ export default InputText.extend({
     component.send('parse', component.get('value'));
   },
   /**
+   * Assign an action that will be triggered after failing to parse the date.  You will passed this
+   * component as an argument.
+   */
+  afterParseFail: undefined,
+  /**
+   * Assign an action that will be triggered after successfully parsing a date.  You will passed this
+   * component as an argument.
+   */
+  afterParseSuccess: undefined,
+  /**
+   * Assign an action that will be triggered before attempting to parse the date.  You will passed this
+   * component as an argument.
+   */
+  beforeParse: undefined,
+  /**
    * The textbox value changed; trigger a parse of the value.
    */
   change(/*event*/) {
     this._super(...arguments);
-    this.send('parse', this.get('value'));
+    this._parse();
   },
   classNames: ['input-date'],
   'ctrlEnterSubmitsForm?': true,
@@ -85,7 +107,7 @@ export default InputText.extend({
    */
   insertNewline(/*event*/) {
     this._super(...arguments);
-    this.send('parse', this.get('value'));
+    this._parse();
   },
   /**
    * If `true`, ambiguous dates like `Sunday` will be parsed as `last Sunday`. Note that non-ambiguous
@@ -110,6 +132,10 @@ export default InputText.extend({
     id: 'input-date.deprecate-valueFormat',
     until: '1.2.0'
   }),
+  _parse() {
+    this.sendAction('beforeParse', this);
+    this.send('parse', this.get('value'));
+  },
   /**
    * Every time the `date` property changes, attempt to format the `date` to the String value represented by
    * the `displayFormat` mask.  If the `date` is not present or is not of `date` type, the formatted value

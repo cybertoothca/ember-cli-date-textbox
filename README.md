@@ -109,9 +109,15 @@ the `date` attribute.
 type in the textbox, the date they settle on will be formatted in the textbox which is assigned to the `value`
 property.  In addition...if you supply a valid `date` attribute to this textbox, it will be formatted for you.  Don't
 go being all clever trying to do things that are already taken care of for you.
+* `afterParseFail` - OPTIONAL, default `undefined`.  Use this argument to bind an action that accepts this
+component as an argument.  This action will be triggered only when the date parsing fails.
+* `afterParseSuccess` - OPTIONAL, default `undefined`.  Use this argument to bind an action that accepts this 
+component as an argument.  This action will be triggered only when the date parsing succeeds.
+* `beforeParse` - OPTIONAL, default `undefined`.  Use this argument to bind an action that accepts this
+component as an argument.  This action will be triggered prior to every parsing action.
 * `displayFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your 
 dates is the localized `LL`.  You can change this however you want.  See the demo.
-* `endOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
+* `endOfDay?` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
 second of the day.
 * `future?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be 
 parsed as `next Sunday`.  Note that non-ambiguous dates are not guaranteed to be in the 
@@ -119,7 +125,7 @@ future.  Default is `false`.
 * `past?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be parsed 
 as `last Sunday`. Note that non-ambiguous dates are not guaranteed to be in the past. Default 
 is `false`.
-* `startOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
+* `startOfDay?` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
 of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
 * `timezone` - OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted in the specified
 timezone.
@@ -159,9 +165,15 @@ should be in ISO format (e.g. `yyyy-MM-ddTHH:mm:ssZ`).
 type in the textbox, the date they settle on will be formatted in the textbox which is assigned to the `value`
 property.  In addition...if you supply a valid `date` attribute to this textbox, it will be formatted for you.  Don't
 go being all clever trying to do things that are already taken care of for you.
+* `afterParseFail` - OPTIONAL, default `undefined`.  Use this argument to bind an action that accepts this
+component as an argument.  This action will be triggered only when the date parsing fails.
+* `afterParseSuccess` - OPTIONAL, default `undefined`.  Use this argument to bind an action that accepts this 
+component as an argument.  This action will be triggered only when the date parsing succeeds.
+* `beforeParse` - OPTIONAL, default `undefined`.  Use this argument to bind an action that accepts this
+component as an argument.  This action will be triggered prior to every parsing action.
 * `displayFormat` - OPTIONAL, DEFAULT `LL`.  Formatting is done using moment.js.  The default format of your dates is the localized
 `LL`.  You can change this however you want.  See the demo.
-* `endOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
+* `endOfDay?` - **COMING SOON** OPTIONAL, DEFAULT `false`..  When parsing dates, always set them to the last 
 second of the day.
 * `future?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be 
 parsed as `next Sunday`.  Note that non-ambiguous dates are not guaranteed to be in the 
@@ -169,7 +181,7 @@ future.  Default is `false`.
 * `past?` - OPTIONAL, DEFAULT `false`.  If `true`, ambiguous dates like `Sunday` will be parsed 
 as `last Sunday`. Note that non-ambiguous dates are not guaranteed to be in the past. Default 
 is `false`.
-* `startOfDay` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
+* `startOfDay?` - **COMING SOON** OPTIONAL, DEFAULT `false`.  When parsing dates, always set them to the start 
 of the day.  If set to `true`, this will take precedence over the `endOfDay` property.
 * `timezone` - OPTIONAL, DEFAULT `moment.tz.guess()`.  Dates will be parsed and formatted 
 in the specified timezone.
