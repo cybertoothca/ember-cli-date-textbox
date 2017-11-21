@@ -18,7 +18,11 @@
     "ember-addon"
   ],
   "license": "MIT",
-  "author": "",
+  "author": {
+    "name": "cybertooth.io",
+    "email": "dev@cybertooth.io",
+    "url": "http://cybertooth.io"
+  },
   "directories": {
     "doc": "doc",
     "test": "tests"
