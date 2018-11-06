@@ -2479,11 +2479,11 @@ ember-cli-test-loader@^2.0.0:
   dependencies:
     ember-cli-babel "^6.8.1"
 
-ember-cli-text-support-mixins@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-text-support-mixins/-/ember-cli-text-support-mixins-1.1.1.tgz#0e870b8ad2e2c6d50b770cf9af004644fc72ab19"
+ember-cli-text-support-mixins@~2.0.0:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-text-support-mixins/-/ember-cli-text-support-mixins-2.0.1.tgz#157150c6b947682cb99c2fedf451acd738a13905"
   dependencies:
-    ember-cli-babel "^6.3.0"
+    ember-cli-babel "^6.6.0"
     ember-cli-node-assets "^0.2.2"
 
 ember-cli-uglify@^1.2.0:

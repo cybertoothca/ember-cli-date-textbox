@@ -324,7 +324,7 @@ export default Ember.Controller.extend({
     </fieldset>
   </div>
 
-  <form class="form" {{action (route-action "submitDate") on="submit"}}>
+  <form class="form" onsubmit={{action (route-action "submitDate")}}>
     <fieldset>
       <legend>Submitting In A Form</legend>
       <div class="form-group">
@@ -431,7 +431,7 @@ export default Ember.Controller.extend({
     </fieldset>
   </div>
 
-  <form class="form" {{action (route-action "submitIso8601") on="submit"}}>
+  <form class="form" onsubmit={{action (route-action "submitIso8601")}}>
     <fieldset>
       <legend>Submitting In A Form</legend>
       <div class="form-group">
