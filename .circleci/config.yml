@@ -190,10 +190,10 @@ workflows:
         requires:
         - bower_and_cache
         - yarn_and_cache
-    - test_lts_2_16:
-        requires:
-        - bower_and_cache
-        - yarn_and_cache
+    #    - test_lts_2_16:
+    #        requires:
+    #        - bower_and_cache
+    #        - yarn_and_cache
     - test_lts_2_12:
         requires:
         - bower_and_cache

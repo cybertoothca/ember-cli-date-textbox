@@ -8,12 +8,12 @@ module.exports = {
     var self = this;
     return self.addAddonsToProject({
       packages: [
-        {name: 'ember-cli-text-support-mixins'},
-        {name: 'ember-moment'}
+        { name: 'ember-cli-text-support-mixins', target: '~1' },
+        { name: 'ember-moment' }
       ]
     })
       .then(function () {
-        return self.addPackagesToProject([{name: 'sugar-date'}]);
+        return self.addPackagesToProject([{ name: 'sugar-date' }]);
       });
   }
 };
