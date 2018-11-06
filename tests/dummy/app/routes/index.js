@@ -1,9 +1,10 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import Route from '@ember/routing/route';
 
-export default Ember.Route.extend({
+export default Route.extend({
   actions: {
     submitDate() {
-      const dateString = Ember.isPresent(this.get('controller.submittedDate')) ?
+      const dateString = isPresent(this.get('controller.submittedDate')) ?
         this.get('controller.submittedDate').toString() : null;
       window.alert(`Form was submitted and this is the String value: ${dateString}`);
       return false;

@@ -1,12 +1,16 @@
 /* global Sugar */
-import Ember from 'ember';
+import { on } from '@ember/object/evented';
+
+import { deprecatingAlias } from '@ember/object/computed';
+import { observer, trySet } from '@ember/object';
+import { isBlank, isPresent } from '@ember/utils';
 import InputText from 'ember-cli-text-support-mixins/components/input-text';
 import moment from 'moment';
 
 export default InputText.extend({
   actions: {
     parse(value) {
-      if (Ember.isBlank(value)) {
+      if (isBlank(value)) {
         // the text representation of the date has been cleared
         // clear error style-class
         this.$().closest('.form-group').removeClass('has-error');
@@ -15,7 +19,7 @@ export default InputText.extend({
         if (this.get('iso8601') === '') {
           this.notifyPropertyChange('iso8601');
         } else {
-          Ember.trySet(this, 'iso8601', '');
+          trySet(this, 'iso8601', '');
         }
         // trigger the afterParseSuccess action since the value and date was cleared
         this.sendAction('afterParseSuccess', this);
@@ -48,7 +52,7 @@ export default InputText.extend({
         // the iso8601 has not changed; however we want to force the iso8601 observer to fire anyway
         this.notifyPropertyChange('iso8601');
       } else {
-        Ember.trySet(this, 'iso8601', iso8601);
+        trySet(this, 'iso8601', iso8601);
       }
       // determine which after-action to triggered based on the parsedDate value
       if (parsedDate === null) {
@@ -148,7 +152,7 @@ export default InputText.extend({
   /**
    * @deprecated please use #displayFormat instead.
    */
-  valueFormat: Ember.computed.deprecatingAlias('displayFormat', {
+  valueFormat: deprecatingAlias('displayFormat', {
     id: 'input-iso8601.deprecate-valueFormat',
     until: '1.2.0'
   }),
@@ -161,15 +165,15 @@ export default InputText.extend({
    * the `displayFormat` mask.  If `iso8601` is not present or is not of `date` type, the formatted value
    * will be set to empty-string.
    */
-  _setValue: Ember.on('init', Ember.observer('iso8601', function () {
+  _setValue: on('init', observer('iso8601', function () {
     let formattedValue = '';
-    if (Ember.isPresent(this.get('iso8601'))) {
+    if (isPresent(this.get('iso8601'))) {
       const parsedDate = new Date(this.get('iso8601'));
       // try to format the date if it is present and resolved to a real date (finite)
-      if (Ember.isPresent(parsedDate) && isFinite(parsedDate)) {
+      if (isPresent(parsedDate) && isFinite(parsedDate)) {
         formattedValue = moment(parsedDate).tz(this.get('timezone')).format(this.get('displayFormat'));
       }
     }
-    Ember.trySet(this, 'value', formattedValue);
+    trySet(this, 'value', formattedValue);
   }))
 });

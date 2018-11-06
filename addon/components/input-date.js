@@ -1,5 +1,9 @@
 /* global Sugar */
-import Ember from 'ember';
+import { on } from '@ember/object/evented';
+
+import { deprecatingAlias } from '@ember/object/computed';
+import { observer, trySet } from '@ember/object';
+import { isBlank, isPresent, typeOf } from '@ember/utils';
 import InputText from 'ember-cli-text-support-mixins/components/input-text';
 import moment from 'moment';
 
@@ -10,7 +14,7 @@ import moment from 'moment';
 export default InputText.extend({
   actions: {
     parse(value) {
-      if (Ember.isBlank(value)) {
+      if (isBlank(value)) {
         // clear error style-class
         this.$().closest('.form-group').removeClass('has-error');
         // set the `date` behind the now cleared value to null or if it is already null,
@@ -18,7 +22,7 @@ export default InputText.extend({
         if (this.get('date') === null) {
           this.notifyPropertyChange('date');
         } else {
-          Ember.trySet(this, 'date', null);
+          trySet(this, 'date', null);
         }
         // trigger the afterParseSuccess action since the value and date was cleared
         this.sendAction('afterParseSuccess', this);
@@ -49,7 +53,7 @@ export default InputText.extend({
         // the date has not changed; however we want to force the date changed observer to fire anyway
         this.notifyPropertyChange('date');
       } else {
-        Ember.trySet(this, 'date', parsedDate);
+        trySet(this, 'date', parsedDate);
       }
       // determine which after-action to triggered based on the parsedDate value
       if (parsedDate === null) {
@@ -147,7 +151,7 @@ export default InputText.extend({
   /**
    * @deprecated please use #displayFormat instead.
    */
-  valueFormat: Ember.computed.deprecatingAlias('displayFormat', {
+  valueFormat: deprecatingAlias('displayFormat', {
     id: 'input-date.deprecate-valueFormat',
     until: '1.2.0'
   }),
@@ -160,11 +164,11 @@ export default InputText.extend({
    * the `displayFormat` mask.  If the `date` is not present or is not of `date` type, the formatted value
    * will be set to empty-string.
    */
-  _setValue: Ember.on('init', Ember.observer('date', function () {
+  _setValue: on('init', observer('date', function () {
     let formattedValue = '';
-    if (Ember.isPresent(this.get('date')) && Ember.typeOf(this.get('date')) === 'date') {
+    if (isPresent(this.get('date')) && typeOf(this.get('date')) === 'date') {
       formattedValue = moment(this.get('date')).tz(this.get('timezone')).format(this.get('displayFormat'));
     }
-    Ember.trySet(this, 'value', formattedValue);
+    trySet(this, 'value', formattedValue);
   }))
 });
