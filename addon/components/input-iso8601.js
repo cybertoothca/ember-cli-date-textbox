@@ -1,8 +1,5 @@
 /* global Sugar */
-import { on } from '@ember/object/evented';
-
-import { deprecatingAlias } from '@ember/object/computed';
-import { observer, trySet } from '@ember/object';
+import { trySet } from '@ember/object';
 import { isBlank, isPresent } from '@ember/utils';
 import InputText from 'ember-cli-text-support-mixins/components/input-text';
 import moment from 'moment';
@@ -110,6 +107,21 @@ export default InputText.extend({
   'ctrlEnterSubmitsForm?': true,
 
   /**
+   * Every time the `iso8601` property changes, attempt to format it to the String value matching
+   * the `displayFormat` mask.  If `iso8601` is not present or is not of `date` type, the formatted value
+   * will be set to empty-string.
+   */
+  didReceiveAttrs() {
+    if (isPresent(this.get('iso8601'))) {
+      const parsedDate = new Date(this.get('iso8601'));
+      // try to format the date if it is present and resolved to a real date (finite)
+      if (isPresent(parsedDate) && isFinite(parsedDate)) {
+        trySet(this, 'value', moment(parsedDate).tz(this.get('timezone')).format(this.get('displayFormat')));
+      }
+    }
+  },
+
+  /**
    * The format mask to apply to the date once it's been parsed.  The formatted date will
    * appear in the textbox while the actual date's ISO8601 string value will be in the
    * `iso8601` property.
@@ -173,33 +185,8 @@ export default InputText.extend({
    */
   value: '',
 
-  /**
-   * @deprecated please use #displayFormat instead.
-   */
-  valueFormat: deprecatingAlias('displayFormat', {
-    id: 'input-iso8601.deprecate-valueFormat',
-    until: '1.2.0'
-  }),
-
   _parse() {
     this.get('beforeParse')(this);
     this.send('parse', this.get('value'));
-  },
-
-  /**
-   * Every time the `iso8601` property changes, attempt to format it to the String value matching
-   * the `displayFormat` mask.  If `iso8601` is not present or is not of `date` type, the formatted value
-   * will be set to empty-string.
-   */
-  _setValue: on('init', observer('iso8601', function () {
-    let formattedValue = '';
-    if (isPresent(this.get('iso8601'))) {
-      const parsedDate = new Date(this.get('iso8601'));
-      // try to format the date if it is present and resolved to a real date (finite)
-      if (isPresent(parsedDate) && isFinite(parsedDate)) {
-        formattedValue = moment(parsedDate).tz(this.get('timezone')).format(this.get('displayFormat'));
-      }
-    }
-    trySet(this, 'value', formattedValue);
-  }))
+  }
 });

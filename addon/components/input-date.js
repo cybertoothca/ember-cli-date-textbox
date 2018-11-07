@@ -1,8 +1,5 @@
 /* global Sugar */
-import { on } from '@ember/object/evented';
-
-import { deprecatingAlias } from '@ember/object/computed';
-import { observer, trySet } from '@ember/object';
+import { trySet } from '@ember/object';
 import { isBlank, isPresent, typeOf } from '@ember/utils';
 import InputText from 'ember-cli-text-support-mixins/components/input-text';
 import moment from 'moment';
@@ -116,6 +113,16 @@ export default InputText.extend({
   date: undefined,
 
   /**
+   * Every time the `date` property changes, attempt to format the `date` to the String value represented by
+   * the `displayFormat` mask.  If the `date` is not present or is not of `date` type nothing changes.
+   */
+  didReceiveAttrs() {
+    if (isPresent(this.get('date')) && typeOf(this.get('date')) === 'date') {
+      trySet(this, 'value', moment(this.get('date')).tz(this.get('timezone')).format(this.get('displayFormat')));
+    }
+  },
+
+  /**
    * The format mask to apply to the date once it's been parsed.  The formatted date will
    * appear in the textbox while the actual date value behind it is in the `date` property.
    */
@@ -172,29 +179,8 @@ export default InputText.extend({
    */
   value: '',
 
-  /**
-   * @deprecated please use #displayFormat instead.
-   */
-  valueFormat: deprecatingAlias('displayFormat', {
-    id: 'input-date.deprecate-valueFormat',
-    until: '1.2.0'
-  }),
-
   _parse() {
     this.get('beforeParse')(this);
     this.send('parse', this.get('value'));
-  },
-
-  /**
-   * Every time the `date` property changes, attempt to format the `date` to the String value represented by
-   * the `displayFormat` mask.  If the `date` is not present or is not of `date` type, the formatted value
-   * will be set to empty-string.
-   */
-  _setValue: on('init', observer('date', function () {
-    let formattedValue = '';
-    if (isPresent(this.get('date')) && typeOf(this.get('date')) === 'date') {
-      formattedValue = moment(this.get('date')).tz(this.get('timezone')).format(this.get('displayFormat'));
-    }
-    trySet(this, 'value', formattedValue);
-  }))
+  }
 });
