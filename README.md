@@ -1,27 +1,94 @@
-# ember-cli-date-textbox [![GitHub version](http://badge.fury.io/gh/cybertoothca%2Fember-cli-date-textbox.svg)](http://badge.fury.io/gh/cybertoothca%2Fember-cli-date-textbox) ![](https://embadge.io/v1/badge.svg?start=1.13.0)
+# ember-cli-date-textbox
 
-[![npm version](http://badge.fury.io/js/ember-cli-date-textbox.svg)](http://badge.fury.io/js/ember-cli-date-textbox) ![downloads](https://img.shields.io/npm/dy/ember-cli-date-textbox.svg) [![CircleCI](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox.svg?style=shield)](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox) [![Code Climate](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox/badges/gpa.svg)](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox) ![Dependencies](http://david-dm.org/cybertoothca/ember-cli-date-textbox.svg) [![ember-observer-badge](http://emberobserver.com/badges/ember-cli-date-textbox.svg)](http://emberobserver.com/addons/ember-cli-date-textbox) [![License](http://img.shields.io/npm/l/ember-cli-date-textbox.svg)](LICENSE.md)
+[![npm version](http://badge.fury.io/js/ember-cli-date-textbox.svg)](http://badge.fury.io/js/ember-cli-date-textbox) ![downloads](https://img.shields.io/npm/dy/ember-cli-date-textbox.svg) [![CircleCI](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox.svg?style=shield)](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox) [![Code Climate](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox/badges/gpa.svg)](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox) 
+
+![Dependencies](http://david-dm.org/cybertoothca/ember-cli-date-textbox.svg) [![ember-observer-badge](http://emberobserver.com/badges/ember-cli-date-textbox.svg)](http://emberobserver.com/addons/ember-cli-date-textbox) [![License](http://img.shields.io/npm/l/ember-cli-date-textbox.svg)](LICENSE.md)
 
 A textbox that will guess the date you want and assign it to your model or query-params.
 
+## Built With
+
+[![ember-cli-2.18.2](https://img.shields.io/badge/ember--cli-2.18.2-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-text-support-mixins)
+
 ## Tested Against
 
-[![ember-lts-2.4](https://img.shields.io/badge/ember--try-ember--lts--2.4-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
-[![ember-lts-2.8](https://img.shields.io/badge/ember--try-ember--lts--2.8-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
-[![ember-lts-2.12](https://img.shields.io/badge/ember--try-ember--lts--2.12-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
+[![ember-lts-2.4](https://img.shields.io/badge/ember--try-ember--lts--2.4-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-text-support-mixins)
+[![ember-lts-2.8](https://img.shields.io/badge/ember--try-ember--lts--2.8-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-text-support-mixins)
+[![ember-lts-2.12](https://img.shields.io/badge/ember--try-ember--lts--2.12-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-text-support-mixins)
+[![ember-lts-2.16](https://img.shields.io/badge/ember--try-ember--lts--2.16-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-text-support-mixins)
 
-[![ember-release](https://img.shields.io/badge/ember--try-ember--release-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
-[![ember-beta](https://img.shields.io/badge/ember--try-ember--beta-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
-[![ember-canary](https://img.shields.io/badge/ember--try-ember--canary-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-textarea-autosize)
+[![ember-release-2.18](https://img.shields.io/badge/ember--try-ember--release--2.18-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-text-support-mixins)
+[![ember-default](https://img.shields.io/badge/ember--try-ember--default-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-text-support-mixins)
+[![ember-beta](https://img.shields.io/badge/ember--try-ember--beta-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-text-support-mixins)
+[![ember-canary](https://img.shields.io/badge/ember--try-ember--canary-brightgreen.svg)](https://circleci.com/gh/cybertoothca/ember-cli-text-support-mixins)
+
+
+## Installation
+
+The following will install this add-on:
+
+```bash
+ember install ember-cli-date-textbox
+```
+
+### Upgrading
+
+When working through the Ember upgrade process, I recommend
+invoking the `ember install ember-cli-date-textbox` command once
+you are done to get the latest version of the add-on.
+
+### Bower & JQuery
+
+This add-on *does not depend on bower libraries* when installed in your application or add-on.
+
+JQuery is still required as of 1.2.x of this addon.
+
+### Dependencies
+
+#### `ember-cli-text-support-mixins`
+
+The helper mixins from [`ember-cli-text-support-mixins`](http://ember-cli-text-support-mixins.cybertooth.io/) 
+are used by this textarea add-on to include support for:
+
+* autofocus
+* <kbd>CTRL+ENTER</kbd> submits the closest form
+* textarea focus automatically selects text
+
+#### `ember-moment`
+
+Used to format output according the browser locale information.
+
+You should configure `ember-moment` to include the timezone API
+([see docs](https://github.com/stefanpenner/ember-moment#include-moment-timezone)).
+
+For example, in your `config/environment.js` add the following to the appropriate environment scope:
+           
+```javascript
+module.exports = function (/* environment, appConfig */) {
+  return {
+    moment: {
+      // Options:
+      // 'all' - all years, all timezones
+      // '2010-2020' - 2010-2020, all timezones
+      // 'none' - no data, just timezone API
+      includeTimezone: 'all'
+    }
+  }
+};
+``` 
+
+#### `sugar-date`
+
+Used to parse your english variation of a date into the actual javascript `Date` instance.
 
 ## Demo
 
 The demonstration web application can be found here:
 [http://ember-cli-date-textbox.cybertooth.io/](http://ember-cli-date-textbox.cybertooth.io/). 
 
-## What Does This Addon Do?
+## What Does This Add-on Do?
 
-This addon supplies the following _components_:
+This add-on supplies the following _components_:
 
 * `input-date` - a basic HTML textbox that will take your input and try to parse it to a date.  If the parse succeeds,
 the date will be formatted according to your preference.  Ideal for binding to your model's date fields (e.g. 
@@ -37,57 +104,6 @@ _Further information about these items can be found in the Usage section below a
 
 If the supplied value can't be parsed to a date, we add the `has-error` style class to the `.form-group` that the
 &#123;&#123;input-date&#125;&#125; and/or &#123;&#123;input-iso8601&#125;&#125; belongs to.  This visualizes that the date parse was rejected.
-
-## Requirements
-
-* Ember >= 1.13.0
-* Ember CLI
-* `ember-moment` will be installed **and you should configure it to include the timezone API** (
-[see docs](https://github.com/stefanpenner/ember-moment#include-moment-timezone)).  For example, in your
-`config/environment.js` add the following to the appropriate environment scope:
-
-```javascript
-module.exports = function (/* environment, appConfig */) {
-  return {
-    moment: {
-      // Options:
-      // 'all' - all years, all timezones
-      // '2010-2020' - 2010-2020, all timezones
-      // 'none' - no data, just timezone API
-      includeTimezone: 'all'
-    }
-  }
-};
-``` 
-
-### Dependencies
-
-#### Ember Addon
-
-The following Ember addons will automatically be added into your Ember product:
-
-* `ember-cli-text-support-mixins` - https://github.com/cybertoothca/ember-cli-text-support-mixins - `Ember.TextSupport` 
-enhancements including a &#123;&#123;input-text&#125;&#125; and &#123;&#123;text-area&#125;&#125; component.
-
-#### Bower
-
-This add-on no longer depends on Bower (as of ember-cli-date-textbox-1.1.0).
-
-## Installation
-
-The following will install this addon:
-
-```bash
-ember install ember-cli-date-textbox
-```
-
-### Upgrading
-
-When working through the Ember upgrade process, I recommend
-invoking the `ember install ember-cli-date-textbox` command once
-you are done to get the latest version of the addon.
-
-This will likely update the bower dependencies listed above.
 
 ## Usage
 
@@ -209,20 +225,14 @@ _None...at least that I can think of._
 
 ---
 
-# Ember Addon Building And Testing
+# Ember Add-on Building And Testing
 
 ## Setup
 
 ### Checkout
 
 ```bash
-git clone git@github.com:cybertoothca/ember-cli-textarea-autosize.git
-```
-
-### With NPM
-
-```bash
-npm install
+git clone git@github.com:cybertoothca/ember-cli-date-textbox.git
 ```
 
 ### With Yarn
@@ -236,43 +246,41 @@ yarn
 * `ember server`
 * Visit your app at http://localhost:4200.
 
-## Running Addon Tests
+## Running Add-on Tests
 
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
+* `npm test` (Runs `ember try:testall` to test your add-on against multiple Ember versions)
 * `ember test`
 * `ember test --server`
 
-## Building The Addon
+## Building The Add-on
 
 * `ember build`
 
 For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
 
-# Linking This Addon For Local Testing
+# Linking This Add-on For Local Testing
 
 ## Linking
 
-1. From the command line at the root of __this__ project run the
-`npm link` command to _link_ this addon within your local
-node repository.
-1. From the _other_ Ember project that you wish to test this addon
-in, execute the following command:
-`npm link ember-cli-date-textbox`.
-1. Now in that same _other_ Ember project, you should go into the
-`package.json` and add the ember addon with the version _*_.  It will
-look something like this: `"ember-cli-date-textbox": "*"`.  Now
-when/if you execute `npm install` on this _other_ project it
-will know to look for the linked addon rather than fetch it from
-the central repository.
+Use yarn.
+
+```bash
+# from this add-on project
+$ yarn link
+# from the other project that depends on this add-on
+$ yarn link ember-cli-date-textbox
+```
 
 ## Unlinking
 
-1. Remove the addon from your local node repository with the following
-command (that can be run anywhere):
-`npm uninstall -g ember-cli-date-textbox`
-1. Remove the reference to the `ember-cli-date-textbox`
-in your _other_ project's `package.json`.
-1. Run an `npm prune` and `bower prune` from the root of your _other_ project's command line.
+Again, use yarn.
+
+```bash
+# from the other project that linked to this add-on
+$ yarn unlink ember-cli-date-textbox
+# from this add-on project
+$ yarn unlink
+```
 
 # Deploying The Dummy Application
 
