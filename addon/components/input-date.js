@@ -108,6 +108,11 @@ export default InputText.extend(DateTextboxEvents, {
     return false;
   },
 
+  _parse() {
+    this.get('beforeParse')(this);
+    this.send('parse', this.get('value'));
+  },
+
   _processParsedDate(parsedDate) {
     if (parsedDate === null) {
       // add the error style-class
@@ -116,20 +121,7 @@ export default InputText.extend(DateTextboxEvents, {
     } else {
       // clear error style-class
       this.$().closest('.form-group').removeClass('has-error');
-      // date successfully parsed; now put it into the timezone assigned to this input
-      const parsedMoment = moment.tz(moment(parsedDate).toArray(), this.get('timezone'));
-      if (this.get('endOfDay?')) {
-        parsedMoment.endOf('day');
-      }
-      if (this.get('startOfDay?')) {
-        parsedMoment.startOf('day');
-      }
-      return parsedMoment.toDate();
+      return this._processTimezoneAndTimeOfDay(parsedDate);
     }
-  },
-
-  _parse() {
-    this.get('beforeParse')(this);
-    this.send('parse', this.get('value'));
   }
 });

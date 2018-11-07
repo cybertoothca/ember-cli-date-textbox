@@ -1,5 +1,6 @@
 import { readOnly } from '@ember/object/computed';
 import Mixin from '@ember/object/mixin';
+import moment from 'moment';
 
 /**
  * Simple mixin to share a bunch of the properties between the `input-date` & `input-iso8601` components.
@@ -77,6 +78,18 @@ export default Mixin.create({
   'startOfDay?': false,
 
   _enterWillNeverSubmitForm: false,
+
+  _processTimezoneAndTimeOfDay(parsedDate) {
+    // date successfully parsed; now put it into the timezone assigned to this input
+    const parsedMoment = moment.tz(moment(parsedDate).toArray(), this.get('timezone'));
+    if (this.get('endOfDay?')) {
+      parsedMoment.endOf('day');
+    }
+    if (this.get('startOfDay?')) {
+      parsedMoment.startOf('day');
+    }
+    return parsedMoment.toDate();
+  },
 
   /**
    * Trigger the appropriate post-parse action.

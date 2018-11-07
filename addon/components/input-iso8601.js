@@ -119,15 +119,7 @@ export default InputText.extend(DateTextboxEvents, {
     } else {
       // clear error style-class
       this.$().closest('.form-group').removeClass('has-error');
-      // date successfully parsed; now put it into the timezone assigned to this input
-      const parsedMoment = moment.tz(moment(parsedDate).toArray(), this.get('timezone'));
-      if (this.get('endOfDay?')) {
-        parsedMoment.endOf('day');
-      }
-      if (this.get('startOfDay?')) {
-        parsedMoment.startOf('day');
-      }
-      iso8601 = parsedMoment.toISOString();
+      iso8601 = this._processTimezoneAndTimeOfDay(parsedDate).toISOString();
     }
     return iso8601;
   },
