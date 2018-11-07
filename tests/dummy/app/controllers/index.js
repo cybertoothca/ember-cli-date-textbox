@@ -1,9 +1,12 @@
-import Ember from 'ember';
+import { isPresent } from '@ember/utils';
+import { computed } from '@ember/object';
+import Controller from '@ember/controller';
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   ambiguousFuture: null,
-  ambiguousFutureISOString: Ember.computed('ambiguousFuture', function () {
-    if (Ember.isPresent(this.get('ambiguousFuture'))) {
+
+  ambiguousFutureISOString: computed('ambiguousFuture', function () {
+    if (isPresent(this.get('ambiguousFuture'))) {
       return this.get('ambiguousFuture').toISOString();
     } else {
       return 'Type A Date...';
@@ -11,25 +14,30 @@ export default Ember.Controller.extend({
   }),
 
   dateAsParam: new Date().toISOString(),
+
   dateWithTimezone: null,
-  dateWithTimezoneISOString: Ember.computed('dateWithTimezone', function () {
-    if (Ember.isPresent(this.get('dateWithTimezone'))) {
+
+  dateWithTimezoneISOString: computed('dateWithTimezone', function () {
+    if (isPresent(this.get('dateWithTimezone'))) {
       return this.get('dateWithTimezone').toISOString();
     } else {
       return 'Choose A Date...';
     }
   }),
+
   demoDate: null,
-  demoDateISOString: Ember.computed('demoDate', function () {
-    if (Ember.isPresent(this.get('demoDate'))) {
+
+  demoDateISOString: computed('demoDate', function () {
+    if (isPresent(this.get('demoDate'))) {
       return this.get('demoDate').toISOString();
     } else {
       return 'Choose A Date...';
     }
   }),
+
   iso8601WithTimezone: '',
-  naftaSigned: new Date(1987, 9, 3),
-  now: new Date(),
+
   submittedIso8601: '',
+
   wasEmptyUntilNow: ''
 });

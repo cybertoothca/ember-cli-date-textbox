@@ -6,10 +6,11 @@ ember install ember-cli-deploy-build
 ember install ember-cli-deploy-gzip
 ember install ember-cli-deploy-s3
 ember install ember-cli-font-awesome-sass
-ember install ember-cli-text-support-mixins
+ember install ember-cli-text-support-mixins@~1
+ember install ember-moment
 ember install ember-route-action-helper
 ember install ember-sinon
 
-npm install --save ember-cli-node-assets
-npm install --save-dev bootswatch@3.3
-npm install --save-dev sugar-date
+yarn add ember-cli-node-assets
+yarn add bootswatch@3.3 --dev
+yarn add sugar-date --dev
