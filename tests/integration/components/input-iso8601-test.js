@@ -43,7 +43,7 @@ test('when setting a parsed date to the very end of the day', function (assert) 
 
 test('when firing the afterParseFail action on the text bla', function (assert) {
   this.set('afterParseFail', function (inputDateComponent) {
-    // assert.equal(inputDateComponent.get('value'), ''); // TODO: cannot get this to fire!
+    assert.equal(inputDateComponent.get('value'), 'bla', 'Failed parse will not change the text value');
     assert.equal(inputDateComponent.get('iso8601'), '');
   });
 
