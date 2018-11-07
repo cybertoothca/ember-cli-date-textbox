@@ -1,3 +1,4 @@
+import { hash } from 'rsvp';
 import { isPresent } from '@ember/utils';
 import Route from '@ember/routing/route';
 
@@ -14,6 +15,14 @@ export default Route.extend({
       return false;
     }
   },
+
+  model() {
+    return hash({
+      naftaSigned: new Date(1987, 9, 3),
+      now: new Date()
+    });
+  },
+
   queryParams: {
     dateAsParam: { refreshModel: false },
     iso8601WithTimezone: { refreshModel: false },

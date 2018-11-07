@@ -7,6 +7,7 @@ ember install ember-cli-deploy-gzip
 ember install ember-cli-deploy-s3
 ember install ember-cli-font-awesome-sass
 ember install ember-cli-text-support-mixins@~1
+ember install ember-moment
 ember install ember-route-action-helper
 ember install ember-sinon
 

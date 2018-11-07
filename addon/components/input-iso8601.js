@@ -22,12 +22,12 @@ export default InputText.extend({
           trySet(this, 'iso8601', '');
         }
         // trigger the afterParseSuccess action since the value and date was cleared
-        this.sendAction('afterParseSuccess', this);
+        this.get('afterParseSuccess')(this);
         return true;
       }
 
       // attempt to parse the not blank string value to a date; if it can't parse `null` is returned
-      const sugarDate = Sugar.Date.create(value, {future: this.get('future?'), past: this.get('past?')});
+      const sugarDate = Sugar.Date.create(value, { future: this.get('future?'), past: this.get('past?') });
       let parsedDate = Sugar.Date.isValid(sugarDate) ? moment(sugarDate).toDate() : null;
       let iso8601 = '';
       if (parsedDate === null) {
@@ -56,13 +56,14 @@ export default InputText.extend({
       }
       // determine which after-action to triggered based on the parsedDate value
       if (parsedDate === null) {
-        this.sendAction('afterParseFail', this);
+        this.get('afterParseFail')(this);
       } else {
-        this.sendAction('afterParseSuccess', this);
+        this.get('afterParseSuccess')(this);
       }
       return true;
     }
   },
+
   /**
    * After `ESCAPE` is pressed and the text is cleared; immediately trigger a parse.
    * @param event
@@ -71,21 +72,31 @@ export default InputText.extend({
   afterClearAction(event, component) {
     component.send('parse', '');
   },
+
   /**
    * Assign an action that will be triggered after failing to parse the date.  You will passed this
    * component as an argument.
    */
-  afterParseFail: undefined,
+  afterParseFail(/*inputDateComponent*/) {
+    // override accordingly
+  },
+
   /**
    * Assign an action that will be triggered after successfully parsing a date.  You will passed this
    * component as an argument.
    */
-  afterParseSuccess: undefined,
+  afterParseSuccess(/*inputDateComponent*/) {
+    // override accordingly
+  },
+
   /**
    * Assign an action that will be triggered before attempting to parse the date.  You will passed this
    * component as an argument.
    */
-  beforeParse: undefined,
+  beforeParse(/*inputDateComponent*/) {
+    // override accordingly
+  },
+
   /**
    * The textbox value changed; trigger a parse of the value.
    */
@@ -93,20 +104,26 @@ export default InputText.extend({
     this._super(...arguments);
     this._parse();
   },
+
   classNames: ['input-iso8601'],
+
   'ctrlEnterSubmitsForm?': true,
+
   /**
    * The format mask to apply to the date once it's been parsed.  The formatted date will
    * appear in the textbox while the actual date's ISO8601 string value will be in the
    * `iso8601` property.
    */
   displayFormat: 'LL',
+
   /**
    * When `true`, the parsed date will have its time component set to the last moment of the day.
    * Defaults to `false`.
    */
   'endOfDay?': false,
+
   'enterWillSubmitForm?': false,
+
   /**
    * If `true`, ambiguous dates like `Sunday` will be parsed as `next Sunday`.  Note that
    * non-ambiguous dates are not guaranteed to be in the future.  Default is `false`.
@@ -114,6 +131,7 @@ export default InputText.extend({
    * @see https://sugarjs.com/docs/#/Date/create
    */
   'future?': false,
+
   /**
    * The user pressed enter in the text box; trigger a parse.
    */
@@ -121,10 +139,12 @@ export default InputText.extend({
     this._super(...arguments);
     this._parse();
   },
+
   /**
    * REQUIRED.  Initialize the date text box and bind it to your model, component, or controller.
    */
   iso8601: '',
+
   /**
    * If `true`, ambiguous dates like `Sunday` will be parsed as `last Sunday`. Note that non-ambiguous
    * dates are not guaranteed to be in the past. Default is `false`.
@@ -132,6 +152,7 @@ export default InputText.extend({
    * @see https://sugarjs.com/docs/#/Date/create
    */
   'past?': false,
+
   /**
    * When `true`, the parsed date will have its time component set to the first moment of the day.  The `startOfDay?`
    * option takes precedence over the `endOfDay?` option; if both are set to `true` the start of day logic will
@@ -139,16 +160,19 @@ export default InputText.extend({
    * Defaults to `false`.
    */
   'startOfDay?': false,
+
   /**
    * By default guess the client's timezone.
    */
   timezone: moment.tz.guess(),
+
   /**
    * Don't assign anything to `value`.  Instead pass a proper iso8601 date string into the component's `iso8601`
    * attribute.
    * @private
    */
   value: '',
+
   /**
    * @deprecated please use #displayFormat instead.
    */
@@ -156,10 +180,12 @@ export default InputText.extend({
     id: 'input-iso8601.deprecate-valueFormat',
     until: '1.2.0'
   }),
+
   _parse() {
-    this.sendAction('beforeParse', this);
+    this.get('beforeParse')(this);
     this.send('parse', this.get('value'));
   },
+
   /**
    * Every time the `iso8601` property changes, attempt to format it to the String value matching
    * the `displayFormat` mask.  If `iso8601` is not present or is not of `date` type, the formatted value
