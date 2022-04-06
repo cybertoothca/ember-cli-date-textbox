@@ -1,8 +1,8 @@
 # ember-cli-date-textbox
 
-[![npm version](http://badge.fury.io/js/ember-cli-date-textbox.svg)](http://badge.fury.io/js/ember-cli-date-textbox) ![downloads](https://img.shields.io/npm/dy/ember-cli-date-textbox.svg) [![CircleCI](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox.svg?style=shield)](http://circleci.com/gh/cybertoothca/ember-cli-date-textbox) [![Code Climate](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox/badges/gpa.svg)](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox)
+[![npm version](http://badge.fury.io/js/ember-cli-date-textbox.svg)](http://badge.fury.io/js/ember-cli-date-textbox) ![downloads](https://img.shields.io/npm/dy/ember-cli-date-textbox.svg) [![Code Climate](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox/badges/gpa.svg)](http://codeclimate.com/github/cybertoothca/ember-cli-date-textbox)
 
-![Dependencies](http://david-dm.org/cybertoothca/ember-cli-date-textbox.svg) [![ember-observer-badge](http://emberobserver.com/badges/ember-cli-date-textbox.svg)](http://emberobserver.com/addons/ember-cli-date-textbox) [![License](http://img.shields.io/npm/l/ember-cli-date-textbox.svg)](LICENSE.md)
+[![ember-observer-badge](http://emberobserver.com/badges/ember-cli-date-textbox.svg)](http://emberobserver.com/addons/ember-cli-date-textbox)
 
 A textbox that will guess the date you want and assign it to your model or query-params.
 
@@ -13,12 +13,6 @@ The following will install this add-on:
 ```bash
 ember install ember-cli-date-textbox
 ```
-
-### Upgrading
-
-When working through the Ember upgrade process, I recommend
-invoking the `ember install ember-cli-date-textbox` command once
-you are done to get the latest version of the add-on.
 
 ### JQuery
 
@@ -208,27 +202,35 @@ in the form of a date that is swiftly parsed and formatted.
 
 ([Check out the demo...](http://ember-cli-date-textbox.cybertooth.io/))
 
-### Troubleshooting And Tips
-
-_None...at least that I can think of._
-
 ---
 
 # Ember Add-on Building And Testing
 
 ## Setup
 
-### Checkout
-
 ```bash
 git clone git@github.com:cybertoothca/ember-cli-date-textbox.git
+cd ember-cli-date-textbox
+yarn install
 ```
 
-### With Yarn
+### Linting
 
-```bash
-yarn
-```
+- `yarn lint:js`
+- `yarn lint:js -- --fix`
+
+### Running tests
+
+- `ember test` – Runs the test suite on the current Ember version
+- `ember test --server` – Runs the test suite in "watch mode"
+- `ember try:each` – Runs the test suite against multiple Ember versions
+
+### Running the dummy application
+
+- `ember serve`
+- Visit the dummy application at [http://localhost:4200](http://localhost:4200).
+
+For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
 ## Running The Dummy Application
 
@@ -246,6 +248,14 @@ yarn
 - `ember build`
 
 For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
+
+```
+ember install my-addon
+```
+
+# License
+
+This project is licensed under the [MIT License](LICENSE.md).
 
 # Linking This Add-on For Local Testing
 
@@ -289,41 +299,8 @@ Confirm your changes are showing up in our S3 container: http://ember-cli-date-t
 # Releasing & Publishing To NPM
 
 ```bash
-npm version x.y.z-sub.#
+yarn publish
 git push
 git push --tags
-npm publish
 ember deploy production
 ```
-
-```
-ember install my-addon
-```
-
-### Installation
-
-- `git clone <repository-url>`
-- `cd my-addon`
-- `npm install`
-
-### Linting
-
-- `npm run lint:js`
-- `npm run lint:js -- --fix`
-
-### Running tests
-
-- `ember test` – Runs the test suite on the current Ember version
-- `ember test --server` – Runs the test suite in "watch mode"
-- `npm test` – Runs `ember try:each` to test your addon against multiple Ember versions
-
-### Running the dummy application
-
-- `ember serve`
-- Visit the dummy application at [http://localhost:4200](http://localhost:4200).
-
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
-
-# License
-
-This project is licensed under the [MIT License](LICENSE.md).
