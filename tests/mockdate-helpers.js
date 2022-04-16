@@ -1,7 +1,7 @@
-import MockDate from "mockdate";
+import MockDate from 'mockdate';
 
-import { trySet } from "@ember/object";
-import { run } from "@ember/runloop";
+import { trySet } from '@ember/object';
+import { run } from '@ember/runloop';
 
 /**
  * A reference to the native `Date.now` function.
@@ -18,8 +18,8 @@ const backburnerPlatformNowFunction = run.backburner._platform.now;
  * @param {Date | string | number} date
  * @public
  */
-const freezeTime = (date) => {
-  trySet(run, "backburner._platform.now", nativeDateNowFunction);
+const freezeTime = date => {
+  trySet(run, 'backburner._platform.now', nativeDateNowFunction);
   MockDate.set(date);
 };
 
@@ -29,7 +29,7 @@ const freezeTime = (date) => {
  * @public
  */
 const travelBack = () => {
-  trySet(run, "backburner._platform.now", backburnerPlatformNowFunction);
+  trySet(run, 'backburner._platform.now', backburnerPlatformNowFunction);
   MockDate.reset();
 };
 

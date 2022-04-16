@@ -39,5 +39,5 @@ export default Controller.extend({
 
   submittedIso8601: '',
 
-  wasEmptyUntilNow: ''
+  wasEmptyUntilNow: '',
 });
