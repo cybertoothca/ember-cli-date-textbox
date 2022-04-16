@@ -6,8 +6,8 @@ export default Controller.extend({
   ambiguousFuture: null,
 
   ambiguousFutureISOString: computed('ambiguousFuture', function () {
-    if (isPresent(this.get('ambiguousFuture'))) {
-      return this.get('ambiguousFuture').toISOString();
+    if (isPresent(this.ambiguousFuture)) {
+      return this.ambiguousFuture.toISOString();
     } else {
       return 'Type A Date...';
     }
@@ -18,8 +18,8 @@ export default Controller.extend({
   dateWithTimezone: null,
 
   dateWithTimezoneISOString: computed('dateWithTimezone', function () {
-    if (isPresent(this.get('dateWithTimezone'))) {
-      return this.get('dateWithTimezone').toISOString();
+    if (isPresent(this.dateWithTimezone)) {
+      return this.dateWithTimezone.toISOString();
     } else {
       return 'Choose A Date...';
     }
@@ -28,8 +28,8 @@ export default Controller.extend({
   demoDate: null,
 
   demoDateISOString: computed('demoDate', function () {
-    if (isPresent(this.get('demoDate'))) {
-      return this.get('demoDate').toISOString();
+    if (isPresent(this.demoDate)) {
+      return this.demoDate.toISOString();
     } else {
       return 'Choose A Date...';
     }

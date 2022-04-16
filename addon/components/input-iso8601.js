@@ -13,13 +13,13 @@ export default InputText.extend(DateTextboxEvents, {
       }
 
       // attempt to parse the not blank string value to a date; if it can't parse `null` is returned
-      const sugarDate = Sugar.Date.create(value, { future: this.get('future?'), past: this.get('past?') });
+      const sugarDate = Sugar.Date.create(value, { future: this['future?'], past: this['past?'] });
       let parsedDate = Sugar.Date.isValid(sugarDate) ? moment(sugarDate).toDate() : null;
 
       let iso8601 = this._processParsedDate(parsedDate);
 
       // set the `iso8601` property
-      if (this.get('iso8601') === iso8601) {
+      if (this.iso8601 === iso8601) {
         // the iso8601 has not changed; however we want to force the iso8601 observer to fire anyway
         this.notifyPropertyChange('iso8601');
       } else {
@@ -58,11 +58,11 @@ export default InputText.extend(DateTextboxEvents, {
    * will be set to empty-string.
    */
   didReceiveAttrs() {
-    if (isPresent(this.get('iso8601'))) {
-      const parsedDate = new Date(this.get('iso8601'));
+    if (isPresent(this.iso8601)) {
+      const parsedDate = new Date(this.iso8601);
       // try to format the date if it is present and resolved to a real date (finite)
       if (isPresent(parsedDate) && isFinite(parsedDate)) {
-        trySet(this, 'value', moment(parsedDate).tz(this.get('timezone')).format(this.get('displayFormat')));
+        trySet(this, 'value', moment(parsedDate).tz(this.timezone).format(this.displayFormat));
       }
     }
   },
@@ -99,13 +99,13 @@ export default InputText.extend(DateTextboxEvents, {
       this.$().closest('.form-group').removeClass('has-error');
       // set the `iso8601` behind the now cleared value to empty-string
       // if it is already empty-string notify the iso8601 was changed
-      if (this.get('iso8601') === '') {
+      if (this.iso8601 === '') {
         this.notifyPropertyChange('iso8601');
       } else {
         trySet(this, 'iso8601', '');
       }
       // trigger the afterParseSuccess action since the value and date was cleared
-      this.get('afterParseSuccess')(this);
+      this.afterParseSuccess(this);
       return true;
     }
     return false;
@@ -125,7 +125,7 @@ export default InputText.extend(DateTextboxEvents, {
   },
 
   _parse() {
-    this.get('beforeParse')(this);
-    this.send('parse', this.get('value'));
+    this.beforeParse(this);
+    this.send('parse', this.value);
   }
 });
