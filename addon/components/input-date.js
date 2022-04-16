@@ -23,7 +23,7 @@ export default InputText.extend(DateTextboxEvents, {
       parsedDate = this._processParsedDate(parsedDate);
 
       // set the `date` property
-      if ((this.date - parsedDate) === 0) {
+      if (this.date - parsedDate === 0) {
         // the date has not changed; however we want to force the date changed observer to fire anyway
         this.notifyPropertyChange('date');
       } else {
@@ -34,7 +34,7 @@ export default InputText.extend(DateTextboxEvents, {
       this._triggerPostParseEvents(parsedDate === null);
 
       return true;
-    }
+    },
   },
 
   /**
@@ -123,5 +123,5 @@ export default InputText.extend(DateTextboxEvents, {
       this.$().closest('.form-group').removeClass('has-error');
       return this._processTimezoneAndTimeOfDay(parsedDate);
     }
-  }
+  },
 });

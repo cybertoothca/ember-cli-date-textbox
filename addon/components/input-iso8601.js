@@ -30,7 +30,7 @@ export default InputText.extend(DateTextboxEvents, {
       this._triggerPostParseEvents(parsedDate === null);
 
       return true;
-    }
+    },
   },
 
   /**
@@ -127,5 +127,5 @@ export default InputText.extend(DateTextboxEvents, {
   _parse() {
     this.beforeParse(this);
     this.send('parse', this.value);
-  }
+  },
 });

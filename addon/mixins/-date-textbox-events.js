@@ -103,5 +103,5 @@ export default Mixin.create({
     } else {
       this.afterParseSuccess(this);
     }
-  }
+  },
 });
