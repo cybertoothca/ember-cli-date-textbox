@@ -17,13 +17,13 @@ export default InputText.extend(DateTextboxEvents, {
       }
 
       // attempt to parse the not blank string value to a date; if it can't parse `null` is returned
-      const sugarDate = Sugar.Date.create(value, { future: this.get('future?'), past: this.get('past?') });
+      const sugarDate = Sugar.Date.create(value, { future: this['future?'], past: this['past?'] });
       let parsedDate = Sugar.Date.isValid(sugarDate) ? moment(sugarDate).toDate() : null;
 
       parsedDate = this._processParsedDate(parsedDate);
 
       // set the `date` property
-      if ((this.get('date') - parsedDate) === 0) {
+      if ((this.date - parsedDate) === 0) {
         // the date has not changed; however we want to force the date changed observer to fire anyway
         this.notifyPropertyChange('date');
       } else {
@@ -66,8 +66,8 @@ export default InputText.extend(DateTextboxEvents, {
    * the `displayFormat` mask.  If the `date` is not present or is not of `date` type nothing changes.
    */
   didReceiveAttrs() {
-    if (isPresent(this.get('date')) && typeOf(this.get('date')) === 'date') {
-      trySet(this, 'value', moment(this.get('date')).tz(this.get('timezone')).format(this.get('displayFormat')));
+    if (isPresent(this.date) && typeOf(this.date) === 'date') {
+      trySet(this, 'value', moment(this.date).tz(this.timezone).format(this.displayFormat));
     }
   },
 
@@ -96,21 +96,21 @@ export default InputText.extend(DateTextboxEvents, {
       this.$().closest('.form-group').removeClass('has-error');
       // set the `date` behind the now cleared value to null or if it is already null,
       // trigger that the property changed anyway
-      if (this.get('date') === null) {
+      if (this.date === null) {
         this.notifyPropertyChange('date');
       } else {
         trySet(this, 'date', null);
       }
       // trigger the afterParseSuccess action since the value and date was cleared
-      this.get('afterParseSuccess')(this);
+      this.afterParseSuccess(this);
       return true;
     }
     return false;
   },
 
   _parse() {
-    this.get('beforeParse')(this);
-    this.send('parse', this.get('value'));
+    this.beforeParse(this);
+    this.send('parse', this.value);
   },
 
   _processParsedDate(parsedDate) {

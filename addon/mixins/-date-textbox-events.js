@@ -81,11 +81,11 @@ export default Mixin.create({
 
   _processTimezoneAndTimeOfDay(parsedDate) {
     // date successfully parsed; now put it into the timezone assigned to this input
-    const parsedMoment = moment.tz(moment(parsedDate).toArray(), this.get('timezone'));
-    if (this.get('endOfDay?')) {
+    const parsedMoment = moment.tz(moment(parsedDate).toArray(), this.timezone);
+    if (this['endOfDay?']) {
       parsedMoment.endOf('day');
     }
-    if (this.get('startOfDay?')) {
+    if (this['startOfDay?']) {
       parsedMoment.startOf('day');
     }
     return parsedMoment.toDate();
@@ -99,9 +99,9 @@ export default Mixin.create({
   _triggerPostParseEvents(isFailedParse) {
     // determine which after-action to triggered based on the parsedDate value
     if (isFailedParse) {
-      this.get('afterParseFail')(this);
+      this.afterParseFail(this);
     } else {
-      this.get('afterParseSuccess')(this);
+      this.afterParseSuccess(this);
     }
   }
 });
