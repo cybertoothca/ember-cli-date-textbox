@@ -59,7 +59,7 @@
     "@ember/jquery": "^1",
     "@ember/optional-features": "^0.6.3",
     "bootstrap": "3.4.1",
-    "bootstrap-sass": "3.4.1",
+    "bootstrap-sass": "3.4.3",
     "bootswatch": "^3.3.7",
     "broccoli-asset-rev": "^2.7.0",
     "ember-auto-import": "~1.11",
