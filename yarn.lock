@@ -13112,8 +13112,9 @@ sugar-core@^2.0.0:
   resolved "https://registry.yarnpkg.com/sugar-core/-/sugar-core-2.0.4.tgz#9db0730e6c47eb7d28184a79c4ab18b2b7946ca0"
 
 sugar-date@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/sugar-date/-/sugar-date-2.0.4.tgz#6b297276487445c246487a4239480a3cfabd55c2"
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/sugar-date/-/sugar-date-2.0.6.tgz#cbfb25e1e1e5cfeec551aa9f302ed763a3778b02"
+  integrity sha512-5aPXcTl9pIgae3j8wOieRZOEbaowHHpL+MPgZwHHjXdhZz3FjzpacjzM+Aq7rZTjDsWyWuKHzkIALx2uUhnmyg==
   dependencies:
     sugar-core "^2.0.0"
 
