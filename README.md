@@ -6,7 +6,12 @@
 
 A textbox that will guess the date you want and assign it to your model or query-params.
 
-# Installation
+## Compatibility
+
+- Ember.js v2.18 or above
+- Ember CLI v2.13 or above
+
+## Installation
 
 The following will install this add-on:
 
@@ -193,6 +198,10 @@ in the form of a date that is swiftly parsed and formatted.
 ```
 
 ([Check out the demo...](http://ember-cli-date-textbox.cybertooth.io/))
+
+## Contributing
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
 
 ## License
 
