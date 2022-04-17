@@ -33,6 +33,7 @@
             date=demoDate
             classNames="form-control"
             displayFormat="LLLL"
+            enterSubmitsForm?=false
             placeholder="Try typing a date and then press enter."
             aria-describedby="demo-date-addon"
           }}
@@ -54,6 +55,7 @@
             date=ambiguousFuture
             classNames="form-control"
             displayFormat="LLLL"
+            enterSubmitsForm?=false
             future?=true
             placeholder="Try an ambiguous date like `jan` or `wed`"
             aria-describedby="demo-date-addon"
@@ -79,6 +81,7 @@
         {{input-date
           classNames="form-control"
           date=model.naftaSigned
+          enterSubmitsForm?=false
           placeholder="You cleared the date.  Now we don't know when NAFTA was signed."
         }}
       </div>
@@ -107,6 +110,7 @@
             classNames="form-control"
             date=dateWithTimezone
             displayFormat="llll z"
+            enterSubmitsForm?=false
             timezone="Europe/Rome"
             placeholder="Try typing a date and then press enter."
             aria-describedby="date-addon"
@@ -144,6 +148,7 @@
         <div class="input-group">
           {{input-date
             classNames="form-control"
+            enterSubmitsForm?=false
             placeholder="You cleared the date.  Try entering another."
             date=model.now
             displayFormat="LT"
@@ -171,6 +176,7 @@
         <div class="input-group">
           {{input-date
             classNames="form-control"
+            enterSubmitsForm?=false
             placeholder="You cleared the date.  Try entering another."
             date=model.now
             displayFormat="LTS"
@@ -191,6 +197,7 @@
         <div class="input-group">
           {{input-date
             classNames="form-control"
+            enterSubmitsForm?=false
             placeholder="You cleared the date.  Try entering another."
             date=model.now
             displayFormat="L"
@@ -211,6 +218,7 @@
         <div class="input-group">
           {{input-date
             classNames="form-control"
+            enterSubmitsForm?=false
             placeholder="You cleared the date.  Try entering another."
             date=model.now
             displayFormat="l"
@@ -231,6 +239,7 @@
         <div class="input-group">
           {{input-date
             classNames="form-control"
+            enterSubmitsForm?=false
             placeholder="You cleared the date.  Try entering another."
             date=model.now
             displayFormat="LL"
@@ -251,6 +260,7 @@
         <div class="input-group">
           {{input-date
             classNames="form-control"
+            enterSubmitsForm?=false
             placeholder="You cleared the date.  Try entering another."
             date=model.now
             displayFormat="ll"
@@ -271,6 +281,7 @@
         <div class="input-group">
           {{input-date
             classNames="form-control"
+            enterSubmitsForm?=false
             placeholder="You cleared the date.  Try entering another."
             date=model.now
             displayFormat="LLL"
@@ -291,6 +302,7 @@
         <div class="input-group">
           {{input-date
             classNames="form-control"
+            enterSubmitsForm?=false
             placeholder="You cleared the date.  Try entering another."
             date=model.now
             displayFormat="lll"
@@ -311,6 +323,7 @@
         <div class="input-group">
           {{input-date
             classNames="form-control"
+            enterSubmitsForm?=false
             placeholder="You cleared the date.  Try entering another."
             date=model.now
             displayFormat="LLLL"
@@ -331,6 +344,7 @@
         <div class="input-group">
           {{input-date
             classNames="form-control"
+            enterSubmitsForm?=false
             placeholder="You cleared the date.  Try entering another."
             date=model.now
             displayFormat="llll"
@@ -353,7 +367,7 @@
     </fieldset>
   </div>
 
-  <form class="form" onsubmit={{action (route-action "submitDate")}}>
+  <form class="form" onsubmit={{action "submitDate"}}>
     <fieldset>
       <legend>Submitting In A Form</legend>
       <div class="form-group">
@@ -406,6 +420,7 @@
         <label class="control-label">Change The Date And Check The Address Bar</label>
         {{input-iso8601
           classNames="form-control"
+          enterSubmitsForm?=false
           placeholder="Try another date. It appears as `dateAsParam` in the page url."
           iso8601=dateAsParam
           displayFormat="LLL Z"
@@ -424,6 +439,7 @@
         <label class="control-label">Choose Any Date And See It In The URL</label>
         {{input-iso8601
           classNames="form-control"
+          enterSubmitsForm?=false
           placeholder="Choose a date..."
           iso8601=wasEmptyUntilNow
           displayFormat="LLL Z"
@@ -447,6 +463,7 @@
         <label class="control-label">Choose A Date And See It In The URL</label>
         {{input-iso8601
           classNames="form-control"
+          enterSubmitsForm?=false
           iso8601=iso8601WithTimezone
           displayFormat="llll z"
           timezone="Pacific/Honolulu"
@@ -462,7 +479,7 @@
     </fieldset>
   </div>
 
-  <form class="form" onsubmit={{action (route-action "submitIso8601")}}>
+  <form class="form" onsubmit={{action "submitIso8601"}}>
     <fieldset>
       <legend>Submitting In A Form</legend>
       <div class="form-group">
