@@ -10,6 +10,7 @@ A textbox that will guess the date you want and assign it to your model or query
 
 - Ember.js v2.18 or above
 - Ember CLI v2.13 or above
+- Node.js v8 or above
 
 ## Installation
 

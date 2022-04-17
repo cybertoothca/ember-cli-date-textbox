@@ -1,8 +1,20 @@
-import { isPresent } from '@ember/utils';
-import { computed } from '@ember/object';
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import { isPresent } from '@ember/utils';
 
 export default Controller.extend({
+  actions: {
+    submitDate() {
+      const dateString = isPresent(this.submittedDate) ? this.submittedDate.toString() : null;
+      window.alert(`Form was submitted and this is the String value: ${dateString}`);
+      return false;
+    },
+    submitIso8601() {
+      window.alert(`Form was submitted and this is the String value: ${this.submittedIso8601}`);
+      return false;
+    },
+  },
+
   ambiguousFuture: null,
 
   ambiguousFutureISOString: computed('ambiguousFuture', function () {
