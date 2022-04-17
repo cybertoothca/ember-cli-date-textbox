@@ -1,9 +1,11 @@
+import InputText from 'ember-cli-text-support-mixins/components/input-text';
+import moment from 'moment';
+
 /* global Sugar */
 import { trySet } from '@ember/object';
 import { isBlank, isPresent } from '@ember/utils';
+
 import DateTextboxEvents from '../mixins/-date-textbox-events';
-import InputText from 'ember-cli-text-support-mixins/components/input-text';
-import moment from 'moment';
 
 export default InputText.extend(DateTextboxEvents, {
   actions: {
@@ -96,7 +98,10 @@ export default InputText.extend(DateTextboxEvents, {
     if (isBlank(value)) {
       // the text representation of the date has been cleared
       // clear error style-class
-      this.$().closest('.form-group').removeClass('has-error');
+      let formGroup = this.element.closest('.form-group');
+      if (formGroup) {
+        formGroup.classList.remove('has-error');
+      }
       // set the `iso8601` behind the now cleared value to empty-string
       // if it is already empty-string notify the iso8601 was changed
       if (this.iso8601 === '') {
@@ -115,10 +120,16 @@ export default InputText.extend(DateTextboxEvents, {
     let iso8601 = '';
     if (parsedDate === null) {
       // add the error style-class
-      this.$().closest('.form-group').addClass('has-error');
+      let formGroup = this.element.closest('.form-group');
+      if (formGroup) {
+        formGroup.classList.add('has-error');
+      }
     } else {
       // clear error style-class
-      this.$().closest('.form-group').removeClass('has-error');
+      let formGroup = this.element.closest('.form-group');
+      if (formGroup) {
+        formGroup.classList.remove('has-error');
+      }
       iso8601 = this._processTimezoneAndTimeOfDay(parsedDate).toISOString();
     }
     return iso8601;

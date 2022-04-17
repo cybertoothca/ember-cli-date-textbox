@@ -1,9 +1,11 @@
+import InputText from 'ember-cli-text-support-mixins/components/input-text';
+import moment from 'moment';
+
 /* global Sugar */
 import { trySet } from '@ember/object';
 import { isBlank, isPresent, typeOf } from '@ember/utils';
+
 import DateTextboxEvents from '../mixins/-date-textbox-events';
-import InputText from 'ember-cli-text-support-mixins/components/input-text';
-import moment from 'moment';
 
 /**
  * Don't use for Ember query params until they start handling objects.
@@ -93,7 +95,10 @@ export default InputText.extend(DateTextboxEvents, {
   _handleBlankTextInputValue(value) {
     if (isBlank(value)) {
       // clear error style-class
-      this.$().closest('.form-group').removeClass('has-error');
+      let formGroup = this.element.closest('.form-group');
+      if (formGroup) {
+        formGroup.classList.remove('has-error');
+      }
       // set the `date` behind the now cleared value to null or if it is already null,
       // trigger that the property changed anyway
       if (this.date === null) {
@@ -116,11 +121,17 @@ export default InputText.extend(DateTextboxEvents, {
   _processParsedDate(parsedDate) {
     if (parsedDate === null) {
       // add the error style-class
-      this.$().closest('.form-group').addClass('has-error');
+      let formGroup = this.element.closest('.form-group');
+      if (formGroup) {
+        formGroup.classList.add('has-error');
+      }
       return null;
     } else {
       // clear error style-class
-      this.$().closest('.form-group').removeClass('has-error');
+      let formGroup = this.element.closest('.form-group');
+      if (formGroup) {
+        formGroup.classList.remove('has-error');
+      }
       return this._processTimezoneAndTimeOfDay(parsedDate);
     }
   },
