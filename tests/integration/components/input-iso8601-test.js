@@ -1,6 +1,6 @@
 import { hbs } from 'ember-cli-htmlbars';
 import { setupRenderingTest } from 'ember-qunit';
-import moment from 'moment';
+import moment from 'moment-timezone';
 import { module, test } from 'qunit';
 
 import { fillIn, find, render } from '@ember/test-helpers';
@@ -112,7 +112,9 @@ module('Integration | Component | input iso8601', function (hooks) {
     freezeTime(new Date(2001, 8, 11));
 
     this.set('iso8601', null);
-    await render(hbs`<InputIso8601 @iso8601={{iso8601}} @displayFormat="llll z" @past?={{false}} @timezone="America/Edmonton" />`);
+    await render(
+      hbs`<InputIso8601 @iso8601={{iso8601}} @displayFormat="llll z" @past?={{false}} @timezone="America/Edmonton" />`
+    );
 
     assert.equal(find('input').value.trim(), '');
 
@@ -126,7 +128,9 @@ module('Integration | Component | input iso8601', function (hooks) {
     freezeTime(new Date(2001, 8, 11));
 
     this.set('iso8601', null);
-    await render(hbs`<InputIso8601 @iso8601={{iso8601}} @displayFormat="llll z" @past?={{true}} @timezone="America/Edmonton" />`);
+    await render(
+      hbs`<InputIso8601 @iso8601={{iso8601}} @displayFormat="llll z" @past?={{true}} @timezone="America/Edmonton" />`
+    );
 
     assert.equal(find('input').value.trim(), '');
 

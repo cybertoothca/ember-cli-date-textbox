@@ -1,7 +1,7 @@
 import InputText from 'ember-cli-text-support-mixins/components/input-text';
-import moment from 'moment';
+import moment from 'moment-timezone';
+import * as Sugar from 'sugar';
 
-/* global Sugar */
 import { trySet } from '@ember/object';
 import { isBlank, isPresent } from '@ember/utils';
 
