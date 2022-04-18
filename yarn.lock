@@ -4838,7 +4838,7 @@ ember-cli-babel@^6.8.1:
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.11.0, ember-cli-babel@^7.12.0, ember-cli-babel@^7.13.0, ember-cli-babel@^7.20.5, ember-cli-babel@^7.23.0, ember-cli-babel@^7.26.2, ember-cli-babel@^7.26.6, ember-cli-babel@^7.7.0, ember-cli-babel@^7.7.3:
+ember-cli-babel@^7.11.0, ember-cli-babel@^7.12.0, ember-cli-babel@^7.13.0, ember-cli-babel@^7.17.2, ember-cli-babel@^7.20.5, ember-cli-babel@^7.23.0, ember-cli-babel@^7.26.2, ember-cli-babel@^7.26.6, ember-cli-babel@^7.7.0, ember-cli-babel@^7.7.3:
   version "7.26.11"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.26.11.tgz#50da0fe4dcd99aada499843940fec75076249a9f"
   integrity sha512-JJYeYjiz/JTn34q7F5DSOjkkZqy8qwFOOxXfE6pe9yEJqWGu4qErKxlz8I22JoVEQ/aBUO+OcKTpmctvykM9YA==
@@ -5094,12 +5094,14 @@ ember-cli-test-loader@^2.2.0:
   dependencies:
     ember-cli-babel "^6.8.1"
 
-ember-cli-text-support-mixins@~3.12.0:
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-text-support-mixins/-/ember-cli-text-support-mixins-3.12.0.tgz#af72ea50fcd690679bc1864f6fbc6c5768d7c2d7"
-  integrity sha512-nSgKjVIulgt5UCYJ1Mb9Nak2YE2dWeNG5DrfwoWjwluEvYttciyGgcnaP+zyi/AjHZUEZZ6U9C1KmSDzwIm8bQ==
+ember-cli-text-support-mixins@~3.16.1:
+  version "3.16.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-text-support-mixins/-/ember-cli-text-support-mixins-3.16.1.tgz#2d8ec962eea5f7a08fe27a69116c063a45c39955"
+  integrity sha512-sJGTgI9f/L3kL1gWdmt5+5U4/+dkOFjbc106ZX5iXXmX7kimQFtj1YNYDwpBCrlA5W1Pd3IqsvVOQYtdrpu0RA==
   dependencies:
-    ember-cli-babel "^7.7.3"
+    ember-auto-import "^2.4.1"
+    ember-cli-babel "^7.17.2"
+    ember-cli-htmlbars "^6.0.1"
     ember-cli-node-assets "^0.2.2"
 
 ember-cli-typescript@^2.0.2:
