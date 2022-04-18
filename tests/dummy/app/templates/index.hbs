@@ -28,15 +28,7 @@
       <div class="form-group">
         <label class="control-label">Type A Date</label>
         <div class="input-group">
-          {{input-date
-            autofocus=true
-            date=demoDate
-            classNames="form-control"
-            displayFormat="LLLL"
-            enterSubmitsForm?=false
-            placeholder="Try typing a date and then press enter."
-            aria-describedby="demo-date-addon"
-          }}
+          <InputDate @autofocus={{true}} @date={{demoDate}} @classNames="form-control" @displayFormat="LLLL" @enterSubmitsForm?={{false}} @placeholder="Try typing a date and then press enter." @aria-describedby="demo-date-addon" />
           <span class="input-group-addon" id="demo-date-addon">{{demoDateISOString}}</span>
         </div>
         <p class="help-block">
@@ -51,15 +43,7 @@
       <div class="form-group">
         <label class="control-label">Ambiguous Date In The Future</label>
         <div class="input-group">
-          {{input-date
-            date=ambiguousFuture
-            classNames="form-control"
-            displayFormat="LLLL"
-            enterSubmitsForm?=false
-            future?=true
-            placeholder="Try an ambiguous date like `jan` or `wed`"
-            aria-describedby="demo-date-addon"
-          }}
+          <InputDate @date={{ambiguousFuture}} @classNames="form-control" @displayFormat="LLLL" @enterSubmitsForm?={{false}} @future?={{true}} @placeholder="Try an ambiguous date like `jan` or `wed`" @aria-describedby="demo-date-addon" />
           <span class="input-group-addon" id="demo-future-addon">{{ambiguousFutureISOString}}</span>
         </div>
         <p class="help-block">
@@ -78,12 +62,7 @@
       <legend>Initializing With A Date</legend>
       <div class="form-group">
         <label class="control-label">The Day NAFTA Was Signed</label>
-        {{input-date
-          classNames="form-control"
-          date=model.naftaSigned
-          enterSubmitsForm?=false
-          placeholder="You cleared the date.  Now we don't know when NAFTA was signed."
-        }}
+        <InputDate @classNames="form-control" @date={{model.naftaSigned}} @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Now we don't know when NAFTA was signed." />
       </div>
       <p class="help-block">
         This example is binding the parsed date from the textbox to a controller property named
@@ -106,15 +85,7 @@
       <div class="form-group">
         <label class="control-label">Type A Date</label>
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            date=dateWithTimezone
-            displayFormat="llll z"
-            enterSubmitsForm?=false
-            timezone="Europe/Rome"
-            placeholder="Try typing a date and then press enter."
-            aria-describedby="date-addon"
-          }}
+          <InputDate @classNames="form-control" @date={{dateWithTimezone}} @displayFormat="llll z" @enterSubmitsForm?={{false}} @timezone="Europe/Rome" @placeholder="Try typing a date and then press enter." @aria-describedby="date-addon" />
           <span class="input-group-addon" id="date-addon">{{dateWithTimezoneISOString}}</span>
         </div>
         <p class="help-block">
@@ -146,13 +117,7 @@
       </legend>
       <div class="form-group">
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            enterSubmitsForm?=false
-            placeholder="You cleared the date.  Try entering another."
-            date=model.now
-            displayFormat="LT"
-          }}
+          <InputDate @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Try entering another." @date={{model.now}} @displayFormat="LT" />
           <span class="input-group-addon">Time (<code>LT</code>)</span>
         </div>
         <p class="help-block">
@@ -174,13 +139,7 @@
 
       <div class="form-group">
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            enterSubmitsForm?=false
-            placeholder="You cleared the date.  Try entering another."
-            date=model.now
-            displayFormat="LTS"
-          }}
+          <InputDate @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Try entering another." @date={{model.now}} @displayFormat="LTS" />
           <span class="input-group-addon">Time with seconds (<code>LTS</code>)</span>
         </div>
         <div class="help-block">
@@ -195,13 +154,7 @@
 
       <div class="form-group">
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            enterSubmitsForm?=false
-            placeholder="You cleared the date.  Try entering another."
-            date=model.now
-            displayFormat="L"
-          }}
+          <InputDate @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Try entering another." @date={{model.now}} @displayFormat="L" />
           <span class="input-group-addon">Month numeral, day of month, year (<code>L</code>)</span>
         </div>
         <div class="help-block">
@@ -216,13 +169,7 @@
 
       <div class="form-group">
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            enterSubmitsForm?=false
-            placeholder="You cleared the date.  Try entering another."
-            date=model.now
-            displayFormat="l"
-          }}
+          <InputDate @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Try entering another." @date={{model.now}} @displayFormat="l" />
           <span class="input-group-addon">Month numeral, day of month, year (<code>l</code>)</span>
         </div>
         <div class="help-block">
@@ -237,13 +184,7 @@
 
       <div class="form-group">
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            enterSubmitsForm?=false
-            placeholder="You cleared the date.  Try entering another."
-            date=model.now
-            displayFormat="LL"
-          }}
+          <InputDate @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Try entering another." @date={{model.now}} @displayFormat="LL" />
           <span class="input-group-addon">Month name, day of month, year (<code>LL</code>)</span>
         </div>
         <div class="help-block">
@@ -258,13 +199,7 @@
 
       <div class="form-group">
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            enterSubmitsForm?=false
-            placeholder="You cleared the date.  Try entering another."
-            date=model.now
-            displayFormat="ll"
-          }}
+          <InputDate @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Try entering another." @date={{model.now}} @displayFormat="ll" />
           <span class="input-group-addon">Month name, day of month, year (<code>ll</code>)</span>
         </div>
         <div class="help-block">
@@ -279,13 +214,7 @@
 
       <div class="form-group">
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            enterSubmitsForm?=false
-            placeholder="You cleared the date.  Try entering another."
-            date=model.now
-            displayFormat="LLL"
-          }}
+          <InputDate @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Try entering another." @date={{model.now}} @displayFormat="LLL" />
           <span class="input-group-addon">Month name, day of month, year, time (<code>LLL</code>)</span>
         </div>
         <div class="help-block">
@@ -300,13 +229,7 @@
 
       <div class="form-group">
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            enterSubmitsForm?=false
-            placeholder="You cleared the date.  Try entering another."
-            date=model.now
-            displayFormat="lll"
-          }}
+          <InputDate @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Try entering another." @date={{model.now}} @displayFormat="lll" />
           <span class="input-group-addon">Month name, day of month, year, time (<code>lll</code>)</span>
         </div>
         <div class="help-block">
@@ -321,13 +244,7 @@
 
       <div class="form-group">
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            enterSubmitsForm?=false
-            placeholder="You cleared the date.  Try entering another."
-            date=model.now
-            displayFormat="LLLL"
-          }}
+          <InputDate @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Try entering another." @date={{model.now}} @displayFormat="LLLL" />
           <span class="input-group-addon">Month name, day of month, day of week, year, time (<code>LLLL</code>)</span>
         </div>
         <div class="help-block">
@@ -342,13 +259,7 @@
 
       <div class="form-group">
         <div class="input-group">
-          {{input-date
-            classNames="form-control"
-            enterSubmitsForm?=false
-            placeholder="You cleared the date.  Try entering another."
-            date=model.now
-            displayFormat="llll"
-          }}
+          <InputDate @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="You cleared the date.  Try entering another." @date={{model.now}} @displayFormat="llll" />
           <span class="input-group-addon">
             Month name, day of month, day of week, year, time (
             <code>llll</code>
@@ -372,12 +283,7 @@
       <legend>Submitting In A Form</legend>
       <div class="form-group">
         <label class="control-label">Type A Date...</label>
-        {{input-date
-          classNames="form-control"
-          displayFormat="LLLL"
-          placeholder="Choose a date and submit the form..."
-          date=submittedDate
-        }}
+        <InputDate @classNames="form-control" @displayFormat="LLLL" @placeholder="Choose a date and submit the form..." @date={{submittedDate}} />
         <p class="help-block">
           Press
           <kbd>ENTER</kbd>
@@ -418,13 +324,7 @@
       <legend>Assigned To Query Param</legend>
       <div class="form-group">
         <label class="control-label">Change The Date And Check The Address Bar</label>
-        {{input-iso8601
-          classNames="form-control"
-          enterSubmitsForm?=false
-          placeholder="Try another date. It appears as `dateAsParam` in the page url."
-          iso8601=dateAsParam
-          displayFormat="LLL Z"
-        }}
+        <InputIso8601 @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="Try another date. It appears as `dateAsParam` in the page url." @iso8601={{dateAsParam}} @displayFormat="LLL Z" />
         <div class="help-block">
           {{!@formatter:off}}
           <pre>// app/templates/example.hbs
@@ -437,13 +337,7 @@
       </div>
       <div class="form-group">
         <label class="control-label">Choose Any Date And See It In The URL</label>
-        {{input-iso8601
-          classNames="form-control"
-          enterSubmitsForm?=false
-          placeholder="Choose a date..."
-          iso8601=wasEmptyUntilNow
-          displayFormat="LLL Z"
-        }}
+        <InputIso8601 @classNames="form-control" @enterSubmitsForm?={{false}} @placeholder="Choose a date..." @iso8601={{wasEmptyUntilNow}} @displayFormat="LLL Z" />
         <div class="help-block">
           {{!@formatter:off}}
           <pre>// app/templates/example.hbs
@@ -461,14 +355,7 @@
       <legend>Specific Timezone In Query Parameter</legend>
       <div class="form-group">
         <label class="control-label">Choose A Date And See It In The URL</label>
-        {{input-iso8601
-          classNames="form-control"
-          enterSubmitsForm?=false
-          iso8601=iso8601WithTimezone
-          displayFormat="llll z"
-          timezone="Pacific/Honolulu"
-          placeholder="Try typing a date and then press enter."
-        }}
+        <InputIso8601 @classNames="form-control" @enterSubmitsForm?={{false}} @iso8601={{iso8601WithTimezone}} @displayFormat="llll z" @timezone="Pacific/Honolulu" @placeholder="Try typing a date and then press enter." />
         <p class="help-block">
         </p>
         <div class="help-block">
@@ -484,12 +371,7 @@
       <legend>Submitting In A Form</legend>
       <div class="form-group">
         <label class="control-label">Type A Date...</label>
-        {{input-iso8601
-          classNames="form-control"
-          displayFormat="LLLL"
-          placeholder="Choose a date and submit the form..."
-          iso8601=submittedIso8601
-        }}
+        <InputIso8601 @classNames="form-control" @displayFormat="LLLL" @placeholder="Choose a date and submit the form..." @iso8601={{submittedIso8601}} />
         <p class="help-block">
           Press
           <kbd>ENTER</kbd>
