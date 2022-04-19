@@ -8,9 +8,9 @@ A textbox that will guess the date you want and assign it to your model or query
 
 ## Compatibility
 
-- Ember.js v3.4 or above
+- Ember.js v3.12 or above
 - Ember CLI v2.13 or above
-- Node.js v8 or above
+- Node.js v10 or above
 - Requires `ember-auto-import` >= 2 & the latest `webpack`
 
 ## Installation
@@ -19,6 +19,8 @@ The following will install this add-on:
 
 ```bash
 ember install ember-cli-date-textbox
+
+yarn add -D ember-auto-import webpack
 ```
 
 ### Dependencies
