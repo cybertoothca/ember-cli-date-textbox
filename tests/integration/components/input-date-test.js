@@ -24,7 +24,7 @@ module('Integration | Component | input date', function (hooks) {
 
     await fillIn('input', 'sep 11 2001');
     assert.equal(find('input').value.trim(), 'Tue, Sep 11, 2001 12:00 AM MDT');
-    assert.equal(this.get('date').toISOString(), '2001-09-11T06:00:00.000Z');
+    assert.equal(this.date.toISOString(), '2001-09-11T06:00:00.000Z');
   });
 
   test('when setting a parsed date to the very end of the day', async function (assert) {
@@ -37,7 +37,7 @@ module('Integration | Component | input date', function (hooks) {
 
     await fillIn('input', 'sep 11 2001');
     assert.equal(find('input').value.trim(), 'Tue, Sep 11, 2001 11:59 PM MDT');
-    assert.equal(this.get('date').toISOString(), '2001-09-12T05:59:59.999Z');
+    assert.equal(this.date.toISOString(), '2001-09-12T05:59:59.999Z');
   });
 
   test('when firing the afterParseFail action on the text bla', async function (assert) {
@@ -51,7 +51,7 @@ module('Integration | Component | input date', function (hooks) {
       hbs`<InputDate @afterParseFail={{this.afterParseFail}} @date={{this.date}} @displayFormat="ll" @past?={{false}} @timezone="America/Edmonton" />`
     );
 
-    assert.equal(find('input').value.trim(), moment(this.get('date')).tz('America/Edmonton').format('ll'));
+    assert.equal(find('input').value.trim(), moment(this.date).tz('America/Edmonton').format('ll'));
 
     await fillIn('input', 'bla');
   });
@@ -87,7 +87,7 @@ module('Integration | Component | input date', function (hooks) {
       hbs`<InputDate @afterParseSuccess={{this.afterParseSuccess}} @date={{this.date}} @displayFormat="ll" @past?={{false}} @timezone="America/Edmonton" />`
     );
 
-    assert.equal(find('input').value.trim(), moment(this.get('date')).tz('America/Edmonton').format('ll'));
+    assert.equal(find('input').value.trim(), moment(this.date).tz('America/Edmonton').format('ll'));
 
     await fillIn('input', '');
   });
@@ -120,7 +120,7 @@ module('Integration | Component | input date', function (hooks) {
 
     await fillIn('input', 'jan');
     assert.equal(find('input').value.trim(), 'Mon, Jan 1, 2001 12:00 AM MST');
-    assert.equal(this.get('date').toISOString(), '2001-01-01T07:00:00.000Z');
+    assert.equal(this.date.toISOString(), '2001-01-01T07:00:00.000Z');
   });
 
   test('when `past?` set to true requesting `jan` will be in the past', async function (assert) {
@@ -136,7 +136,7 @@ module('Integration | Component | input date', function (hooks) {
 
     await fillIn('input', 'jan');
     assert.equal(find('input').value.trim(), 'Mon, Jan 1, 2001 12:00 AM MST');
-    assert.equal(this.get('date').toISOString(), '2001-01-01T07:00:00.000Z');
+    assert.equal(this.date.toISOString(), '2001-01-01T07:00:00.000Z');
   });
 
   test('when `future?` set to false requesting `jan` will be in the past', async function (assert) {
@@ -152,7 +152,7 @@ module('Integration | Component | input date', function (hooks) {
 
     await fillIn('input', 'jan');
     assert.equal(find('input').value.trim(), 'Mon, Jan 1, 2001 12:00 AM MST');
-    assert.equal(this.get('date').toISOString(), '2001-01-01T07:00:00.000Z');
+    assert.equal(this.date.toISOString(), '2001-01-01T07:00:00.000Z');
   });
 
   test('when `future?` set to true requesting `jan` will be in the future', async function (assert) {
@@ -168,13 +168,13 @@ module('Integration | Component | input date', function (hooks) {
 
     await fillIn('input', 'jan');
     assert.equal(find('input').value.trim(), 'Tue, Jan 1, 2002 12:00 AM MST');
-    assert.equal(this.get('date').toISOString(), '2002-01-01T07:00:00.000Z');
+    assert.equal(this.date.toISOString(), '2002-01-01T07:00:00.000Z');
   });
 
   test('when the default timezone is used for Sept 11 2001 at noon', async function (assert) {
     this.set('date', new Date(2001, 8, 11, 12));
     await render(hbs`<InputDate @date={{this.date}} @displayFormat="llll z" />`);
-    assert.equal(find('input').value.trim(), moment(this.get('date')).tz(moment.tz.guess()).format('llll z'));
+    assert.equal(find('input').value.trim(), moment(this.date).tz(moment.tz.guess()).format('llll z'));
   });
 
   test('when assigning a date for Sep 11, 2001 at noon in New York', async function (assert) {
@@ -189,7 +189,7 @@ module('Integration | Component | input date', function (hooks) {
     assert.equal(find('input').value.trim(), '');
     await fillIn('input', 'sep 11 2001 4pm');
     assert.equal(find('input').value.trim(), 'Tue, Sep 11, 2001 4:00 PM EDT');
-    assert.equal(this.get('date').toISOString(), '2001-09-11T20:00:00.000Z');
+    assert.equal(this.date.toISOString(), '2001-09-11T20:00:00.000Z');
   });
 
   test('when assigning a date for Sep 11, 2001 at noon in Vancouver', async function (assert) {
@@ -204,7 +204,7 @@ module('Integration | Component | input date', function (hooks) {
     assert.equal(find('input').value.trim(), '');
     await fillIn('input', 'sep 11 2001 4pm');
     assert.equal(find('input').value.trim(), 'Tue, Sep 11, 2001 4:00 PM PDT');
-    assert.equal(this.get('date').toISOString(), '2001-09-11T23:00:00.000Z');
+    assert.equal(this.date.toISOString(), '2001-09-11T23:00:00.000Z');
   });
 
   test('when initializing with null the text value remains empty', async function (assert) {
@@ -236,18 +236,18 @@ module('Integration | Component | input date', function (hooks) {
     this.set('date', sep11);
     await render(hbs`<InputDate @date={{this.date}} @displayFormat="LL" />`);
     assert.equal(find('input').value.trim(), 'September 11, 2001');
-    assert.equal(this.get('date'), sep11);
+    assert.equal(this.date, sep11);
     await fillIn('input', '');
-    assert.equal(this.get('date'), null);
+    assert.equal(this.date, null);
   });
 
   test('when parsing `sep 11 2001` to a date', async function (assert) {
     this.set('date', null);
     await render(hbs`<InputDate @displayFormat="LL" @date={{this.date}} />`);
-    assert.equal(this.get('date'), null);
+    assert.equal(this.date, null);
     await fillIn('input', 'sep 11 2001');
     assert.dom('input').hasValue('September 11, 2001');
-    assert.equal(this.get('date').toString(), new Date(2001, 8, 11).toString());
+    assert.equal(this.date.toString(), new Date(2001, 8, 11).toString());
   });
 
   test('when typing `bla` the date parsing fails silently', async function (assert) {
@@ -259,6 +259,6 @@ module('Integration | Component | input date', function (hooks) {
 
     await fillIn('input', 'bla');
     assert.dom('input').hasValue('bla');
-    assert.equal(this.get('date'), null);
+    assert.equal(this.date, null);
   });
 });
