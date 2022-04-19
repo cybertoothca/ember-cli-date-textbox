@@ -17,7 +17,7 @@ module('Integration | Component | input date', function (hooks) {
   test('when setting a parsed date to the very start of the day', async function (assert) {
     this.set('date', null);
     await render(
-      hbs`<InputDate @date={{date}} @displayFormat="llll z" @endOfDay?={{true}} @startOfDay?={{true}} @past?={{false}} @timezone="America/Edmonton" />`
+      hbs`<InputDate @date={{this.date}} @displayFormat="llll z" @endOfDay?={{true}} @startOfDay?={{true}} @past?={{false}} @timezone="America/Edmonton" />`
     );
 
     assert.equal(find('input').value.trim(), '');
@@ -30,7 +30,7 @@ module('Integration | Component | input date', function (hooks) {
   test('when setting a parsed date to the very end of the day', async function (assert) {
     this.set('date', null);
     await render(
-      hbs`<InputDate @date={{date}} @displayFormat="llll z" @endOfDay?={{true}} @past?={{false}} @timezone="America/Edmonton" />`
+      hbs`<InputDate @date={{this.date}} @displayFormat="llll z" @endOfDay?={{true}} @past?={{false}} @timezone="America/Edmonton" />`
     );
 
     assert.equal(find('input').value.trim(), '');
@@ -48,7 +48,7 @@ module('Integration | Component | input date', function (hooks) {
 
     this.set('date', new Date(2001, 8, 11));
     await render(
-      hbs`<InputDate @afterParseFail={{afterParseFail}} @date={{date}} @displayFormat="ll" @past?={{false}} @timezone="America/Edmonton" />`
+      hbs`<InputDate @afterParseFail={{this.afterParseFail}} @date={{this.date}} @displayFormat="ll" @past?={{false}} @timezone="America/Edmonton" />`
     );
 
     assert.equal(find('input').value.trim(), moment(this.get('date')).tz('America/Edmonton').format('ll'));
@@ -64,7 +64,7 @@ module('Integration | Component | input date', function (hooks) {
 
     this.set('date', null);
     await render(
-      hbs`<InputDate @afterParseSuccess={{afterParseSuccess}} @date={{date}} @displayFormat="ll" @past?={{false}} @timezone="America/Edmonton" />`
+      hbs`<InputDate @afterParseSuccess={{this.afterParseSuccess}} @date={{this.date}} @displayFormat="ll" @past?={{false}} @timezone="America/Edmonton" />`
     );
 
     assert.equal(find('input').value.trim(), '');
@@ -84,7 +84,7 @@ module('Integration | Component | input date', function (hooks) {
 
     this.set('date', new Date(2001, 8, 11));
     await render(
-      hbs`<InputDate @afterParseSuccess={{afterParseSuccess}} @date={{date}} @displayFormat="ll" @past?={{false}} @timezone="America/Edmonton" />`
+      hbs`<InputDate @afterParseSuccess={{this.afterParseSuccess}} @date={{this.date}} @displayFormat="ll" @past?={{false}} @timezone="America/Edmonton" />`
     );
 
     assert.equal(find('input').value.trim(), moment(this.get('date')).tz('America/Edmonton').format('ll'));
@@ -99,7 +99,7 @@ module('Integration | Component | input date', function (hooks) {
 
     this.set('date', null);
     await render(
-      hbs`<InputDate @beforeParse={{beforeParse}} @date={{date}} @displayFormat="llll z" @past?={{false}} @timezone="America/Edmonton" />`
+      hbs`<InputDate @beforeParse={{this.beforeParse}} @date={{this.date}} @displayFormat="llll z" @past?={{false}} @timezone="America/Edmonton" />`
     );
 
     assert.equal(find('input').value.trim(), '');
@@ -113,7 +113,7 @@ module('Integration | Component | input date', function (hooks) {
 
     this.set('date', null);
     await render(
-      hbs`<InputDate @date={{date}} @displayFormat="llll z" @past?={{false}} @timezone="America/Edmonton" />`
+      hbs`<InputDate @date={{this.date}} @displayFormat="llll z" @past?={{false}} @timezone="America/Edmonton" />`
     );
 
     assert.equal(find('input').value.trim(), '');
@@ -129,7 +129,7 @@ module('Integration | Component | input date', function (hooks) {
 
     this.set('date', null);
     await render(
-      hbs`<InputDate @date={{date}} @displayFormat="llll z" @past?={{true}} @timezone="America/Edmonton" />`
+      hbs`<InputDate @date={{this.date}} @displayFormat="llll z" @past?={{true}} @timezone="America/Edmonton" />`
     );
 
     assert.equal(find('input').value.trim(), '');
@@ -145,7 +145,7 @@ module('Integration | Component | input date', function (hooks) {
 
     this.set('date', null);
     await render(
-      hbs`<InputDate @date={{date}} @displayFormat="llll z" @future?={{false}} @timezone="America/Edmonton" />`
+      hbs`<InputDate @date={{this.date}} @displayFormat="llll z" @future?={{false}} @timezone="America/Edmonton" />`
     );
 
     assert.equal(find('input').value.trim(), '');
@@ -161,7 +161,7 @@ module('Integration | Component | input date', function (hooks) {
 
     this.set('date', null);
     await render(
-      hbs`<InputDate @date={{date}} @displayFormat="llll z" @future?={{true}} @timezone="America/Edmonton" />`
+      hbs`<InputDate @date={{this.date}} @displayFormat="llll z" @future?={{true}} @timezone="America/Edmonton" />`
     );
 
     assert.equal(find('input').value.trim(), '');
@@ -173,19 +173,19 @@ module('Integration | Component | input date', function (hooks) {
 
   test('when the default timezone is used for Sept 11 2001 at noon', async function (assert) {
     this.set('date', new Date(2001, 8, 11, 12));
-    await render(hbs`<InputDate @date={{date}} @displayFormat="llll z" />`);
+    await render(hbs`<InputDate @date={{this.date}} @displayFormat="llll z" />`);
     assert.equal(find('input').value.trim(), moment(this.get('date')).tz(moment.tz.guess()).format('llll z'));
   });
 
   test('when assigning a date for Sep 11, 2001 at noon in New York', async function (assert) {
     this.set('date', moment.tz([2001, 8, 11, 12], 'America/New_York').toDate());
-    await render(hbs`<InputDate @date={{date}} @displayFormat="llll z" @timezone="America/New_York" />`);
+    await render(hbs`<InputDate @date={{this.date}} @displayFormat="llll z" @timezone="America/New_York" />`);
     assert.equal(find('input').value.trim(), 'Tue, Sep 11, 2001 12:00 PM EDT');
   });
 
   test('when parsing a date for Sep 11, 2001 at 4pm in New York', async function (assert) {
     this.set('date', null);
-    await render(hbs`<InputDate @date={{date}} @displayFormat="llll z" @timezone="America/New_York" />`);
+    await render(hbs`<InputDate @date={{this.date}} @displayFormat="llll z" @timezone="America/New_York" />`);
     assert.equal(find('input').value.trim(), '');
     await fillIn('input', 'sep 11 2001 4pm');
     assert.equal(find('input').value.trim(), 'Tue, Sep 11, 2001 4:00 PM EDT');
@@ -194,13 +194,13 @@ module('Integration | Component | input date', function (hooks) {
 
   test('when assigning a date for Sep 11, 2001 at noon in Vancouver', async function (assert) {
     this.set('date', moment.tz([2001, 8, 11, 12], 'America/Vancouver').toDate());
-    await render(hbs`<InputDate @date={{date}} @displayFormat="llll z" @timezone="America/Vancouver" />`);
+    await render(hbs`<InputDate @date={{this.date}} @displayFormat="llll z" @timezone="America/Vancouver" />`);
     assert.equal(find('input').value.trim(), 'Tue, Sep 11, 2001 12:00 PM PDT');
   });
 
   test('when parsing a date for Sep 11, 2001 at 4pm in Vancouver', async function (assert) {
     this.set('date', null);
-    await render(hbs`<InputDate @date={{date}} @displayFormat="llll z" @timezone="America/Vancouver" />`);
+    await render(hbs`<InputDate @date={{this.date}} @displayFormat="llll z" @timezone="America/Vancouver" />`);
     assert.equal(find('input').value.trim(), '');
     await fillIn('input', 'sep 11 2001 4pm');
     assert.equal(find('input').value.trim(), 'Tue, Sep 11, 2001 4:00 PM PDT');
@@ -209,32 +209,32 @@ module('Integration | Component | input date', function (hooks) {
 
   test('when initializing with null the text value remains empty', async function (assert) {
     this.set('date', null);
-    await render(hbs`<InputDate @date={{date}} />`);
+    await render(hbs`<InputDate @date={{this.date}} />`);
     assert.equal(find('input').value.trim(), '');
   });
 
   test('when initializing with empty string the text value remains empty', async function (assert) {
     this.set('date', '');
-    await render(hbs`<InputDate @date={{date}} />`);
+    await render(hbs`<InputDate @date={{this.date}} />`);
     assert.equal(find('input').value.trim(), '');
   });
 
   test('when initializing with a date the text value formats to LL', async function (assert) {
     this.set('date', new Date(2001, 8, 11));
-    await render(hbs`<InputDate @date={{date}} />`);
+    await render(hbs`<InputDate @date={{this.date}} />`);
     assert.equal(find('input').value.trim(), 'September 11, 2001');
   });
 
   test('when initializing with a date the text value formats to whatever format is supplied', async function (assert) {
     this.set('date', new Date(2001, 8, 11));
-    await render(hbs`<InputDate @date={{date}} @displayFormat="ll" />`);
+    await render(hbs`<InputDate @date={{this.date}} @displayFormat="ll" />`);
     assert.equal(find('input').value.trim(), 'Sep 11, 2001');
   });
 
   test('when clearing the value the date is set to null', async function (assert) {
     let sep11 = new Date(2001, 8, 11);
     this.set('date', sep11);
-    await render(hbs`<InputDate @date={{date}} @displayFormat="LL" />`);
+    await render(hbs`<InputDate @date={{this.date}} @displayFormat="LL" />`);
     assert.equal(find('input').value.trim(), 'September 11, 2001');
     assert.equal(this.get('date'), sep11);
     await fillIn('input', '');
@@ -243,7 +243,7 @@ module('Integration | Component | input date', function (hooks) {
 
   test('when parsing `sep 11 2001` to a date', async function (assert) {
     this.set('date', null);
-    await render(hbs`<InputDate @displayFormat="LL" @date={{date}} />`);
+    await render(hbs`<InputDate @displayFormat="LL" @date={{this.date}} />`);
     assert.equal(this.get('date'), null);
     await fillIn('input', 'sep 11 2001');
     assert.dom('input').hasValue('September 11, 2001');
@@ -253,7 +253,7 @@ module('Integration | Component | input date', function (hooks) {
   test('when typing `bla` the date parsing fails silently', async function (assert) {
     this.set('date', new Date(2001, 8, 11));
 
-    await render(hbs`<InputDate @date={{date}} @displayFormat="ll" />`);
+    await render(hbs`<InputDate @date={{this.date}} @displayFormat="ll" />`);
 
     assert.dom('input').hasValue('Sep 11, 2001');
 
