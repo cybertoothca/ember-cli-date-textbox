@@ -25,9 +25,9 @@
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
-# Linking This Add-on For Local Testing
+## Linking This Add-on For Local Testing
 
-## Linking
+### Linking
 
 Use yarn.
 
@@ -38,7 +38,7 @@ $ yarn link
 $ yarn link ember-cli-date-textbox
 ```
 
-## Unlinking
+### Unlinking
 
 Again, use yarn.
 
@@ -49,7 +49,7 @@ $ yarn unlink ember-cli-date-textbox
 $ yarn unlink
 ```
 
-# Deploying The Dummy Application
+## Deploying The Dummy Application
 
 Make sure your `~/.aws/credentials` file has a profile named _cybertooth_
 with a valid key and secret,
@@ -64,7 +64,7 @@ Deploy by invoking the following command: `ember deploy production`
 
 Confirm your changes are showing up in our S3 container: http://ember-cli-date-textbox.cybertooth.io/
 
-# Releasing & Publishing To NPM
+## Releasing & Publishing To NPM
 
 ```bash
 yarn publish
