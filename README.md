@@ -11,6 +11,7 @@ A textbox that will guess the date you want and assign it to your model or query
 - Ember.js v3.4 or above
 - Ember CLI v2.13 or above
 - Node.js v8 or above
+- Requires `ember-auto-import` >= 2 & the latest `webpack`
 
 ## Installation
 
@@ -20,54 +21,26 @@ The following will install this add-on:
 ember install ember-cli-date-textbox
 ```
 
-### JQuery
-
-JQuery is still required as of 1.2.x of this addon.
-
 ### Dependencies
 
-#### `ember-cli-text-support-mixins`
+The following dependencies are used with this addon and may collide with dependencies in your app/addon:
 
-The helper mixins from [`ember-cli-text-support-mixins`](http://ember-cli-text-support-mixins.cybertooth.io/)
-are used by this textarea add-on to include support for:
-
-- autofocus
-- <kbd>CTRL+ENTER</kbd> submits the closest form
-- textarea focus automatically selects text
-
-#### `ember-moment`
-
-Used to format output according the browser locale information.
-
-You should configure `ember-moment` to include the timezone API
-([see docs](https://github.com/stefanpenner/ember-moment#include-moment-timezone)).
-
-For example, in your `config/environment.js` add the following to the appropriate environment scope:
-
-```javascript
-module.exports = function (/* environment, appConfig */) {
-  return {
-    moment: {
-      // Options:
-      // 'all' - all years, all timezones
-      // '2010-2020' - 2010-2020, all timezones
-      // 'none' - no data, just timezone API
-      includeTimezone: 'all',
-    },
-  };
-};
-```
-
-#### `sugar-date`
-
-Used to parse your english variation of a date into the actual javascript `Date` instance.
+- `ember-cli-text-support-mixins`
+- `moment`
+- `moment-timezone`
+- `sugar`
 
 ## Demo
 
 The demonstration web application can be found here:
 [http://ember-cli-date-textbox.cybertooth.io/](http://ember-cli-date-textbox.cybertooth.io/).
 
-## What Does This Add-on Do?
+## Usage
+
+As mentioned above there are several examples on the demonstration site:
+[http://ember-cli-date-textbox.cybertooth.io/](http://ember-cli-date-textbox.cybertooth.io/)
+
+### What Does This Add-on Do?
 
 This add-on supplies the following _components_:
 
@@ -85,11 +58,6 @@ _Further information about these items can be found in the Usage section below a
 
 If the supplied value can't be parsed to a date, we add the `has-error` style class to the `.form-group` that the
 &#123;&#123;input-date&#125;&#125; and/or &#123;&#123;input-iso8601&#125;&#125; belongs to. This visualizes that the date parse was rejected.
-
-## Usage
-
-As mentioned above there are several examples on the demonstration site:
-[http://ember-cli-date-textbox.cybertooth.io/](http://ember-cli-date-textbox.cybertooth.io/)
 
 ### Components
 
