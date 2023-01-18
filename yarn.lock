@@ -2315,10 +2315,15 @@ babel-helpers@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-import-util@^1.1.0, babel-import-util@^1.2.0:
+babel-import-util@^1.1.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/babel-import-util/-/babel-import-util-1.2.2.tgz#1027560e143a4a68b1758e71d4fadc661614e495"
   integrity sha512-8HgkHWt5WawRFukO30TuaL9EiDUOdvyKtDwLma4uBNeUSDbOO0/hiPfavrOWxSS6J6TKXfukWHZ3wiqZhJ8ONQ==
+
+babel-import-util@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/babel-import-util/-/babel-import-util-1.3.0.tgz#dc9251ea39a7747bd586c1c13b8d785a42797f8e"
+  integrity sha512-PPzUT17eAI18zn6ek1R3sB4Krc/MbnmT1MkZQFmyhjoaEGBVwNABhfVU9+EKcDSKrrOm9OIpGhjxukx1GCiy1g==
 
 babel-loader@^8.0.6:
   version "8.2.4"
@@ -2383,15 +2388,12 @@ babel-plugin-ember-modules-api-polyfill@^3.5.0:
   dependencies:
     ember-rfc176-data "^0.3.17"
 
-babel-plugin-ember-template-compilation@^1.0.0:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/babel-plugin-ember-template-compilation/-/babel-plugin-ember-template-compilation-1.0.2.tgz#e0695b8ad5a8fe6b2cbdff1eadb01cf402731ad6"
-  integrity sha512-4HBMksmlYsWEf/C/n3uW5rkBRbUp4FNaspzdQTAHgLbfCJnkLze8R6i6sUSge48y/Wne7mx+vcImI1o6rlUwXQ==
+babel-plugin-ember-template-compilation@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-ember-template-compilation/-/babel-plugin-ember-template-compilation-2.0.0.tgz#41d895874ba6119dd461f61993c16d1154bf8a57"
+  integrity sha512-d+4jaB2ik0rt9TH0K9kOlKJeRBHEb373FgFMcU9ZaJL2zYuVXe19bqy+cWlLpLf1tpOBcBG9QTlFBCoImlOt1g==
   dependencies:
-    babel-import-util "^1.2.0"
-    line-column "^1.0.2"
-    magic-string "^0.26.0"
-    string.prototype.matchall "^4.0.5"
+    babel-import-util "^1.3.0"
 
 babel-plugin-filter-imports@^3.0.0:
   version "3.0.0"
@@ -5076,12 +5078,12 @@ ember-cli-htmlbars-inline-precompile@^2.1.0:
     silent-error "^1.1.0"
 
 ember-cli-htmlbars@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-6.0.1.tgz#5487831d477e61682bc867fd138808269e5d2152"
-  integrity sha512-IDsl9uty+MXtMfp/BUTEc/Q36EmlHYj8ZdPekcoRa8hmdsigHnK4iokfaB7dJFktlf6luruei+imv7JrJrBQPQ==
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-6.2.0.tgz#18ec48ee1c93f9eed862a64eb24a9d14604f1dfc"
+  integrity sha512-j5EGixjGau23HrqRiW/JjoAovg5UBHfjbyN7wX5ekE90knIEqUUj1z/Mo/cTx/J2VepQ2lE6HdXW9LWQ/WdMtw==
   dependencies:
     "@ember/edition-utils" "^1.2.0"
-    babel-plugin-ember-template-compilation "^1.0.0"
+    babel-plugin-ember-template-compilation "^2.0.0"
     babel-plugin-htmlbars-inline-precompile "^5.3.0"
     broccoli-debug "^0.6.5"
     broccoli-persistent-filter "^3.1.2"
@@ -5090,10 +5092,9 @@ ember-cli-htmlbars@^6.0.1:
     fs-tree-diff "^2.0.1"
     hash-for-dep "^1.5.1"
     heimdalljs-logger "^0.1.10"
-    json-stable-stringify "^1.0.1"
+    js-string-escape "^1.0.1"
     semver "^7.3.4"
     silent-error "^1.1.1"
-    strip-bom "^4.0.0"
     walk-sync "^2.2.0"
 
 ember-cli-inject-live-reload@^2.1.0:
@@ -8776,13 +8777,6 @@ magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.8"
 
-magic-string@^0.26.0:
-  version "0.26.1"
-  resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.26.1.tgz#ba9b651354fa9512474199acecf9c6dbe93f97fd"
-  integrity sha512-ndThHmvgtieXe8J/VGPjG+Apu7v7ItcD5mhEIvOscWjPF/ccOiLxHaSuCAS2G+3x4GKsAbT8u7zdyamupui8Tg==
-  dependencies:
-    sourcemap-codec "^1.4.8"
-
 make-dir@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/make-dir/-/make-dir-1.0.0.tgz#97a011751e91dd87cfadef58832ebb04936de978"
@@ -12173,11 +12167,6 @@ strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
   dependencies:
     ansi-regex "^5.0.1"
-
-strip-bom@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-4.0.0.tgz#9c3505c1db45bcedca3d9cf7a16f5c5aa3901878"
-  integrity sha512-3xurFv5tEgii33Zi8Jtp55wEIILR9eh34FAW00PZf+JnSsTmV/ioewSgQl97JHvgjoRGwPShsWm+IdrxB35d0w==
 
 strip-eof@^1.0.0:
   version "1.0.0"
